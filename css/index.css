@@ -1,0 +1,38 @@
+body{
+    background-color: #e7e7e7;
+}
+
+
+
+/***********        Index - liste des categories        ***********/
+
+.categories{
+    margin-top: 60px;
+}
+
+
+.categories ul{
+    list-style-type: none;
+    margin: auto;
+    text-align: center;
+
+}
+
+
+/***********        Surcharges bootstrap        ***********/
+
+.navbar-default {
+    background-color: #fff;
+    border: 0px;
+}
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus {
+color: #555;
+background-color: #ff5d55;
+}
+
+.badge {
+background-color: #ff5d55;
+}
