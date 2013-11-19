@@ -14,6 +14,8 @@
     </head>
     <body>
         <?php
+        include("../ressources/config.php");
+         echo(TEMPLATES_PATH);
         try {
              $bdd = new PDO('mysql:host=localhost;dbname=JsGallery', 'root', 'd4t4');
         }

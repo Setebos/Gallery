@@ -6,6 +6,7 @@
     This allows you to confidently use these settings throughout a project because
     if something changes such as your database credentials, or a path to a specific resource,
     you'll only need to update it here.
+
 */
 
 $config = array(
@@ -45,12 +46,21 @@ $config = array(
 /*
     Creating constants for heavily used paths makes things a lot easier.
     ex. require_once(LIBRARY_PATH . "Paginator.php")
+
+    PATHS Claire Dev :
+    $_SERVER['DOCUMENT_ROOT']                           = /var/www
+    realpath(dirname(__FILE__)) pour index.php      = /var/www/Gallery/app
 */
+defined("BASE_PATH")
+    or define("BASE_PATH", $_SERVER["DOCUMENT_ROOT"] . "/Gallery");
+
 defined("LIBRARY_PATH")
-    or define("LIBRARY_PATH", realpath(dirname(__FILE__) . '/library'));
+    or define("LIBRARY_PATH", BASE_PATH . '/ressources/library');
     
 defined("TEMPLATES_PATH")
-    or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));
+    or define("TEMPLATES_PATH", BASE_PATH . '/ressources/templates');
+
+
 
 /*
     Error reporting.
