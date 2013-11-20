@@ -1,3 +1,5 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
 body{
     background-color: #e7e7e7;
 }
@@ -16,6 +18,28 @@ body{
     margin: auto;
     text-align: center;
 
+}
+
+/***********        Index - liste des photos        ***********/
+
+.gallery{
+    margin-top: 60px;
+}
+
+
+.gallery ul{
+    list-style-type: none;
+    margin: auto;
+    text-align: center;
+
+}
+
+.gallery img{
+    margin-top: 10px;
+}
+
+.glyphicons{
+    font-size: 50px;
 }
 
 /***********        Formulaire login admin        ***********/

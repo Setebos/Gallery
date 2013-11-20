@@ -1,0 +1,86 @@
+html{
+    height: 100%;
+}
+
+
+body{
+    background-color: #e7e7e7;
+    height: 100%;
+}
+
+
+
+/***********        Index - gallery part        ***********/
+.height-full{       /* pour permettre gallery-part en height 100% */
+        height: 100%;
+}
+
+.gallery-part{
+    background-color: #757575;
+    overflow: auto;
+    height: 100%;
+    padding-left: 30px;
+}
+
+.gallery-part h3{
+    color:#fff;
+    }
+
+.gallery-header{
+    height: 13%;
+    border-bottom: 1px solid #fff;
+}
+
+
+/***********        Index - picture part        ***********/
+.picture-part{
+        overflow: auto;
+    height: 100%;
+}
+
+.picture-header{
+    height: 13%;
+    border-bottom: 1px solid #000;
+}
+
+
+/***********        Surcharges bootstrap        ***********/
+
+.navbar-default {
+    background-color: #fff;
+    border: 0px;
+    margin-bottom: 0;
+}
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus {
+color: #555;
+background-color: #ff5d55;
+}
+
+.badge {
+background-color: #ff5d55;
+font-size: 14px;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #ff5d55;
+    border-color: #db2d27;
+}
+
+.btn-default:hover {
+    color: #fff;
+    background-color: #db2d27;
+    border-color: #db2d27;
+}
+
+.btn-default a{
+    color: #fff; 
+}
+.btn-default a:hover{
+    color: #fff; 
+    text-decoration: none;
+}
+
