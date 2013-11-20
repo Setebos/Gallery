@@ -4,8 +4,8 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Test Gallery js - Espace admin </title>
-        <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/> 
-        <link rel="stylesheet" type="text/css" href="../../css/admin.css"/>
+        <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
+        <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"/></script>
         <!--[if IE]>
@@ -15,16 +15,6 @@
     </head>
 
     <body>
-        <?php
-          include("../../../ressources/config.php");
-          try {
-               $bdd = new PDO($config["db"]["dbengine"].':host='.$config["db"]["host"].';dbname='.$config["db"]["dbname"], $config["db"]["username"], $config["db"]["password"]);
-          }
-          catch (Exception $e) {
-                  die('Erreur : ' . $e->getMessage());
-          }
-        ?>
-
         <header>
             <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->

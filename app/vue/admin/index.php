@@ -1,6 +1,5 @@
 <?php
-      require_once("../../../ressources/templates/admin/header.php");    
-      include("../../../Controleur/login.php");
+      require_once("ressources/templates/admin/header.php");    
 ?>
 
 		    <div class="row height-full">

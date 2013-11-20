@@ -4,26 +4,18 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Test Gallery js </title>
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/> 
-        <link rel="stylesheet" type="text/css" href="../css/public.css"/>
+        <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
+        <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"/></script>
         <!--[if IE]>
             <script src="js/html5-ie.js"></script>
             <script src="js/html5shiv.js"></script>
         <![endif]-->
-    </head>
+    </head> 
 
     <body>
-        <?php
-          include("../../ressources/config.php");
-          try {
-               $bdd = new PDO($config["db"]["dbengine"].':host='.$config["db"]["host"].';dbname='.$config["db"]["dbname"], $config["db"]["username"], $config["db"]["password"]);
-          }
-          catch (Exception $e) {
-                  die('Erreur : ' . $e->getMessage());
-          }
-        ?>
+  
 
         <header>
             <nav class="navbar navbar-default" role="navigation">
@@ -33,7 +25,7 @@
                 </div>
                
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="login.php">Se connecter  </a></li>
+                  <li><a href="<?= "index.php?section=login "?>">Se connecter  </a></li>
                 </ul>
 
                 <form class="navbar-form navbar-right" role="search">

@@ -1,6 +1,7 @@
 <?php
-      require_once("../../ressources/templates/header.php");    
+      require_once("ressources/templates/header.php");   
 ?>
+
         <container>
             <section class="categories">
                 <div class="row">
