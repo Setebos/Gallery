@@ -18,6 +18,20 @@ body{
 
 }
 
+/***********        Formulaire login admin        ***********/
+
+.form_login h2{
+	margin: 40px auto;
+	text-align: center;
+}
+
+.form_login div.well{
+	width: 300px;
+	margin: 40px auto;
+	text-align: center;
+}
+
+
 
 /***********        Surcharges bootstrap        ***********/
 
@@ -35,4 +49,5 @@ background-color: #ff5d55;
 
 .badge {
 background-color: #ff5d55;
+font-size: 14px;
 }
