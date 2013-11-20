@@ -11,7 +11,7 @@ body{
 
 
 /***********        Index - gallery part        ***********/
-.height-full{
+.height-full{       /* pour permettre gallery-part en height 100% */
         height: 100%;
 }
 
