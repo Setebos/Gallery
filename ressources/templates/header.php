@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <title>Test Gallery js </title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/> 
-        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="css/public.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"/></script>
         <!--[if IE]>
