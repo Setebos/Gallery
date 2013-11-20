@@ -38,8 +38,9 @@ body{
     margin-top: 10px;
 }
 
-.glyphicons{
-    font-size: 50px;
+.gallery .glyphicon{
+    font-size: 40px;
+    margin-top: 50%;
 }
 
 /***********        Formulaire login admin        ***********/
