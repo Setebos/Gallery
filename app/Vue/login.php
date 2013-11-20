@@ -1,11 +1,11 @@
 <?php
-     require_once("../ressources/templates/header.php");
+     require_once("../../ressources/templates/header.php");
 ?>
         <container>
             <section class="form_login">
                 <h2>Authentification</h2>
                 <div class="well">
-                    <form method="post" action="admin.php" role="form">
+                    <form method="post" action="admin/index.php" role="form">
                         <div class="form-group">
                             <label name="login"> Saisissez votre login</label>
                             <input type="text" name="login" />
