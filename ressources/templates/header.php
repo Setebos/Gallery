@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Test Gallery js </title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/> 
-        <link rel="stylesheet" type="text/css" href="css/public.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/> 
+        <link rel="stylesheet" type="text/css" href="../css/public.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"/></script>
         <!--[if IE]>
@@ -15,7 +15,7 @@
 
     <body>
         <?php
-          include("../ressources/config.php");
+          include("../../ressources/config.php");
           try {
                $bdd = new PDO($config["db"]["dbengine"].':host='.$config["db"]["host"].';dbname='.$config["db"]["dbname"], $config["db"]["username"], $config["db"]["password"]);
           }
