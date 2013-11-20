@@ -6,17 +6,16 @@
     This allows you to confidently use these settings throughout a project because
     if something changes such as your database credentials, or a path to a specific resource,
     you'll only need to update it here.
-
 */
 
 $config = array(
     "db" => array(
-        "db1" => array(
-            "dbname" => "jsGallery",
+        "dbengine" => "mysql",
+         "dbname" => "JsGallery",
             "username" => "root",
             "password" => "d4t4",
             "host" => "localhost"
-        )
+    ),
         // ,
         // "db2" => array(
         //     "dbname" => "database2",
@@ -24,7 +23,6 @@ $config = array(
         //     "password" => "pa$$",
         //     "host" => "localhost"
         // )
-    ),
     "urls" => array(
         "baseUrl" => "http://trebouzul_gallery.com"
     ),
@@ -46,21 +44,12 @@ $config = array(
 /*
     Creating constants for heavily used paths makes things a lot easier.
     ex. require_once(LIBRARY_PATH . "Paginator.php")
-
-    PATHS Claire Dev :
-    $_SERVER['DOCUMENT_ROOT']                           = /var/www
-    realpath(dirname(__FILE__)) pour index.php      = /var/www/Gallery/app
 */
-defined("BASE_PATH")
-    or define("BASE_PATH", $_SERVER["DOCUMENT_ROOT"] . "/Gallery");
-
 defined("LIBRARY_PATH")
-    or define("LIBRARY_PATH", BASE_PATH . '/ressources/library');
+    or define("LIBRARY_PATH", realpath(dirname(__FILE__) . '/library'));
     
 defined("TEMPLATES_PATH")
-    or define("TEMPLATES_PATH", BASE_PATH . '/ressources/templates');
-
-
+    or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));
 
 /*
     Error reporting.

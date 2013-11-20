@@ -12,17 +12,16 @@
             <script src="js/html5shiv.js"></script>
         <![endif]-->
     </head>
+
     <body>
         <?php
-        include("../ressources/config.php");
-         echo(TEMPLATES_PATH);
-        try {
-             $bdd = new PDO('mysql:host=localhost;dbname=JsGallery', 'root', 'd4t4');
-        }
-        catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
-        }
-
+          include("../ressources/config.php");
+          try {
+               $bdd = new PDO($config["db"]["dbengine"].':host='.$config["db"]["host"].';dbname='.$config["db"]["dbname"], $config["db"]["username"], $config["db"]["password"]);
+          }
+          catch (Exception $e) {
+                  die('Erreur : ' . $e->getMessage());
+          }
         ?>
 
         <header>

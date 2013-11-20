@@ -16,7 +16,7 @@
 			    $bdd = new PDO('mysql:host=localhost;dbname=JsGallery', 'root', 'd4t4');
 			}
 			catch (Exception $e) {
-			        die('Erreur : ' . $e->getMessage());
+			        die('Erreur : ' . $e->getMessage());	
 			}
 
 		// Authentification

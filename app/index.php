@@ -1,10 +1,5 @@
 <?php
-      require_once("../ressources/templates/header.php");
-     
-     echo(realpath(dirname(__FILE__)));
-     echo("</br>");
-
-     
+      require_once("../ressources/templates/header.php");    
 ?>
             <container>
                 <section class="categories">
