@@ -45,6 +45,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2">
+                        <span class="glyphicon glyphicon-chevron-right pull-left"></span> 
                     </div>
                 </div>
             </section>
