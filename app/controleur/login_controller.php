@@ -11,13 +11,12 @@
 
   if (!$resultat_login) {
           echo 'Mauvais identifiant ou mot de passe !';
-          include_once('app/vue/index.php');
+          include_once('app/vue/home.php');
   }
   else {
       session_start();
       $_SESSION['id'] = $resultat_login['id'];
       $_SESSION['login'] = $login;
+      // var_dump($_SESSION);
       include_once('app/vue/admin/index.php');
   }
-
-?>

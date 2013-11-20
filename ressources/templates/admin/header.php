@@ -23,7 +23,7 @@
                 </div>
                
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="logout.php">Se déconnecter  </a></li>
+                  <li><a href="<?= "index.php?section=logout_controller "?>">Se déconnecter  </a></li>
                 </ul>
             </nav>
         </header>
