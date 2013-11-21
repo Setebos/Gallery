@@ -64,7 +64,6 @@
     $("#gallery-test").slideshowPlugin(
     {
         'nbPic': 4,
-        'categories' : <?=$listCategories_json?>, 
-
+        'categories' : <?=$listCategories_json?>
     });
 </script>

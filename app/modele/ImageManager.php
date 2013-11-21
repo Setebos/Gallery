@@ -68,6 +68,10 @@ class ImageManager {
 		return $listImages;
 	}
 
+	public function getImagesByGallery_json($id) {
+		return json_encode($this->getImagesByGallery($id));
+	}
+
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 
