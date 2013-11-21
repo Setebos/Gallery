@@ -23,7 +23,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.php">Gallery Powa</a>
                 </div>
-               
+                <?php if ($_GET['section'] != 'login') { ?>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="<?= "index.php?section=login "?>">Se connecter  </a></li>
                 </ul>
@@ -43,6 +43,7 @@
                       </li>
                       <?php } ?>
                 </ul>
+                <?php } ?>
             </nav>
         </header>
 
