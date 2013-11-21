@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
+        <script type="text/javascript" src="app/js/jquery.slideshowTrebouzul.js"/></script>
         <!--[if IE]>
             <script src="js/html5-ie.js"></script>
             <script src="js/html5shiv.js"></script>
@@ -19,9 +20,8 @@
 
         <header>
             <nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">Gallery Powa</a>
+                    <a class="navbar-brand" href="<?= "index.php?section=home "?>">Gallery Powa</a>
                 </div>
                
                 <ul class="nav navbar-nav navbar-right">
@@ -38,7 +38,6 @@
                  <ul class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
                       <li class="gallery-desc" data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
-
                             <a href="#"><?= $gallery->getName() ?></a>
                       </li>
                       <?php } ?>
