@@ -16,14 +16,12 @@
     </head> 
 
     <body>
-  
-
         <header>
             <nav class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?= "index.php?section=home "?>">Gallery Powa</a>
                 </div>
-                <?php if ($_GET['section'] != 'login') { ?>
+                <?php if (!isset($_GET['section']) OR  $_GET['section'] != 'login') { ?>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="<?= "index.php?section=login "?>">Se connecter  </a></li>
                 </ul>
@@ -37,6 +35,7 @@
 
                  <ul class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
+
                       <li class="gallery-desc" data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
                             <a href="#"><?= $gallery->getName() ?></a>
                       </li>

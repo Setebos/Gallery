@@ -1,14 +1,12 @@
 <?php
 
-class Gallery implements JsonSerializable{
+class Category implements JsonSerializable{
 
 	private $_id;
 	private $_name;
-	private $_description;
 
 	public function __construct($donnees) {
 		$this->setName($donnees['name']);
-		$this->setDescription($donnees['description']);
 		$this->setId($donnees['id']);
 	}
 
@@ -20,20 +18,12 @@ class Gallery implements JsonSerializable{
 		return $this->_name;
 	}
 
-	public function getDescription() {
-		return $this->_description;
-	}
-
 	public function setId($id) {
 		$this->_id = $id;
 	}
 
 	public function setName($name) {
 		$this->_name = $name;
-	}
-
-	public function setDescription($description) {
-		$this->_description = $description;
 	}
 
 	public function hydrate(array $donnees)
@@ -55,8 +45,7 @@ class Gallery implements JsonSerializable{
 	public function jsonSerialize() {
         $data = array(
         	'id' => $this->getId(), 
-        	'name' => $this->getName(),
-        	'description' => $this->getDescription()
+        	'name' => $this->getName()
         	);
         return $data;
     }
