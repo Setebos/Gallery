@@ -4,30 +4,37 @@
     {
     	var defauts={
     		'nbPic': 3,
-    		'data' : null,
+    		'categories' : null,
+    		'images' : null,
     		'callback' : null
     	};
 
     	var params=$.extend(defauts, options);
 
-    	console.log("in plugin : " );
-    	console.log(params.data[0].name);
-    	var nbCat = params.data.length;
+    	// recuperation de donnees issues des requetes php
+    	var nbCat = params.categories.length;
 
        this.each(function()
        {
            var container = $(this);
 
            //creation de la liste de categories
-            var ulCat = $( document.createElement('ul') ); 
-           ulCat.addClass('list-inline');
-           container.append(ulCat);
-           for (var i = 0 ; i < nbCat ; i++){
-           	var liCat = $( document.createElement('li') ); 
-           	var link = $("<a href='#'>"+  params.data[i].name +"</a>");
-           	liCat.append(link);
-           	ulCat.append(liCat);
-           }
+           var divCatRow = $( document.createElement('div') ); 
+           divCatRow.addClass('row');
+           var divCat = $( document.createElement('div') ); 
+           divCat.addClass('col-md-8 col-md-offset-2');
+           divCatRow.append(divCat);
+           container.append(divCatRow);
+
+           	var ulCat = $( document.createElement('ul') ); 
+           	ulCat.addClass('list-inline');
+           	divCatRow.append(ulCat);
+           	for (var i = 0 ; i < nbCat ; i++){
+	           	var liCat = $( document.createElement('li') ); 
+	           	var link = $("<a href='#'>"+  params.categories[i].name +"</a>");
+	           	liCat.append(link);
+	           	ulCat.append(liCat);
+           	}
 
 
 

@@ -1,0 +1,38 @@
+
+/***********        Index - liste des categories        ***********/
+
+.categories{
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+
+.categories ul{
+    list-style-type: none;
+    margin: auto;
+    text-align: center;
+
+}
+
+/***********        Index - liste des photos        ***********/
+
+.gallery{
+    margin-top: 60px;
+}
+
+
+.gallery ul{
+    list-style-type: none;
+    margin: auto;
+    text-align: center;
+
+}
+
+.gallery img{
+    margin-top: 10px;
+}
+
+.gallery .glyphicon{
+    font-size: 40px;
+    margin-top: 50%;
+}

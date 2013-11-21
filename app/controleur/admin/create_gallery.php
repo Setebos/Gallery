@@ -16,5 +16,5 @@ $manager = new GalleryManager($db);
 
 $manager->createGallery($newGallery);
 
-include_once('app/vue/admin/index.php');
+include_once('app/controleur/admin/admin_index_controller.php');
 

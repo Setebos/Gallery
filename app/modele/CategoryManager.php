@@ -50,10 +50,6 @@ class CategoryManager {
 		return $listCategories;
 	}
 
-	public function getListCategories_json() {
-		return json_encode($this->getListCategories());
-	}
-
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 

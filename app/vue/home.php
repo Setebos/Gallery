@@ -1,6 +1,5 @@
 <?php
       require_once("ressources/templates/header.php");   
-      var_dump($listCategories_json)
 ?>
 
         <container>
@@ -65,6 +64,7 @@
     $("#gallery-test").slideshowPlugin(
     {
         'nbPic': 4,
-        'data' : jsonList
+        'categories' : <?=$listCategories_json?>, 
+
     });
 </script>

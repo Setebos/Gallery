@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
         <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"/></script>
+        <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
         <!--[if IE]>
             <script src="js/html5-ie.js"></script>
             <script src="js/html5shiv.js"></script>
