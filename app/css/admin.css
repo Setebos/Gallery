@@ -43,6 +43,37 @@ body{
     border-bottom: 1px solid #000;
 }
 
+/***********        New Gallery - form part       ***********/
+.new-gallery-form-part {
+    overflow: auto;
+    height: 100%;
+}
+
+.new-gallery-form-header {
+    height: 13%;
+    border-bottom: 1px solid #000;
+}
+
+.new-gallery-form-body {
+    height: 87%;
+}
+
+.new-gallery-align label {
+    width: 100px;
+    display: inline-block;
+}
+
+.new-gallery-valid {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.new-gallery-cancel {
+    margin-top: 15px;
+    /*padding-top: 50px;*/
+    margin-right: 10px;
+    display: inline-block;
+}
 
 /***********        Surcharges bootstrap        ***********/
 

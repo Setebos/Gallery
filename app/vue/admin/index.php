@@ -6,7 +6,7 @@
 			  <div class="col-md-3 gallery-part">
 			  	<div class="gallery-header">
 			  		<div class="btn btn-default  pull-right">
-			  			<a href="addGallery.php">Ajouter galerie</a>
+			  			<a href="<?= "index.php?section=new_gallery "?>">Ajouter galerie</a>
 			  		</div>
 			  		<h3>Galeries</h3>
 			 	</div>
