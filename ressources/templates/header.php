@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"/></script>
+        <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
         <!--[if IE]>
             <script src="js/html5-ie.js"></script>
             <script src="js/html5shiv.js"></script>
@@ -37,10 +37,17 @@
 
                  <ul class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
-                      <li>
+                      <li class="gallery-desc" data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
+
                             <a href="#"><?= $gallery->getName() ?></a>
                       </li>
                       <?php } ?>
                 </ul>
             </nav>
         </header>
+
+<script type="text/javascript">
+
+  $(".gallery-desc").tooltip();
+
+</script>
