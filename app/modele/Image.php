@@ -1,6 +1,6 @@
 <?php
 
-class Image {
+class Image implements JsonSerializable {
 
 	private $_id;
 	private $_title;
@@ -55,6 +55,17 @@ class Image {
 	public function setGalleryId($gallery_id) {
 		$this->_gallery_id = $gallery_id;
 	}
+
+	public function jsonSerialize() {
+        $data = array(
+        	'id' => $this->getId(), 
+        	'title' => $this->getTitle(),
+        	'description' => $this->getDescription(),
+        	'location' => $this->getLocation(),
+        	'gallery_id' => $this->getGalleryId()
+        	);
+        return $data;
+    }
 
 }
 

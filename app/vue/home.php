@@ -65,6 +65,6 @@
     $("#gallery-test").slideshowPlugin(
     {
         'nbPic': 4,
-        'data' : jsonList
+        'data' : <?=$listCategories_json?>
     });
 </script>

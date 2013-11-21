@@ -8,4 +8,4 @@ include_once("app/modele/GalleryManager.php");
 $managerGallery = new GalleryManager($db);
 $listGalleries = $managerGallery->getListGalleries();
 
-include_once('app/vue/admin/index.php');
+include_once('app/controleur/admin/admin_index_controller.php');
