@@ -30,14 +30,17 @@
 
                 <form class="navbar-form navbar-right" role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Catégorie, titre...">
+                    <input type="text" class="form-control" placeholder="Categorie, titre...">
                   </div>
                   <button type="submit" class="btn btn-default">Chercher</button>
                 </form>
 
                  <ul class="nav navbar-nav navbar-right">
-                      <li class="active"><a href="#">Gallery 1</a></li>
-                      <li><a href="#">Gallery 2</a></li>
+                    <?php foreach ($listGalleries as $gallery) {?>
+                      <li>
+                            <a href="#"><?= $gallery->getName() ?></a>
+                      </li>
+                      <?php } ?>
                 </ul>
             </nav>
         </header>
