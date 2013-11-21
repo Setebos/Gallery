@@ -31,16 +31,47 @@ body{
     border-bottom: 1px solid #fff;
 }
 
+.gallery-body {
+    height: 80%;
+}
+
+.gallery-list {
+    background-color: #606060;
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.gallery-list:hover {
+    background-color: #757575;
+}
+
+.gallery-list a {
+    color: black;  
+}
+
+.gallery-list div {
+    vertical-align:baseline;
+}
+
+.gallery-list a:hover {
+    text-decoration: none;
+}
+
 
 /***********        Index - picture part        ***********/
 .picture-part{
-        overflow: auto;
+    overflow: auto;
     height: 100%;
 }
 
 .picture-header{
     height: 13%;
     border-bottom: 1px solid #000;
+}
+
+.picture-body {
+    height: 80%;
 }
 
 /***********        New Gallery - form part       ***********/

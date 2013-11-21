@@ -29,7 +29,7 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'new_gallery')
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'admin_index')
 {                
-  include_once("app/vue/admin/index.php");
+  include_once("app/controleur/admin/admin_index_controller.php");
 }
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'create_gallery')
