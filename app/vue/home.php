@@ -1,5 +1,6 @@
 <?php
       require_once("ressources/templates/header.php");   
+      var_dump($listCategories_json)
 ?>
 
         <container>
@@ -24,7 +25,7 @@
                 </div>
             </section >
 
-            <section class="gallery">
+            <section id="gallery">
                 <div class="row">
                     <div class="col-md-2">
                         <span class="glyphicon glyphicon-chevron-left pull-right"></span>
@@ -49,7 +50,21 @@
                         <span class="glyphicon glyphicon-chevron-right pull-left"></span> 
                     </div>
                 </div>
+            </section >
+
+            <section id="gallery-test">
             </section>
         </container>
     </body>
 </html>
+
+<script type="text/javascript">
+    
+     var jsonList = <?=$listCategories_json?>;
+     // console.log(jsonList);
+    $("#gallery-test").slideshowPlugin(
+    {
+        'nbPic': 4,
+        'data' : jsonList
+    });
+</script>
