@@ -47,11 +47,15 @@ body{
 }
 
 .gallery-list a {
-    color: black;  
+    color: white;  
 }
 
 .gallery-list div {
     vertical-align:baseline;
+}
+
+.gallery-list:hover a {
+    color: #FF5D55;
 }
 
 .gallery-list a:hover {
@@ -72,6 +76,20 @@ body{
 
 .picture-body {
     height: 80%;
+}
+
+.picture-list {
+    margin-top: 15px;
+}
+
+.picture-div {
+    height: 100px;
+    width: 100px;
+}
+
+.picture-div img {
+    height: 100px;
+    width: 100px;
 }
 
 /***********        New Gallery - form part       ***********/

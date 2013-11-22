@@ -26,7 +26,100 @@
 			  		<h3>Images</h3>
 			  	</div>
 			  	<div class="picture-body">
-			 		<div id="display"></div>
+			 		<ul class="list-inline">
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    	<li class="picture-list">
+                        	<div class="picture-div">
+                            	<img src="http://placehold.it/250x150">
+                    		</div>
+                    	</li>
+                    </ul>
+                    <br/>
+                    <ul class="list-inline">
+                    	<?php foreach ($listImages as $image) {?>
+	                    	<li class="picture-list">
+                        		<div class="picture-div">
+                        			<img src="<?= $image->getLocation() ?>">
+                    			</div>
+                    		</li>
+                  		<?php } ?>
+                    </ul>
+                    <div class="testAjax">
+                	</div>
 			 	</div>
 			 </div>
 		</div>
