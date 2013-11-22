@@ -23,7 +23,7 @@
             <section class="gallery">
                 <div class="row">
                     <div class="col-md-2">
-                        <span class="glyphicon glyphicon-chevron-left pull-right"></span>
+                        <span class="glyphicon glyphicon-chevron-left pull-right nav-chevron"></span>
                     </div>
                     <div class="col-md-8">
                         <ul class="list-inline" id="ajax-image">
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2">
-                        <span class="glyphicon glyphicon-chevron-right pull-left"></span> 
+                        <span class="glyphicon glyphicon-chevron-right pull-left nav-chevron"></span> 
                     </div>
                 </div>
             </section >
@@ -45,12 +45,17 @@
 
 <script type="text/javascript">
 
-     // console.log(jsonList);
-    /*$("#gallery").slideshowPlugin(
+    $(".gallery").slideshowPlugin(
     {
         'nbPic': 4
-    });*/
+    });
 
+    $(document).ajaxComplete(function(){
+        $(".gallery").slideshowPlugin(
+        {
+            'nbPic': 4
+        });
+    }); 
 
 
 
