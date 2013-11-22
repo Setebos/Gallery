@@ -26,7 +26,7 @@
                         <span class="glyphicon glyphicon-chevron-left pull-right"></span>
                     </div>
                     <div class="col-md-8">
-                        <ul class="list-inline" id="ajax-gallery">
+                        <ul class="list-inline" id="ajax-image">
                             <?php foreach ($listImages as $image) {?>
                                 <li>
                                     <img src="<?= $image->getLocation(); ?>" style="width:200px">

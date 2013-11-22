@@ -37,14 +37,16 @@
                   </div>
                   <button type="submit" class="btn btn-default">Chercher</button>
                 </form>
-
-                 <ul class="nav navbar-nav navbar-right">
+                <div id="ajax-gallery">
+                  <ul class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
-                      <li class="gallery-desc" data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
+                      <li id="<?= "gallery" . $gallery->getId() ?>" class="gallery-desc" /
+                        data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
                             <a href="#"><?= $gallery->getName() ?></a>
                       </li>
                       <?php } ?>
-                </ul>
+                  </ul>
+                </div>
                 <?php } ?>
             </nav>
         </header>
