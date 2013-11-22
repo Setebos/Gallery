@@ -2,7 +2,7 @@
       require_once("ressources/templates/header.php");   
 ?>
 
-        <container>
+        <container  id="gallery-test">
             <section class="categories">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -24,7 +24,7 @@
                 </div>
             </section >
 
-            <section id="gallery">
+            <section>
                 <div class="row">
                     <div class="col-md-2">
                         <span class="glyphicon glyphicon-chevron-left pull-right"></span>
@@ -50,9 +50,6 @@
                     </div>
                 </div>
             </section >
-
-            <section id="gallery-test">
-            </section>
         </container>
     </body>
 </html>

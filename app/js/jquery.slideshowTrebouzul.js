@@ -19,16 +19,20 @@
            var container = $(this);
 
            //creation de la liste de categories
+           var sectionCat = $( document.createElement('sectionCaton') )
+           sectionCat.addClass('categories'); 
            var divCatRow = $( document.createElement('div') ); 
-           divCatRow.addClass('row');
+           divCatRow.addClass('row added');
            var divCat = $( document.createElement('div') ); 
            divCat.addClass('col-md-8 col-md-offset-2');
+
+           sectionCat.append(divCatRow);
            divCatRow.append(divCat);
-           container.append(divCatRow);
+           container.append(sectionCat);
 
            	var ulCat = $( document.createElement('ul') ); 
            	ulCat.addClass('list-inline');
-           	divCatRow.append(ulCat);
+           	divCat.append(ulCat);
            	for (var i = 0 ; i < nbCat ; i++){
 	           	var liCat = $( document.createElement('li') ); 
 	           	var link = $("<a href='#'>"+  params.categories[i].name +"</a>");
