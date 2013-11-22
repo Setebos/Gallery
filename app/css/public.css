@@ -5,6 +5,25 @@ body{
 }
 
 
+/***********        Index - liste des gallery        ***********/
+
+.gallery-desc a{
+
+}
+
+.gallery-desc:hover a, .gallery-desc a.gal-active:hover{
+	color:  #db2d27;
+}
+
+.gallery-desc a.gal-active{
+	color: #ff5d55;
+	
+}
+
+.navbar-default .navbar-nav>li>a.gal-active{
+	color:  #ff5d55;
+}
+
 
 /***********        Formulaire login admin        ***********/
 
@@ -31,6 +50,11 @@ body{
 .navbar-default .navbar-nav>.active>a, 
 .navbar-default .navbar-nav>.active>a:hover, 
 .navbar-default .navbar-nav>.active>a:focus {
-color: #555;
-background-color: #ff5d55;
+	color: #555;
+	background-color: #ff5d55;
+}
+
+.navbar-default .navbar-nav>li>a:hover, 
+.navbar-default .navbar-nav>li>a:focus {
+	color: #db2d27;
 }

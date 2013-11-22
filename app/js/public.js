@@ -1,16 +1,14 @@
  $(document).ready(function(){
 
-	
-
     // gestion des galeries (class active + tri ajax)
     $(".gallery-desc").on('click', function(){
         $(".gal-active").removeClass('gal-active');
-        $(this).addClass('gal-active');
+        $(this).find(':first-child').addClass('gal-active');
         var idGallery = $(this).attr('id').substring(7);
 
         $.ajax({
 		  type: "POST",
-		  url: "index.php?section=home",
+		  url: "index.php?section=ajax_image",
 		  data: {idGallery: idGallery},
 		  success: function(data, textStatus, XHR){
 		  		$('#ajax-image').html(data);

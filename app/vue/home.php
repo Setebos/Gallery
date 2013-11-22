@@ -20,7 +20,7 @@
                 </div>
             </section >
 
-            <section>
+            <section class="gallery">
                 <div class="row">
                     <div class="col-md-2">
                         <span class="glyphicon glyphicon-chevron-left pull-right"></span>
@@ -29,10 +29,9 @@
                         <ul class="list-inline" id="ajax-image">
                             <?php foreach ($listImages as $image) {?>
                                 <li>
-                                    <img src="<?= $image->getLocation(); ?>" style="width:200px">
+                                    <img src="<?= $image->getLocation(); ?>" style="height:150px">
                                 </li>
                             <?php } ?>
-                           
                         </ul>
                     </div>
                     <div class="col-md-2">
