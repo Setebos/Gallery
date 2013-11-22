@@ -40,3 +40,8 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'create_gallery')
 {                
   include_once("app/controleur/admin/create_gallery.php");
 }
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'ajax_image')
+{                
+  include_once("app/controleur/admin/ajax_image_controller.php");
+}

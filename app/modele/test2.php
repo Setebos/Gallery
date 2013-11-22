@@ -19,4 +19,3 @@ $manager = new ImageManager($db);
 $listImages = $manager->getImagesByGallery($id);
 var_dump($listImages);
 
-echo json_encode($listImages);
