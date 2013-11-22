@@ -12,5 +12,4 @@ $managerImage = new ImageManager($db);
 $listGalleries = $managerGallery->getListGalleries();
 $listImages = $managerImage->getListImages();
 
-
 include_once('app/vue/admin/index.php');

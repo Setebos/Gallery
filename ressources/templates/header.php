@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <link rel="stylesheet" type="text/css" href="app/css/plugin.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="app/js/public.js"/></script>
         <script type="text/javascript" src="app/js/jquery.slideshowTrebouzul.js"/></script>
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
         <!--[if IE]>
@@ -36,14 +37,16 @@
                   </div>
                   <button type="submit" class="btn btn-default">Chercher</button>
                 </form>
-
-                 <ul class="nav navbar-nav navbar-right">
+                <div id="ajax-gallery">
+                  <ul class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
-                      <li class="gallery-desc" data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
+                      <li id="<?= "gallery" . $gallery->getId() ?>" class="gallery-desc" /
+                        data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
                             <a href="#"><?= $gallery->getName() ?></a>
                       </li>
                       <?php } ?>
-                </ul>
+                  </ul>
+                </div>
                 <?php } ?>
             </nav>
         </header>

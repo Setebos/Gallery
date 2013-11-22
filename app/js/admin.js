@@ -21,7 +21,7 @@ $(document).ready(function() {
 		var idCourt = idLong.substring(7);
 		$.ajax({
 			type: "POST",
-			url: "index.php?section=ajax_image",
+			url: "index.php?section=admin_ajax_image",
 			data: { id: idCourt },
 			dataType: "html",
 			success: function(data) {
