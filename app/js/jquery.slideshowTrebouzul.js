@@ -19,7 +19,7 @@
            var container = $(this);
 
            //creation de la liste de categories
-           var sectionCat = $( document.createElement('sectionCaton') )
+           var sectionCat = $( document.createElement('sectionCaton'));
            sectionCat.addClass('categories'); 
            var divCatRow = $( document.createElement('div') ); 
            divCatRow.addClass('row added');
@@ -43,9 +43,24 @@
 
 
            // creation de la liste d'images
+           var section = $( document.createElement('section'));
+           var divRow = $( document.createElement('div') ); 
+           divRow.addClass('row added');
+           var div_left = $( document.createElement('div') ); 
+           div_left.addClass('col-md-2');
+           var div_center = $( document.createElement('div') ); 
+           div_center.addClass('col-md-8');
+           var div_right = $( document.createElement('div') ); 
+           div_right.addClass('col-md-2');
+
+
+           section.append(divRow);
+           divRow.append(div_left).append(div_center).append(div_right);
+           container.append(section);
+
            var ul = $( document.createElement('ul') ); 
            ul.addClass('list-inline');
-           container.append(ul);
+           div_center.append(ul);
 
            for (var i = 0 ; i < params.nbPic ; i++){
            	var li = $( document.createElement('li') ); 

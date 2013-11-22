@@ -2,23 +2,19 @@
       require_once("ressources/templates/header.php");   
 ?>
 
-        <container  id="gallery-test">
+        <container  id="gallery">
             <section class="categories">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <ul class="list-inline">
                             <li>
-                                  <a href="#">Category</a>
+                                  <a class="cat-name cat-active" href="#">Toutes les categories</a>
                             </li>
-                            <li>
-                                  <a href="#"> <span class="badge">Category active</span></a>
-                            </li>
-                            <li>
-                                  <a href="#">Category</a>
-                            </li>
-                            <li>
-                                  <a href="#">Category</a>
-                            </li>
+                            <?php foreach ($listCategories as $category) {?>
+                                <li>
+                                    <a class="cat-name" href="#"><?= $category->getName() ?></a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -30,19 +26,13 @@
                         <span class="glyphicon glyphicon-chevron-left pull-right"></span>
                     </div>
                     <div class="col-md-8">
-                        <ul class="list-inline">
-                            <li>
-                                  <img src="http://placehold.it/250x150">
-                            </li>
-                            <li>
-                                  <img src="http://placehold.it/250x150">
-                            </li>
-                            <li>
-                                  <img src="http://placehold.it/250x150">
-                            </li>
-                            <li>
-                                  <img src="http://placehold.it/250x150">
-                            </li>
+                        <ul class="list-inline" id="ajax-gallery">
+                            <?php foreach ($listImages as $image) {?>
+                                <li>
+                                    <img src="<?= $image->getLocation(); ?>" style="width:200px">
+                                </li>
+                            <?php } ?>
+                           
                         </ul>
                     </div>
                     <div class="col-md-2">
@@ -55,12 +45,14 @@
 </html>
 
 <script type="text/javascript">
-    
-     var jsonList = <?=$listCategories_json?>;
+
      // console.log(jsonList);
-    $("#gallery-test").slideshowPlugin(
+    /*$("#gallery").slideshowPlugin(
     {
-        'nbPic': 4,
-        'categories' : <?=$listCategories_json?>
-    });
+        'nbPic': 4
+    });*/
+
+
+
+
 </script>

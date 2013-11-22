@@ -11,7 +11,24 @@
     list-style-type: none;
     margin: auto;
     text-align: center;
+    padding: 3px 7px;
+}
 
+.categories a{
+    border-radius: 10px;
+    text-decoration: none;
+    color: #494949;
+    padding: 3px 7px;
+}
+
+.categories a:hover, .categories a.cat-active:hover{
+    background-color: #db2d27;
+    color: #fff;
+}
+
+.categories a.cat-active{
+    background-color: #ff5d55;
+    color: #fff;
 }
 
 /***********        Index - liste des photos        ***********/

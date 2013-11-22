@@ -2,6 +2,10 @@
 // var_dump($_SESSION);
 include('app/modele/connect_db.php');
 
+  if (isset($_POST['id'])) {
+    var_dump($_POST['id']);
+  }
+
 if  (!isset($_GET['section']) OR $_GET['section'] == 'home')
 {                    
   include_once("app/controleur/home_controller.php");

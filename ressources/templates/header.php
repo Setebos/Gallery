@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <link rel="stylesheet" type="text/css" href="app/css/plugin.css"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="app/js/public.js"/></script>
         <script type="text/javascript" src="app/js/jquery.slideshowTrebouzul.js"/></script>
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
         <!--[if IE]>
