@@ -18,6 +18,8 @@ try {
   }*/
 
 include("ressources/config.php");
+include_once("app/modele/Gallery.php");
+include_once("app/modele/GalleryManager.php");
 include_once("app/modele/ImageManager.php");
 include_once("app/modele/Image.php");
 
@@ -25,11 +27,14 @@ if(isset($_POST["id"])) {
 	$id = $_POST["id"];
 }
 
+$managerGallery = new GalleryManager($db);
+$gallerySelect = $managerGallery->getGallery($id)->getName();
 $managerImage = new ImageManager($db);
 $listImages = $managerImage->getImagesByGallery($id);
 
 ?>
 
+<h3><?= $gallerySelect ?></h3>
 <ul class="list-inline testAjax">
 	<?php foreach ($listImages as $image) {?>
 		<li class="picture-list">

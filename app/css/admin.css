@@ -1,3 +1,5 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
 html{
     height: 100%;
 }
@@ -35,11 +37,17 @@ body{
     height: 80%;
 }
 
+.gallery-suppr-button {
+    display: none;
+    z-index: 999;
+}
+
 .gallery-list {
     background-color: #606060;
     height: 50px;
     text-align: center;
     padding-top: 15px;
+    width: 100%;
 }
 
 .gallery-list:hover {
@@ -51,7 +59,7 @@ body{
 }
 
 .gallery-list div {
-    vertical-align:baseline;
+    display: inline-block;
 }
 
 .gallery-list:hover a {
@@ -62,6 +70,32 @@ body{
     text-decoration: none;
 }
 
+.gallery-active {
+    background-color: #757575;
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.gallery-active a {
+    color: #FF5D55;
+}
+
+.gallery-active a:hover {
+    text-decoration: none;
+}
+
+.gallery-active div {
+    display: inline-block;
+}
+
+.affichage {
+    width: 80%;
+}
+
+#dialog-confirm {
+        display: none;
+}
 
 /***********        Index - picture part        ***********/
 .picture-part{

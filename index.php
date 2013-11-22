@@ -41,3 +41,8 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'ajax_image')
 {                
   include_once("app/controleur/admin/ajax_image_controller.php");
 }
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'delete_gallery')
+{                
+  include_once("app/controleur/admin/delete_gallery.php");
+}

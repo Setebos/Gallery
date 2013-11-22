@@ -14,6 +14,9 @@
 			 		<?php foreach ($listGalleries as $gallery) {?>
 	                    <div class="gallery-list">
 	                        <div class="affichage" id="<?= "gallery" . $gallery->getId() ?>"><a href="#"><?= $gallery->getName() ?></a></div>
+	                        <div class="gallery-suppr-button">
+	                        	<span class="glyphicon glyphicon-trash"></span>
+	                        </div>
 	                    </div>
                   	<?php } ?>
 		 		</div>
@@ -26,90 +29,9 @@
 			  		<h3>Images</h3>
 			  	</div>
 			  	<div class="picture-body">
-			 		<ul class="list-inline">
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    	<li class="picture-list">
-                        	<div class="picture-div">
-                            	<img src="http://placehold.it/250x150">
-                    		</div>
-                    	</li>
-                    </ul>
-                    <br/>
-                    <ul class="list-inline">
+                    <div class="conteneur-images">
+                    	<h3>Aucune galerie sélectionnée</h3>
+                    	<ul class="list-inline">
                     	<?php foreach ($listImages as $image) {?>
 	                    	<li class="picture-list">
                         		<div class="picture-div">
@@ -118,10 +40,15 @@
                     		</li>
                   		<?php } ?>
                     </ul>
-                    <div class="testAjax">
                 	</div>
 			 	</div>
 			 </div>
+		</div>
+		<div id="dialog-confirm" title="Supprimer la galerie ?">
+			<p>
+				 <span class="glyphicon glyphicon-warning-sign"></span>
+				Supprimer la galerie détruira toutes les images la composant. Êtes-vous sur de vouloir effectuer cette action?
+			</p>
 		</div>
 	</body>
 	<script type="text/javascript" src="app/js/admin.js"></script>
