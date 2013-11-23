@@ -23,9 +23,8 @@
 
     // gestion des categories (class active + tri ajax)
     $(".cat-name").on('click', function(){
-        $(".cat-active").removeClass('cat-active');
-        $(this).addClass('cat-active');
-        var id = 2;
+        $(this).toggleClass('cat-active');
+
 
   //       $.ajax({
 		//   type: "POST",
