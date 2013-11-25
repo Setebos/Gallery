@@ -31,10 +31,12 @@ $managerGallery = new GalleryManager($db);
 $gallerySelect = $managerGallery->getGallery($id)->getName();
 $managerImage = new ImageManager($db);
 $listImages = $managerImage->getImagesByGallery($id);
-
 ?>
 
-<h3><?= $gallerySelect ?></h3>
+<h3 class="gallery-title"><?= $gallerySelect ?></h3>
+<div id="<?= "delete-gallery" . $id ?>" class="btn btn-default pull-right gallery-delete-button">
+	<a href="#">Supprimer galerie</a>
+</div>
 <ul class="list-inline testAjax">
 	<?php foreach ($listImages as $image) {?>
 		<li class="picture-list">

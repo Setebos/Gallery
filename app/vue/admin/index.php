@@ -46,7 +46,7 @@
 		</div>
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
 			<p>
-				 <span class="glyphicon glyphicon-warning-sign"></span>
+				<span class="glyphicon glyphicon-warning-sign"></span>
 				Supprimer la galerie détruira toutes les images la composant. Êtes-vous sur de vouloir effectuer cette action?
 			</p>
 		</div>
