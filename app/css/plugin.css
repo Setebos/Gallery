@@ -57,37 +57,40 @@
 }
 
 .gallery .diapo-nav span{
-    font-size: 40px;
-    width: 50px;
+    font-size: 25px;
+    width: 30px;
 }
 
 /* diaporama */
 
-.diapo{
+#diapo{
     width:750px;
     margin: auto;
     overflow: hidden;
 }
 
-.diapo ul{
+#diapo ul{
     /* width : inherit si display all picture */    
     width: 10000px ;  /* ajuster dynamic suivant nb images ? */
     margin: auto;
-    /*margin-left: -250px;*/
     text-align: center;
     padding-left: 0;
     list-style: none;
 }
 
-.diapo li{
+#diapo li{
+      /*  position: absolute;
+    display: inline-block;*/
+    margin: 0;
     margin-top: 10px;
     width: 250px;
     padding: 5px;
-    overflow: hidden;
     float: left;
+    overflow: hidden;
+
 }
 
-.diapo li img{
+#diapo li img{
     max-width: inherit;
     max-height: 150px;
 }

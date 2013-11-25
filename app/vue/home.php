@@ -20,21 +20,17 @@ require_once("ressources/templates/header.php");
 
     <section class="gallery">
         <div class="diapo-nav clearfix">
-            <ul class="pull-right">
-                <li>
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </li>
-                <li>
-                    <span class="glyphicon glyphicon-chevron-right"></span> 
-                </li>
-            </ul>               
+            <div class="btn-group pull-right">
+                <button data-dir="prev" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                <button data-dir ="next" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span>   </button>
+            </div>               
         </div>
-        <div class="diapo">
+        <div id="diapo">
             <ul id="ajax-image">
                 <?php foreach ($listImages as $image) {?>
-                <li class="image-container">
-                    <img src="<?= $image->getLocation(); ?>">
-                </li>
+                    <li class="image-container">
+                        <img src="<?= $image->getLocation(); ?>">
+                    </li>
                 <?php } ?>
             </ul>
         </div>
@@ -45,11 +41,23 @@ require_once("ressources/templates/header.php");
 
 <script type="text/javascript">
 
-$(document).bind('ready ajaxComplete', function(){
+var ajaxFired= false
 
-    $(".gallery").slideshowPlugin(
+$(document).ready(function(){
+    if(ajaxFired == false){
+        console.log('firing click');
+        $('.gallery-desc').first().click();
+        ajaxFired=true;
+    }
+})
+
+$(document).ajaxSuccess(function(){
+
+    $("#diapo").slideshowPlugin(
     {
-        'nbPic': 4
+            'show_entire_gallery' : false,
+            'interval' : 4000,
+            'autoplay' : false
     });
 
 })
