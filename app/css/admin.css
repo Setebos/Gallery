@@ -62,6 +62,11 @@ body{
     display: inline-block;
 }
 
+.gallery-list > .gallery-suppr-button {
+    display: none;
+    z-index: 999;
+}
+
 .gallery-list:hover a {
     color: #FF5D55;
 }
@@ -94,7 +99,15 @@ body{
 }
 
 #dialog-confirm {
-        display: none;
+    display: none;
+}
+
+.gallery-title {
+    display: inline;
+}
+
+.gallery-delete-button {
+    display: inline;
 }
 
 /***********        Index - picture part        ***********/

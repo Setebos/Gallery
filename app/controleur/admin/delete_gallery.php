@@ -3,7 +3,14 @@
 include_once("app/modele/GalleryManager.php");
 include_once("app/modele/Gallery.php");
 
-$id = $_POST['id'];
+if(isset($_POST["id"])) {
+	$id = $_POST['id'];
+}
+
+if(isset($_GET["id"])) {
+	$id = $_GET['id'];
+}
+
 
 $managerGallery = new GalleryManager($db);
 
