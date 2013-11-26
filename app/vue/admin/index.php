@@ -32,14 +32,14 @@
                     <div class="conteneur-images">
                     	<h3>Aucune galerie sélectionnée</h3>
                     	<ul class="list-inline">
-                    	<?php foreach ($listImages as $image) {?>
-	                    	<li class="picture-list">
-                        		<div class="picture-div">
-                        			<img src="<?= $image->getLocation() ?>">
-                    			</div>
-                    		</li>
-                  		<?php } ?>
-                    </ul>
+	                    	<?php foreach ($listImages as $image) {?>
+		                    	<li class="picture-list">
+	                        		<div class="picture-div">
+	                        			<img src="<?= $image->getLocation() ?>">
+	                    			</div>
+	                    		</li>
+	                  		<?php } ?>
+                    	</ul>
                 	</div>
 			 	</div>
 			 </div>

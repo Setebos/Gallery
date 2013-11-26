@@ -27,7 +27,7 @@ $(document).ready(function() {
 	});  */
 
 	$(document).on("click", ".gallery-list", function() {
-		console.log($(this));
+		/*console.log($(this));*/
 		$('.gallery-active').removeClass('gallery-active').addClass('gallery-list').children(".gallery-suppr-button").css('display', 'none');
 		$(this).removeClass('gallery-list').addClass('gallery-active');
 		var idLong = $(this).children(".affichage").attr('id');
@@ -62,6 +62,7 @@ $(document).ready(function() {
 						dataType: "html",
 						success: function(data) {
 							$(".gallery-body").html(data);
+							$(".conteneur-images").html("Galerie supprimée");
 						}
 					})
 				},
@@ -91,7 +92,7 @@ $(document).ready(function() {
 						dataType: "html",
 						success: function(data) {
 							$(".gallery-body").html(data);
-							$(".picture-body").html("index.php .picture-body")
+							$(".conteneur-images").html("Galerie supprimée");
 						}
 					})
 				},

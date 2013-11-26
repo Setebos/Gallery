@@ -68,6 +68,18 @@ class ImageManager {
 		return $listImages;
 	}
 
+	public function getImagesByCategory($id) {
+		$listImages = array();
+
+		$q = $this->_db->query('SELECT * FROM image WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.')');
+
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+			$listImages[] = new Image($donnees);
+		}
+
+		return $listImages;
+	}
+
 	public function getImagesByGallery_json($id) {
 		return json_encode($this->getImagesByGallery($id));
 	}
