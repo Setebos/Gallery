@@ -54,3 +54,13 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'ajax_image')
 {                
   include_once("app/controleur/ajax_image_controller.php");
 }
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'edit_gallery')
+{                
+  include_once("app/controleur/admin/edit_gallery.php");
+}
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'update_gallery')
+{                
+  include_once("app/controleur/admin/update_gallery.php");
+}

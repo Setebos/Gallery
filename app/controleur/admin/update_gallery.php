@@ -3,18 +3,19 @@
 include_once("app/modele/GalleryManager.php");
 include_once("app/modele/Gallery.php");
 
-$name = $_POST['galleryName'];
-$description = $_POST['galleryDescription'];
+$id = $_POST["id"];
+$name = $_POST["galleryName"];
+$description = $_POST["galleryDescription"];
 
 $newGallery = new Gallery(array(
-	'id' => null,
+	'id' => $id,
 	'name' => $name,
 	'description' =>$description
 ));
 
-$manager = new GalleryManager($db);
-
-$manager->createGallery($newGallery);
+$managerGallery = new GalleryManager($db);
+$gallery = $managerGallery->getGallery($id);
+$gallery = $managerGallery->updateGallery($newGallery);
 
 /*include_once('app/controleur/admin/admin_index_controller.php');*/
 header('Location: index.php?section=admin_index');  

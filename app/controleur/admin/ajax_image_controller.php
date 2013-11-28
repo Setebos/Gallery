@@ -37,6 +37,9 @@ $listImages = $managerImage->getImagesByGallery($id);
 <div id="<?= "delete-gallery" . $id ?>" class="btn btn-default pull-right gallery-delete-button">
 	<a href="#">Supprimer galerie</a>
 </div>
+<div id="<?= "edit-gallery" . $id ?>" class="btn btn-default pull-right gallery-edit-button">
+	<a href="<?= "index.php?section=edit_gallery&id=".$id ?>">Modifier galerie</a>
+</div>
 <ul class="list-inline testAjax">
 	<?php foreach ($listImages as $image) {?>
 		<li class="picture-list">
