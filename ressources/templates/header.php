@@ -18,11 +18,8 @@
     </head> 
 
     <body>
-  
-
         <header>
             <nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.php">Gallery Powa</a>
                 </div>
@@ -42,7 +39,9 @@
                     <?php foreach ($listGalleries as $gallery) {?>
                       <li id="<?= "gallery" . $gallery->getId() ?>" class="gallery-desc " /
                         data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
-                        <?php (isset($_GET['gal']) && $_GET['gal'] == $gallery->getId()) || (!isset($_GET['gal']) && $gallery == $listGalleries[0])? $class = "gal-active" : $class = "" ?>
+                        <?php (isset($_GET['gal']) && $_GET['gal'] == $gallery->getId()) || 
+                        (!isset($_GET['gal']) && $gallery == $listGalleries[0])?  
+                        $class = "gal-active" : $class = "" ?>
                             <a href="index.php?section=home&gal=<?= $gallery->getId()  ?>" / 
                               class="<?=$class  ?>"><?= $gallery->getName() ?></a>
                       </li>
