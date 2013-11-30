@@ -41,26 +41,26 @@ require_once("ressources/templates/header.php");
 
 <script type="text/javascript">
 
-var ajaxFired= false
+// var ajaxFired= false
 
 $(document).ready(function(){
-    if(ajaxFired == false){
+    // if(ajaxFired == false){
         console.log('firing click');
         $('.gallery-desc').first().click();
-        ajaxFired=true;
-    }
+        // ajaxFired=true;
+    // }
 })
 
-$(document).ajaxSuccess(function(){
+// $(document).ajaxSuccess(function(){
 
-    $("#diapo").slideshowPlugin(
-    {
-            'show_entire_gallery' : false,
-            'interval' : 4000,
-            'autoplay' : false
-    });
+//     $("#diapo").slideshowPlugin(
+//     {
+//             'show_entire_gallery' : false,
+//             'interval' : 4000,
+//             'autoplay' : false
+//     });
 
-})
+// })
 
 
 </script>

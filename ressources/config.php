@@ -11,7 +11,7 @@
 $config = array(
     "db" => array(
         "dbengine" => "mysql",
-         "dbname" => "JsGallery",
+         "dbname" => "jsgallery",
             "username" => "root",
             "password" => "d4t4",
             "host" => "localhost"
