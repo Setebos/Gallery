@@ -40,9 +40,11 @@
                 <div id="ajax-gallery">
                   <ul id="galleries-list" class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
-                      <li id="<?= "gallery" . $gallery->getId() ?>" class="gallery-desc" /
+                      <li id="<?= "gallery" . $gallery->getId() ?>" class="gallery-desc " /
                         data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
-                            <a href="index.php?section=home&gal=<?= $gallery->getId()  ?>"><?= $gallery->getName() ?></a>
+                        <?php (isset($_GET['gal']) && $_GET['gal'] == $gallery->getId()) || (!isset($_GET['gal']) && $gallery == $listGalleries[0])? $class = "gal-active" : $class = "" ?>
+                            <a href="index.php?section=home&gal=<?= $gallery->getId()  ?>" / 
+                              class="<?=$class  ?>"><?= $gallery->getName() ?></a>
                       </li>
                       <?php } ?>
                   </ul>

@@ -20,6 +20,7 @@
   // recup de toutes les galeries
   $managerGallery = new GalleryManager($db);
   $listGalleries = $managerGallery->getListGalleries();
+  // var_dump($listGalleries[0]);
   // $listGalleries_json = json_encode($managerGallery->getListGalleries());
 
   // recup de toutes les categories
@@ -33,7 +34,7 @@
    if (isset($_GET['gal'])) {
     $listImages = $managerImage->getImagesByGallery($_GET['gal']);
   } else {
-      $listImages = $managerImage->getListImages();
+      $listImages = $managerImage->getImagesByGallery($listGalleries[0]->getId());
   }
 
   include_once('app/vue/home.php');
