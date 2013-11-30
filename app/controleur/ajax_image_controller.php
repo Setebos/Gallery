@@ -11,27 +11,14 @@
   // recup de toutes les images
   $managerImage = new ImageManager($db);
 
-   if (isset($_POST['idGallery'])) {
-    $listImages = $managerImage->getImagesByGallery($_POST['idGallery']);
+   if (isset($_POST['gal'])) {
+    $listImages = $managerImage->getImagesByGallery($_POST['gal']);
   } else {
       $listImages = $managerImage->getListImages();
   }
 
-  ?>
+
+  include_once('app/vue/home.php');
 
 
-<?php 
-if(empty($listImages)){ ?>
 
-  <div>
-    <p> Aucune image dans cette galerie </p>
-  </div>
-
-<?php } else {
-  foreach ($listImages as $image) { ?>
-
-    <li>
-        <img src="<?= $image->getLocation(); ?>" style="height:150px">
-    </li>
-
-<?php } }?>

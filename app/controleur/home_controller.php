@@ -14,9 +14,9 @@
 
 
 
-   /* var_dump($_POST['idGallery']);
-    echo($_POST['idGallery']);
-*/
+    // var_dump($_GET['gal']);
+    // echo($_GET['gal']);
+
   // recup de toutes les galeries
   $managerGallery = new GalleryManager($db);
   $listGalleries = $managerGallery->getListGalleries();
@@ -30,8 +30,8 @@
   // recup de toutes les images
   $managerImage = new ImageManager($db);
 
-   if (isset($_POST['idGallery'])) {
-    $listImages = $managerImage->getImagesByGallery($_POST['idGallery']);
+   if (isset($_GET['gal'])) {
+    $listImages = $managerImage->getImagesByGallery($_GET['gal']);
   } else {
       $listImages = $managerImage->getListImages();
   }
