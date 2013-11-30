@@ -11,7 +11,7 @@ To do : initialiser le diapo en enveloppant les images ds des div de 250 ?
 
 $.fn.slideshowPlugin=function(options)
 {
-
+// console.log("entree plugin");
   var defauts={
     'show_entire_gallery' : false,
     'interval' : 4000,
@@ -24,6 +24,7 @@ var params=$.extend(defauts, options);
 
 this.each(function()
 {
+    // console.log("passage ds plugin each");
     var container = $(this),
         diapoUL = container.children('ul'),
         imgsLi = diapoUL.find('li'),
@@ -46,7 +47,9 @@ this.each(function()
             // + gestion de la navigation
             // !!!! régler ce putain de pb de 3 inscrit en dur ! (récup #diapo width malgré overflow hidden)
             if(nbImgs  > nbImgDisplayed && params.show_entire_gallery == false ){
+              console.log("navigation");
               $(".diapo-nav").show().find('button').on('click', function(){
+
                     var direction = $(this).data('dir'),
                     loc = imgWidth; // 250
 
