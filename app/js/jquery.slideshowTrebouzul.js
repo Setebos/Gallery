@@ -1,95 +1,215 @@
+if ( typeof Object.create !== 'function' ) {
+    Object.create = function( obj ) {
+        function F() {};
+        F.prototype = obj;
+        return new F();
+    };
+}
+
+
 (function($)
 {
 
-/*
-Pour permettre affichage de tous les formats d'image, 
-les images sont stockees dans des div de 250px. 
-Pour le moment, le fontionnement du plugin se base sur ces 250px.
+// $.fn.slideshowPlugin=function(options)
+// {
 
-To do : initialiser le diapo en enveloppant les images ds des div de 250 ?
-*/
+    var gallery = {
+      init: function(options, elem){
 
-$.fn.slideshowPlugin=function(options)
-{
-// console.log("entree plugin");
-  var defauts={
-    'show_entire_gallery' : false,
-    'interval' : 4000,
-    'autoplay' : false
-};
+            var self = this;      // gallery
 
-var params=$.extend(defauts, options);
+            self.params = $.extend({
+                'show_entire_gallery' : false,
+                'diaporama_width' : 750,
+                'nb_images_per_line' : 3,
+                'interval' : 4000,
+                'autoplay' : false
+            }, options),
 
-// variables utiles definies à partir de la div de lancement du plugin
+          self.container = elem;         // div diapo    
+          self.$container = $(elem);   // $(diapo)
+          self.diapoUL = self.$container.children('ul');
+          self.items = self.$container.find('li');
+          self.nbItemsDisplayed =  self.params.nb_images_per_line;
+          self.itemWidth = self.params.diaporama_width / self.nbItemsDisplayed;
+          self.containerWidth =  self.params.diaporama_width;
+          self.nbItems = self.items.length;
+          self.totalWidth = self.nbItems * self.itemWidth;
 
-this.each(function()
-{
-    // console.log("passage ds plugin each");
-    var container = $(this),
-        diapoUL = container.children('ul'),
-        imgsLi = diapoUL.find('li'),
-        imgWidth = $(imgsLi[0]).outerWidth(), // 250
-        nbImgs = imgsLi.length,
-        current = 1,
-        totalWidth = nbImgs * imgWidth;
-    var nbImgDisplayed = 3;
+          self.navSection = $(".diapo-nav");
+          self.navSectionButtons = self.navSection.find('button');
 
-        // console.log($(imgsLi[5]).outerWidth());
+          self.current = 0;     // current = index de l'image en tete de ligne
 
-            // gestion de l'affichage : galerie entiere ou 3 images
-            if(params.show_entire_gallery == true){
-              $('.diapo').find('ul').css('width', 'inherit');
-          }else{
-              $('.diapo').css('overflow', 'hidden').find('ul').css('width', '10000px');
-          }
+          self.setup();
 
-            // affichage des boutons de navigation seulement si nécessaire
-            // + gestion de la navigation
-            // !!!! régler ce putain de pb de 3 inscrit en dur ! (récup #diapo width malgré overflow hidden)
-            if(nbImgs  > nbImgDisplayed && params.show_entire_gallery == false ){
-              console.log("navigation");
-              $(".diapo-nav").show().find('button').on('click', function(){
+      },
+      // mise en forme des éléments du plugin.
+      // A prevoir : generation de la navigation ?
+      setup: function(){
+            var self = this;
 
-                    var direction = $(this).data('dir'),
-                    loc = imgWidth; // 250
+            self.$container.css({
+                "width": self.containerWidth,
+                "margin": "auto"
+            });
 
-                // update current value
-                ( direction === 'next' ) ? ++current : --current;
+            self.diapoUL.css({
+                "width": self.totalWidth,
+                "margin": "auto", 
+                "text-align": "center",
+                "padding-left": "0",
+                "list-style": "none",
+            });
 
-                // cas image 1 - click prev
-                if ( current === 0 ) {
-                    current = nbImgs -2;
-                    loc = totalWidth - imgWidth*nbImgDisplayed; 
-                    direction = 'next';
-                } else if ( current +1=== nbImgs ) { // cas image final - click next
-                    current = 1;
-                    loc = 0;
-                }
-                console.log(current)
-                transition(diapoUL, loc, direction);
+            self.items.each(function(){
+                var item = $(this);
+                item.css({
+                    "margin": "10px 0 0 0",
+                    "width": self.itemWidth, 
+                    "padding": "5px",
+                    "list-style": "none",
+                    "float" : "left",
+                    "overflow" : "hidden"
+                }).children('img').css({
+                     "max-width": "inherit", 
+                     "max-height": self.itemWidth/2
+                })
+
+            })
+             self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
+      },
+      // mise en forme specifique pour afficher l'integralite de la gallerie
+      setupDisplayAll: function(){
+            var self = this;
+            
+            self.diapoUL.css({
+                "width": "inherit"
+            });
+            self.navSection.hide();
+      },    
+      //mise en forme specifique pour affichage de seulement une ligne avec navigation
+      setupDisplayPart: function(){
+            var self = this;
+            self.$container.css({
+                "overflow": "hidden "
+            });
+            self.diapoUL.css({
+                "width": self.totalWidth
+            });
+             if(self.nbItems  > self.nbItemsDisplayed){
+               // = je lie la méthode setNavigation au click sur les boutons
+                self.navSection.show().find('button').on('click', function(){
+                  self.setNavigation(this);  
               });
-          } else {
-              $(".diapo-nav").hide();
+            }else{
+                self.navSection.hide()
+            };
+               
+
+      },
+      setNavigation: function(button){
+            var self = this,
+            $buttonNav = $(button)  ,
+            direction = $buttonNav.data('dir'),
+            moveShift = self.itemWidth,
+            unit;
+
+            ( direction === 'next' ) ? ++self.current : --self.current;
+
+            // cas image 1 - click prev
+            if ( self.current === -1 ) {
+                self.current = self.nbItems -self.nbItemsDisplayed;
+                moveShift = self.totalWidth - self.itemWidth*self.nbItemsDisplayed; 
+                direction = 'next';
+            } else if ( self.current === self.nbItems - (self.nbItemsDisplayed - 1) ) { // cas image final - click next
+                self.current = 0    ;
+                moveShift = 0;
           }
 
-          function transition( container, loc, direction ) {
+          // animation du diaporama
+            if ( direction && moveShift !== 0 ) {
+                unit = ( direction === 'next' ) ? '-=' : '+=';
+            }
+            self.diapoUL.animate({
+                'margin-left': unit ? (unit + moveShift) : moveShift
+            });
+
+           // self.transition(this.diapoUL, loc, direction);
+
+      },
+       transition: function( container, loc, direction){
+        var self = this;
                 var unit; // -= +=
 
                 if ( direction && loc !== 0 ) {
-                    unit = ( direction === 'next' ) ? '-=' : '+=';
-                }
+                  unit = ( direction === 'next' ) ? '-=' : '+=';
+              }
 
-                container.animate({
-                    'margin-left': unit ? (unit + loc) : loc
-                });
-            }
+              self.$elem.animate({
+                  'margin-left': unit ? (unit + loc) : loc
+              });
+          },
+      createGallery: function(){
+          var self = this;
 
-      });
+                // affichage des boutons de navigation seulement si nécessaire
+                // + gestion de la navigation
+                // !!!! régler ce putain de pb de 3 inscrit en dur ! (récup #diapo width malgré overflow hidden)
+                if(this.nbImgs  > this.nbImgDisplayed && this.params.show_entire_gallery == false ){
+                  // console.log("navigation");
+                  $(".diapo-nav").show().find('button').on('click', function(){
 
-return this;
-};
+                    var direction = $(this).data('dir'),
+                        loc = this.imgWidth; // 250
+
+                    // update current value
+                    ( direction === 'next' ) ? ++this.current : --this.current;
+
+                    // cas image 1 - click prev
+                    if ( this.current === 0 ) {
+                      this.current = nbImgs -2;
+                      loc = this.totalWidth - this.imgWidth*this.nbImgDisplayed; 
+                      direction = 'next';
+                    } else if ( this.current +1=== this.nbImgs ) { // cas image final - click next
+                      this.current = 1;
+                      loc = 0;
+                  }
+                  // console.log(current)
+                  self.transition(this.diapoUL, loc, direction);
+              });
+              } 
+          },
+      transition: function( container, loc, direction){
+        var self = this;
+                var unit; // -= +=
+
+                if ( direction && loc !== 0 ) {
+                  unit = ( direction === 'next' ) ? '-=' : '+=';
+              }
+
+              self.$elem.animate({
+                  'margin-left': unit ? (unit + loc) : loc
+              });
+          },
+          launchSlideshow: function(){
+
+          }
+
+      };
+
+
+      $.fn.slideshowPlugin=function(options)
+      {
+          return this.each(function(){
+            var gal = Object.create(gallery);
+            gal.init(options, this);
+            // (this).data('gallery', gal);
+        });
+
+      };
 
 
 
-})(jQuery);
+  })(jQuery);
 

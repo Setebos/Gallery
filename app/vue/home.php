@@ -26,9 +26,9 @@ require_once("ressources/templates/header.php");
       </div>               
     </div>
     <div id="diapo">
-      <ul id="ajax-image">
+      <ul>
         <?php foreach ($listImages as $image) {?>
-        <li class="image-container">
+        <li>
           <img src="<?= $image->getLocation(); ?>">
         </li>
         <?php } ?>
@@ -47,8 +47,8 @@ $(document).ready(function(){
   $("#diapo").slideshowPlugin(
   {
     'show_entire_gallery' : false,
-    'interval' : 4000,
-    'autoplay' : false
+    'diaporama_width' : 800,
+    'nb_images_per_line' : 3  
   });
 })
 

@@ -1,41 +1,4 @@
 
-/***********        Index - liste des categories        ***********/
-
-.categories{
-    margin-top: 60px;
-}
-
-.categories .intertitre{
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-
-.categories ul{
-    list-style-type: none;
-    margin: auto;
-    text-align: center;
-    padding: 3px 7px;
-}
-
-.categories a{
-    border-radius: 10px;
-    text-decoration: none;
-    color: #494949;
-    padding: 3px 7px;
-}
-
-.categories a:hover, .categories a.cat-active:hover{
-    background-color: #db2d27;
-    color: #fff;
-}
-
-.categories a.cat-active{
-    background-color: #ff5d55;
-    color: #fff;
-}
-
 /***********        Index - liste des photos        ***********/
 
 .gallery{
@@ -60,39 +23,4 @@
     font-size: 25px;
     width: 30px;
 }
-
-/* diaporama */
-
-#diapo{
-    width:750px;
-    margin: auto;
-    overflow: hidden;
-}
-
-#diapo ul{
-    /* width : inherit si display all picture */    
-    width: 10000px ;  /* ajuster dynamic suivant nb images ? */
-    margin: auto;
-    text-align: center;
-    padding-left: 0;
-    list-style: none;
-}
-
-#diapo li{
-      /*  position: absolute;
-    display: inline-block;*/
-    margin: 0;
-    margin-top: 10px;
-    width: 250px;
-    padding: 5px;
-    float: left;
-    overflow: hidden;
-
-}
-
-#diapo li img{
-    max-width: inherit;
-    max-height: 150px;
-}
-
 
