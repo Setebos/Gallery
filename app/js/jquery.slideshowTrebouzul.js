@@ -6,14 +6,13 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-
 (function($)
 {
 
-// $.fn.slideshowPlugin=function(options)
-// {
+ $.fn.slideshowPlugin=function(options)
+ {
 
-    var gallery = {
+      var gallery = {
       init: function(options, elem){
 
             var self = this;      // gallery
@@ -37,7 +36,6 @@ if ( typeof Object.create !== 'function' ) {
           self.totalWidth = self.nbItems * self.itemWidth;
 
           self.navSection = $(".diapo-nav");
-          self.navSectionButtons = self.navSection.find('button');
 
           self.current = 0;     // current = index de l'image en tete de ligne
 
@@ -78,6 +76,10 @@ if ( typeof Object.create !== 'function' ) {
 
             })
              self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
+             self.items.on('click', function(){
+                self.launchSlideshow(this); 
+             });
+
       },
       // mise en forme specifique pour afficher l'integralite de la gallerie
       setupDisplayAll: function(){
@@ -104,103 +106,96 @@ if ( typeof Object.create !== 'function' ) {
               });
             }else{
                 self.navSection.hide()
-            };
-               
-
+            };            
       },
       setNavigation: function(button){
+
             var self = this,
-            $buttonNav = $(button)  ,
+            $buttonNav = $(button),
             direction = $buttonNav.data('dir'),
             moveShift = self.itemWidth,
             unit;
 
-            ( direction === 'next' ) ? ++self.current : --self.current;
+            direction === 'next' ? ++self.current : --self.current;
 
             // cas image 1 - click prev
             if ( self.current === -1 ) {
-                self.current = self.nbItems -self.nbItemsDisplayed;
+                self.current = self.nbItems - self.nbItemsDisplayed;
                 moveShift = self.totalWidth - self.itemWidth*self.nbItemsDisplayed; 
                 direction = 'next';
             } else if ( self.current === self.nbItems - (self.nbItemsDisplayed - 1) ) { // cas image final - click next
-                self.current = 0    ;
+                self.current = 0;
                 moveShift = 0;
           }
 
           // animation du diaporama
             if ( direction && moveShift !== 0 ) {
                 unit = ( direction === 'next' ) ? '-=' : '+=';
-            }
+            };
             self.diapoUL.animate({
                 'margin-left': unit ? (unit + moveShift) : moveShift
             });
-
-           // self.transition(this.diapoUL, loc, direction);
-
       },
-       transition: function( container, loc, direction){
-        var self = this;
-                var unit; // -= +=
+      launchSlideshow: function(item){
+            var self = this;
+            var slide = Object.create(slideshow);
+            slide.init(self.params, self.$container, item);
+      }
 
-                if ( direction && loc !== 0 ) {
-                  unit = ( direction === 'next' ) ? '-=' : '+=';
-              }
+    };
 
-              self.$elem.animate({
-                  'margin-left': unit ? (unit + loc) : loc
-              });
-          },
-      createGallery: function(){
-          var self = this;
+    var slideshow = {
+            init: function(options, container, item){
+                // console.log(image);
+                var self = this;
+                self.container = container;
+                self.$item = $(item);
+                self.src = self.$item.find('img').attr('src');
+                if ($('#lightbox').length > 0) {
+                    self.showLightbox();
+                } else {
+                    self.setup();
+                    
+                }
+            },
+            setup: function(){
+                    var self = this;
+                    var lightbox =
+                    '<div id="lightbox">' +
+                        '<p>Click to close</p>' +
+                        '<div id="content">' + //insert clicked link's href into img src
+                            '<img src="' + self.src +'" />' +
+                        '</div>' +
+                    '</div>';
 
-                // affichage des boutons de navigation seulement si nécessaire
-                // + gestion de la navigation
-                // !!!! régler ce putain de pb de 3 inscrit en dur ! (récup #diapo width malgré overflow hidden)
-                if(this.nbImgs  > this.nbImgDisplayed && this.params.show_entire_gallery == false ){
-                  // console.log("navigation");
-                  $(".diapo-nav").show().find('button').on('click', function(){
+                    self.container.append(lightbox);
 
-                    var direction = $(this).data('dir'),
-                        loc = this.imgWidth; // 250
+                    console.log($('#lightbox').find('img'));
+                    $('#lightbox').css({
+                        "position":"fixed", /* keeps the lightbox window in the current viewport */
+                        "top":"0",
+                        "left":"0",
+                        "width":"100%",
+                        "height":"100%",
+                        // "background":"url(overlay.png) repeat",
+                        "background": "rgba(0,0,0,.8)",
+                        "text-align":"center"
+                    }).find('img').css({
+                        "max-width": "800px", 
+                        "box-shadow":"0 0 25px #111",
+                        "-webkit-box-shadow":"0 0 25px #111",
+                        "-moz-box-shadow":"0 0 25px #111"
+                })
+            },
+            showLightbox: function(){
+                    var self = this;
+                    $('#content').html('<img src="' + self.src + '" />');
+                    $('#lightbox').show();
+            }
+    }
 
-                    // update current value
-                    ( direction === 'next' ) ? ++this.current : --this.current;
-
-                    // cas image 1 - click prev
-                    if ( this.current === 0 ) {
-                      this.current = nbImgs -2;
-                      loc = this.totalWidth - this.imgWidth*this.nbImgDisplayed; 
-                      direction = 'next';
-                    } else if ( this.current +1=== this.nbImgs ) { // cas image final - click next
-                      this.current = 1;
-                      loc = 0;
-                  }
-                  // console.log(current)
-                  self.transition(this.diapoUL, loc, direction);
-              });
-              } 
-          },
-      transition: function( container, loc, direction){
-        var self = this;
-                var unit; // -= +=
-
-                if ( direction && loc !== 0 ) {
-                  unit = ( direction === 'next' ) ? '-=' : '+=';
-              }
-
-              self.$elem.animate({
-                  'margin-left': unit ? (unit + loc) : loc
-              });
-          },
-          launchSlideshow: function(){
-
-          }
-
-      };
-
-
-      $.fn.slideshowPlugin=function(options)
-      {
+      // $.fn.slideshowPlugin=function(options)
+      // {
           return this.each(function(){
             var gal = Object.create(gallery);
             gal.init(options, this);
