@@ -23,8 +23,6 @@ body:after {
     width: 100%;
     z-index: 10000;
     text-align: center;
-    line-height: 0;
-    font-weight: normal;
 }
 
 
@@ -32,11 +30,11 @@ body:after {
     position: relative;
     background-color: white;
     *zoom: 1;
-    max-width: 800px;
+    /*max-width: 800px;*/
     /*width: 800px;*/
     height: auto;
     margin: 0 auto;
-    padding: 5px;
+    /*padding: 5px;*/
 /*    -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
@@ -52,15 +50,13 @@ body:after {
 
 .lb-img-container{
     max-width: inherit;
-    padding: 4px;
+    padding: 10px;
 }
 
 .lightbox .lb-image {
     display: block;
     height: auto;
-     max-width: inherit;
-     
-
+    max-width: 900px;
    
 /*    -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -73,7 +69,7 @@ body:after {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 80%;
     width: 100%;
     z-index: 10;
 }
@@ -123,21 +119,48 @@ body:after {
   /*display: block;*/
   background: url(../img/prev.png) left 48% no-repeat;
 }
-/
-
-
-
 
 .lb-data-container{
-    
+      margin: 0 auto;
+      padding: 5px;
+      width: 100%;
+/*      overflow: hidden;*/
 }
 
 .lb-details{
+    width: 100%;
+    /*height: 100%;*/
+}
+.lb-details p{
+    display: block;
+    /*height: 100%;*/
+}
 
+.lb-close-container{
+    min-height: 30px;
 }
 
 .lb-close{
+    display: block;
+    float: right;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px 10px 0;
+    background: url(../img/closeg.png) top right no-repeat;
+    text-align: right;
+    outline: none;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
 
+.lb-data .lb-close:hover {
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
 }
 
 /***********        Index - liste des photos        ***********/

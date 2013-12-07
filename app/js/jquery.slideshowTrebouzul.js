@@ -12,6 +12,7 @@ if ( typeof Object.create !== 'function' ) {
  $.fn.slideshowPlugin=function(options)
  {
 
+    // Gallery object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
       var gallery = {
       init: function(options, elem){
 
@@ -144,25 +145,33 @@ if ( typeof Object.create !== 'function' ) {
 
     };
 
+    // Slide show object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     var slideshow = {
             init: function(options, container, item){
                 var self = this;
                 self.container = container;
+                // console.log( self.container.$container );
                 self.$item = $(item);
-                self.src = self.$item.find('img').attr('src');
-                console.log("lb? "+ $('#lightbox').length)
+                var current_img = self.$item.find('img');
+                self.src =  current_img.attr('src'); 
+                self.title = current_img.attr('title'); 
+                self.desc = current_img.data('desc');
+                // console.log("lb? "+ $('#lightbox').length);
+                
                 if ($('#lightbox').length > 0) {
-
+                    console.log("show lb");
                     self.showLightbox();
                 } else {
+                    console.log("setup !");
                     self.setup();
                 }
-                $('#lightbox').on('click', function(){
-                      self.hideLightbox();
-                    });
-                // $('#close-lb').on('click', function(){
-                //     console.log("hide lb !!!");
-                // })
+
+                $('.lb-close').on('click', function(){
+                      self.hideLightbox();  
+                });
+
+
             },
             setup: function(){
                     var self = this;
@@ -172,7 +181,7 @@ if ( typeof Object.create !== 'function' ) {
                         '<div id="lightbox" class="lightbox">' +
                             '<div class="lb-container">' +
                                 '<div class="lb-img-container">' + 
-                                    '<img class="lb-image" src="' + self.src +'" />' +
+                                    '<img class="lb-image" src="" />' +
                                     '<div class="lb-nav">' +
                                         '<a class="lb-prev" href="" ></a>'+
                                         '<a class="lb-next" href="" ></a>'+
@@ -180,11 +189,10 @@ if ( typeof Object.create !== 'function' ) {
                                 '</div>' +
                                  '<div class="lb-data-container">' + 
                                     '<div class="lb-details">' +
-                                        '<div class="lb-title"></div>' +
-                                        '<div class="lb-cat"></div>'+
-                                        '<div class="lb-desc"></div>'+
+                                        '<div class="lb-title"><h3></h3></div>' +
+                                        '<div class="lb-desc"><p></p></div>'+
                                     '</div>'+
-                                    '<div class="lb-close">' +
+                                    '<div class="lb-close-container">' +
                                         '<a class="lb-close"></a>' +
                                     '</div>'+
                                 '</div>' +
@@ -192,54 +200,36 @@ if ( typeof Object.create !== 'function' ) {
                         '</div>';
 
                     self.container.append(lightbox);
+                    
+                    self.showLightbox();    
 
-                    // console.log($('#lb-area').find('img'));
-            //         $('#lb-area').css({
-            //             "position":"fixed", /* keeps the lightbox window in the current viewport */
-            //             "top":"0",
-            //             "left":"0",
-            //             "width":"100%",
-            //             "height":"100%",
-            //             // "background":"url(overlay.png) repeat",
-            //             "background": "rgba(0,0,0,.8)",
-            //             "text-align":"center",
-            //             "z-index" : "10"
-            //         })
-            //         $('#lb-container').css({
-            //             "position":"absolute",
-            //             "display":"block",
-            //             "color":"#fff",
-            //             "max-width": "800px", 
-            //             "top" : "50%",
-            //             "margin" : "10%",
-            //             "z-index" : "15",
-            //             "box-shadow":"0 0 25px #111",
-            //             "-webkit-box-shadow":"0 0 25px #111",
-            //             "-moz-box-shadow":"0 0 25px #111"
-            //     }).find('img').css({
-            //             "max-width": "inherit"
-            //     });
-
-            //       $('#close-lb').css({
-            //           "position":"fixed ",
-            //           "float":"right",
-            //           "color":"#fff",
-            //           "font-size":"30px",
-            //           "margin" :"10px 10px 0 0"
-            //       })
             },
             showLightbox: function(){
                     var self = this;
-                    $('#content').html('<img src="' + self.src + '" />');
-                    $('#lightbox').show();
+                    // $('#lb-area').fadeIn("400");
+                    // $('#lightbox').fadeIn("1000");
+                    
+                    $( "#lb-area" ).fadeIn( "slow", function() {
+                        $('#lightbox').fadeIn("1000");
+                        $('.lb-image').attr("src",""+self.src+"");
+                        var width = $('.lb-image').width();
+                        $('.lb-container').width(width + 20);
+                        $('.lb-nav').height($(".lb-img-container").outerHeight());
 
+                        $(".lb-title h3").html(self.title);
+                         $(".lb-desc p").html(self.desc);
+                      });
+
+                    
             },
             hideLightbox: function(){
                     var self = this;
-                    $('#lightbox').hide();
+                    $('#lightbox').fadeOut();
+                    $('#lb-area').fadeOut();
             }
     }
 
+    // Launch plugin //////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // $.fn.slideshowPlugin=function(options)
       // {
           return this.each(function(){
