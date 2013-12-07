@@ -146,51 +146,97 @@ if ( typeof Object.create !== 'function' ) {
 
     var slideshow = {
             init: function(options, container, item){
-                // console.log(image);
                 var self = this;
                 self.container = container;
                 self.$item = $(item);
                 self.src = self.$item.find('img').attr('src');
+                console.log("lb? "+ $('#lightbox').length)
                 if ($('#lightbox').length > 0) {
+
                     self.showLightbox();
                 } else {
                     self.setup();
-                    
                 }
+                $('#lightbox').on('click', function(){
+                      self.hideLightbox();
+                    });
+                // $('#close-lb').on('click', function(){
+                //     console.log("hide lb !!!");
+                // })
             },
             setup: function(){
                     var self = this;
                     var lightbox =
-                    '<div id="lightbox">' +
-                        '<p>Click to close</p>' +
-                        '<div id="content">' + //insert clicked link's href into img src
-                            '<img src="' + self.src +'" />' +
-                        '</div>' +
-                    '</div>';
+                        '<div id="lb-area">' +
+                        '</div>'+
+                        '<div id="lightbox" class="lightbox">' +
+                            '<div class="lb-container">' +
+                                '<div class="lb-img-container">' + 
+                                    '<img class="lb-image" src="' + self.src +'" />' +
+                                    '<div class="lb-nav">' +
+                                        '<a class="lb-prev" href="" ></a>'+
+                                        '<a class="lb-next" href="" ></a>'+
+                                    '</div>'+
+                                '</div>' +
+                                 '<div class="lb-data-container">' + 
+                                    '<div class="lb-details">' +
+                                        '<div class="lb-title"></div>' +
+                                        '<div class="lb-cat"></div>'+
+                                        '<div class="lb-desc"></div>'+
+                                    '</div>'+
+                                    '<div class="lb-close">' +
+                                        '<a class="lb-close"></a>' +
+                                    '</div>'+
+                                '</div>' +
+                            '</div>' +
+                        '</div>';
 
                     self.container.append(lightbox);
 
-                    console.log($('#lightbox').find('img'));
-                    $('#lightbox').css({
-                        "position":"fixed", /* keeps the lightbox window in the current viewport */
-                        "top":"0",
-                        "left":"0",
-                        "width":"100%",
-                        "height":"100%",
-                        // "background":"url(overlay.png) repeat",
-                        "background": "rgba(0,0,0,.8)",
-                        "text-align":"center"
-                    }).find('img').css({
-                        "max-width": "800px", 
-                        "box-shadow":"0 0 25px #111",
-                        "-webkit-box-shadow":"0 0 25px #111",
-                        "-moz-box-shadow":"0 0 25px #111"
-                })
+                    // console.log($('#lb-area').find('img'));
+            //         $('#lb-area').css({
+            //             "position":"fixed", /* keeps the lightbox window in the current viewport */
+            //             "top":"0",
+            //             "left":"0",
+            //             "width":"100%",
+            //             "height":"100%",
+            //             // "background":"url(overlay.png) repeat",
+            //             "background": "rgba(0,0,0,.8)",
+            //             "text-align":"center",
+            //             "z-index" : "10"
+            //         })
+            //         $('#lb-container').css({
+            //             "position":"absolute",
+            //             "display":"block",
+            //             "color":"#fff",
+            //             "max-width": "800px", 
+            //             "top" : "50%",
+            //             "margin" : "10%",
+            //             "z-index" : "15",
+            //             "box-shadow":"0 0 25px #111",
+            //             "-webkit-box-shadow":"0 0 25px #111",
+            //             "-moz-box-shadow":"0 0 25px #111"
+            //     }).find('img').css({
+            //             "max-width": "inherit"
+            //     });
+
+            //       $('#close-lb').css({
+            //           "position":"fixed ",
+            //           "float":"right",
+            //           "color":"#fff",
+            //           "font-size":"30px",
+            //           "margin" :"10px 10px 0 0"
+            //       })
             },
             showLightbox: function(){
                     var self = this;
                     $('#content').html('<img src="' + self.src + '" />');
                     $('#lightbox').show();
+
+            },
+            hideLightbox: function(){
+                    var self = this;
+                    $('#lightbox').hide();
             }
     }
 
