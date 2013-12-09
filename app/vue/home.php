@@ -47,7 +47,7 @@ require_once("ressources/templates/header.php");
 $(document).ready(function(){
   $("#diapo").slideshowPlugin(
   {
-    'show_entire_gallery' : false,
+    'show_entire_gallery' : true,
     'diaporama_width' : 800,
     'nb_images_per_line' : 5  
   });
