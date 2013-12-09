@@ -25,12 +25,10 @@ if ( typeof Object.create !== 'function' ) {
                 'displayDuration' : 5000
             }, options),
 
-          self.container = elem;         // div diapo    
           self.$container = $(elem);   // $(diapo)
           self.diapoUL = self.$container.children('ul');
           self.items = self.$container.find('li');
-          self.nbItemsDisplayed =  self.params.nb_images_per_line;
-          self.itemWidth = self.params.diaporama_width / self.nbItemsDisplayed;
+          self.itemWidth = self.params.diaporama_width / self.params.nb_images_per_line;
           self.containerWidth =  self.params.diaporama_width;
           self.nbItems = self.items.length;
           self.totalWidth = self.nbItems * self.itemWidth;
@@ -43,7 +41,7 @@ if ( typeof Object.create !== 'function' ) {
 
       },
       // mise en forme des éléments du plugin.
-      // A faire : css sans bootstrap
+      // Todo : css sans bootstrap
       setup: function(){
             var self = this;
 
@@ -94,17 +92,18 @@ if ( typeof Object.create !== 'function' ) {
                 })
             })
 
-              self.$btnDir = $('.btn-dir');
+            self.$btnDir = $('.btn-dir');
 
+            // Attache de fonctionnalités aux éléments partagés du plugin
             $('#autoplay-btn').on('click', function(){
-              console.log('diapo auto !');
-               self.launchSlideshow(this, true); 
+               self.launchSlideshow(this, true);  // true = lancer le slideshow avec defilement automatique
             });
 
              self.items.on('click', function(){
-                self.launchSlideshow(this, false); 
+                self.launchSlideshow(this, false);   // false = lancer le slideshow avec defilement manuel
              });
 
+             // Mise en forme finale variant suivant les params
              self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
 
       },
@@ -126,36 +125,38 @@ if ( typeof Object.create !== 'function' ) {
             self.diapoUL.css({
                 "width": self.totalWidth
             });
-             if(self.nbItems  > self.nbItemsDisplayed){
-               // = je lie la méthode setNavigation au click sur les boutons
+
+            // Attache des fonctionnalités de navigation si besoin
+             if(self.nbItems  > self.params.nb_images_per_line){
                 self.$btnDir.show().find('button').on('click', function(){
-                  self.setNavigation(this);  
-              });
+                    self.setNavigation(this);  
+                });
             }else{
                 self.$btnDir.hide()
             };            
       },
-      setNavigation: function(button){
+      setNavigation: function(buttonClicked){
 
             var self = this,
-            $buttonNav = $(button),
+            $buttonNav = $(buttonClicked),
             direction = $buttonNav.data('dir'),
             moveShift = self.itemWidth,
             unit;
 
             direction === 'next' ? ++self.current : --self.current;
 
-            // cas image 1 - click prev
+            // cas image 1 - click prev :
             if ( self.current === -1 ) {
-                self.current = self.nbItems - self.nbItemsDisplayed;
-                moveShift = self.totalWidth - self.itemWidth*self.nbItemsDisplayed; 
+                self.current = self.nbItems - self.params.nb_images_per_line;
+                moveShift = self.totalWidth - self.itemWidth*self.params.nb_images_per_line; 
                 direction = 'next';
-            } else if ( self.current === self.nbItems - (self.nbItemsDisplayed - 1) ) { // cas image final - click next
+            // cas image final - click next :
+            } else if ( self.current === self.nbItems - (self.params.nb_images_per_line - 1) ) { 
                 self.current = 0;
                 moveShift = 0;
-          }
+            }
 
-          // animation du diaporama
+          // animation de la gallery
             if ( direction && moveShift !== 0 ) {
                 unit = ( direction === 'next' ) ? '-=' : '+=';
             };
@@ -171,7 +172,7 @@ if ( typeof Object.create !== 'function' ) {
 
     };
 
-    // Slide show object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Slideshow object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var slideshow = {
             init: function(gallery, itemClicked, autoplay){
@@ -180,9 +181,8 @@ if ( typeof Object.create !== 'function' ) {
                 self.autoplay = autoplay;
                 self.$item_clicked = $(itemClicked);      // 'li' containing clicked picture
                 self.currentImageIndex = 0;
-                var current_img = self.$item_clicked.find('img');
                 self.album = [];
-                self.createAlbum(current_img);
+                self.createAlbum(self.$item_clicked.find('img'));
 
                 if ($('#lightbox').length > 0) {      // = passage d'une image à une autre quand slideshow ouvert
                     $( "#lb-area" ).fadeIn( "slow", function() {
@@ -192,7 +192,6 @@ if ( typeof Object.create !== 'function' ) {
                 } else {                                      // = premier chargement du slideshow
                     self.setup();               
                 }
-                self.$lightbox = $('#lightbox');
 
                 // fermeture du slideshow
                 $('.lb-close').on('click', function(){
@@ -239,6 +238,7 @@ if ( typeof Object.create !== 'function' ) {
                     });
 
                     self.gallery.$container.append(lightbox);
+                    self.$lightbox = $('#lightbox');
                     self.createLightbox();
             },
             setNav: function(){
@@ -286,9 +286,8 @@ if ( typeof Object.create !== 'function' ) {
                     var self = this;
                     
                     $( "#lb-area" ).fadeIn( "slow", function() {
-                          $('#lightbox').fadeIn("slow");
+                          self.$lightbox.fadeIn("slow");
                           var currentImg = self.album[self.currentImageIndex];
-
                           $('.lb-image').attr("src",""+currentImg.src+"");
                           $('.lb-container').width($('.lb-image').width() + 20);
                           $('.lb-nav').height($(".lb-img-container").outerHeight());
@@ -297,14 +296,15 @@ if ( typeof Object.create !== 'function' ) {
                     }); 
 
                     if (self.autoplay == true){
-                      self.autoplayDiaporama();
+                          self.autoplayDiaporama();
                     }                 
             },
             autoplayDiaporama: function(){
                   var self = this;
 
                   $('.lb-nav').hide();
-                  console.log(self.gallery.params.displayDuration);
+
+                  // simulation d'un click à interval régulier pour défilement auto
                   setInterval(function(){
                       $('.lb-next').click();
                   }, self.gallery.params.displayDuration)
@@ -314,8 +314,7 @@ if ( typeof Object.create !== 'function' ) {
 
                     // Utilisation d'une Image jquery en preload pour changer contenu ligtbox
                     // Permet de gérer le fadeOut tout en récupérant l'indispensable largeur de l'image.
-                     $('#lightbox').fadeOut('slow', function(){
-
+                     self.$lightbox.fadeOut('slow', function(){
                         var currentImg = self.album[self.currentImageIndex];  
                         var preloadImg = new Image();
                         preloadImg.onload = function(){
@@ -328,9 +327,8 @@ if ( typeof Object.create !== 'function' ) {
                         }
                         preloadImg.src = currentImg.src;                  
                     });
-                    $('#lightbox').fadeIn('slow');
 
-                        
+                    self.$lightbox.fadeIn('slow');            
             },
             hideLightbox: function(){
                   var self = this;
@@ -351,7 +349,6 @@ if ( typeof Object.create !== 'function' ) {
         });
 
       };
-
 
 
   })(jQuery);

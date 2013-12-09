@@ -41,12 +41,11 @@ require_once("ressources/templates/header.php");
 // var ajaxFired= false
 
 $(document).ready(function(){
-  $("#diapo").slideshowPlugin(
-  {
-    'show_entire_gallery' : false   ,
+  $("#diapo").slideshowPlugin({
+    'show_entire_gallery' : false,
     'diaporama_width' : 800,
-    'nb_images_per_line' : 5, 
-    'displayDuration' : 5000
+    'nb_images_per_line' : 2, 
+    'displayDuration' : 4000
   });
 })
 

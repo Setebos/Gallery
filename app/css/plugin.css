@@ -21,14 +21,13 @@ body:after {
     top:40px;
     width: 100%;
     z-index: 10000;
-    text-align: center;
+    text-align: left;
 }
 
 
 .lb-container{
     position: relative;
     background-color: white;
-    *zoom: 1;
     height: auto;
     margin: 0 auto;
 }
@@ -101,18 +100,21 @@ body:after {
 
 .lb-data-container{
       margin: 0 auto;
-      padding: 5px;
+      padding: 0 5px 5px 5px;
       width: 100%;
-/*      overflow: hidden;*/
 }
 
 .lb-details{
     width: 100%;
-    /*height: 100%;*/
+    margin-left: 10px;
 }
+
+.lb-details h3{
+    margin: 0;
+}
+
 .lb-details p{
-    display: block;
-    /*height: 100%;*/
+    margin: 0;
 }
 
 .lb-close-container{
@@ -120,7 +122,7 @@ body:after {
 }
 
 .lb-close{
-    display: block;
+    display: inline;
     float: right;
     width: 30px;
     height: 30px;
