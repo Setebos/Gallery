@@ -140,7 +140,7 @@ if ( typeof Object.create !== 'function' ) {
       launchSlideshow: function(item){
             var self = this;
             var slide = Object.create(slideshow);
-            slide.init(self.params, self.$container, item);
+            slide.init(self, item);
       }
 
     };
@@ -148,37 +148,61 @@ if ( typeof Object.create !== 'function' ) {
     // Slide show object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var slideshow = {
-            init: function(options, container, item){
+            init: function(gallery, itemClicked){
                 var self = this;
-                self.container = container;
-                self.$item = $(item);
+                self.gallery = gallery;                   //$('#diapo')
+
+                self.$item_clicked = $(itemClicked);      // 'li' containing clicked picture
                 self.currentImageIndex = 0;
-                var current_img = self.$item.find('img');
-                self.src =  current_img.attr('src'); 
-                self.title = current_img.attr('title'); 
-                self.desc = current_img.data('desc');
+                var current_img = self.$item_clicked.find('img');
+                self.album = [];
+                self.createAlbum(current_img);
                 
                 if ($('#lightbox').length > 0) {
-                    self.showLightbox();
+                    $( "#lb-area" ).fadeIn( "slow", function() {
+                        $('#lightbox').fadeIn("slow");
+                        self.changeLightbox();
+                  });
                 } else {
                     self.setup();
                 }
+                self.$lightbox = $('#lightbox');
+
 
                 $('.lb-close').on('click', function(){
                       self.hideLightbox();  
                 });
 
                 self.$lightbox.find('.lb-prev').on('click', function(e) {
-                    console.log("1st pic");
                     e.preventDefault();
-                    // if (self.currentImageIndex === 0) {
-                    //     console.log("1st pic");
-                    //   // _this.changeImage(_this.album.length - 1);
-                    // } else {
-                    //     console.log("else pic");
-                    //   // _this.changeImage(_this.currentImageIndex - 1);
-                    // }
-                    return false;
+                     $('#lightbox').fadeOut('slow');
+                    if (self.currentImageIndex === 0) {
+                        console.log("1st pic prev");
+                        self.currentImageIndex = self.album.length - 1;
+                       // self.changePicture(self.album.length - 1);
+                    } else {
+                        console.log("else pic prev");
+                        self.currentImageIndex = self.currentImageIndex - 1
+                      // self.changePicture(self.currentImageIndex - 1);
+                    }
+                    self.changeLightbox();
+                    // return false;
+                  });
+
+                self.$lightbox.find('.lb-next').on('click', function(e) {
+                    e.preventDefault();
+                    if (self.currentImageIndex === self.album.length - 1) {
+                      console.log("last pic next");
+                        // self.changePicture(0);
+                        self.currentImageIndex = 0;
+                      } else {
+                        console.log("else pic next");
+                        // self.changePicture(self.currentImageIndex + 1);
+                        self.currentImageIndex++;
+                      }
+                      self.changeLightbox();
+                      
+                      // return false;
                   });
 
 
@@ -197,7 +221,9 @@ if ( typeof Object.create !== 'function' ) {
                                         '<a class="lb-next" href="" ></a>'+
                                     '</div>'+
                                 '</div>' +
-                                 '<div class="lb-data-container">' + 
+                                '<div class="preloading">' +
+                                '</div>' +
+                                '<div class="lb-data-container">' + 
                                     '<div class="lb-details">' +
                                         '<div class="lb-title"><h3></h3></div>' +
                                         '<div class="lb-desc"><p></p></div>'+
@@ -209,37 +235,79 @@ if ( typeof Object.create !== 'function' ) {
                             '</div>' +
                         '</div>';
 
-                    self.container.append(lightbox);
-                    self.$lightbox = $('#lightbox');
-                    self.showLightbox();    
+                    // fixer taille limite des images en fonction de taille de la fenetre
+                    var maxHeight = $(window).height() * 70/100;
+                    var maxWidth = $(window).width() * 70/100;                        
+                    $('.lb-image').css({
+                        "max-width": ""+maxWidth+"px",
+                        "max-height": ""+maxHeight+"px"
+                    });
+
+                    self.gallery.$container.append(lightbox);
+                    // $('.lb-area').hide();
+                    // $('.lb-area').show('slow');
+                    // $('#lightbox').hide();
+                    // self.hideLightbox();
+                    $( "#lb-area" ).fadeIn( "slow", function() {
+                        self.changeLightbox();
+                        // $('#lightbox').fadeIn("slow");
+                        
+                    }); 
 
             },
-            showLightbox: function(){
+            createAlbum: function(current_img){
+
+                    var self = this;
+                    self.gallery.items.each(function(index){
+                        var img = $(this).children('img');
+                        self.album.push({
+                            src: img.attr('src'),
+                            title: img.attr('title'),
+                            desc: img.data('desc')
+                          });
+                        if( img.attr('src') == current_img.attr('src')) {
+                          self.currentImageIndex = index;
+                        }
+                    })
+
+            },
+            changeLightbox: function(){
                     var self = this;
                     
-                    $( "#lb-area" ).fadeIn( "slow", function() {
-                        $('#lightbox').fadeIn("1000");
+                    // $( "#lb-area" ).fadeIn( "slow", function() {
+                    //       $('#lightbox').fadeIn("slow");
+                        var currentImg = self.album[self.currentImageIndex];
+                        var preloadImg = new Image();
+                        preloadImg.onload = function(){
+                            $('.preloading').append(preloadImg);
+                            $('.lb-container').width($(preloadImg).width() + 20);
+                            $('.lb-nav').height($(preloadImg).outerHeight());
+                            console.log("preload width : "+$(preloadImg).width());
+                        }
+                        preloadImg.src = currentImg.src;
+
                         
                         // mise en forme dynamique suivant l'image affichée
-                        $('.lb-image').attr("src",""+self.src+"");
-                        var maxHeight = $(window).height() * 70/100;
-                        var maxWidth = $(window).width() * 70/100;                        
-                        $('.lb-image').css({
-                            "max-width": ""+maxWidth+"px",
-                            "max-height": ""+maxHeight+"px"
-                        });
+                        
+                        // var maxHeight = $(window).height() * 70/100;
+                        // var maxWidth = $(window).width() * 70/100;                        
+                        // $('.lb-image').css({
+                        //     "max-width": ""+maxWidth+"px",
+                        //     "max-height": ""+maxHeight+"px"
+                        // });
+                        $('.lb-image').attr("src",""+currentImg.src+"");
                         $('.lb-container').width($('.lb-image').width() + 20);
                         $('.lb-nav').height($(".lb-img-container").outerHeight());
-                        $(".lb-title h3").html(self.title);
-                         $(".lb-desc p").html(self.desc);
-                      });
-
-                    
+                        $(".lb-title h3").html(currentImg.title);
+                        $(".lb-desc p").html(currentImg.desc);
+                      // });                    
             },
             hideLightbox: function(){
                     var self = this;
-                    $('#lightbox').fadeOut();
-                    $('#lb-area').fadeOut();
+                   self.$lightbox.fadeOut("slow", function(){
+                      $('#lb-area').fadeOut("slow");
+                    });
+                    
             }
 
     }
