@@ -63,6 +63,11 @@ body{
 }
 
 
+#gallery {
+    margin-top: 60px;
+}
+
+
 /***********        Formulaire login admin        ***********/
 
 .form_login h2{

@@ -36,7 +36,7 @@ if ( typeof Object.create !== 'function' ) {
           self.nbItems = self.items.length;
           self.totalWidth = self.nbItems * self.itemWidth;
 
-          self.navSection = $(".diapo-nav");
+          self.navSection = $("#diapo-nav");
 
           self.current = 0;     // current = index de l'image en tete de ligne
 
@@ -47,6 +47,24 @@ if ( typeof Object.create !== 'function' ) {
       // A prevoir : generation de la navigation ?
       setup: function(){
             var self = this;
+
+            var navBtn =  
+              '<button id="autoplay-btn" type="button" class="btn btn-default autoplay-btn">' +
+                'Lancer le diaporama' +
+              '</button>' + 
+              '<div class="btn-group btn-dir">' +
+                '<button data-dir="prev" type="button" class="btn btn-default">' +
+                    '<span class="glyphicon glyphicon-chevron-left"></span>' +
+                '</button>' +
+                '<button data-dir ="next" type="button" class="btn btn-default">' +
+                    '<span class="glyphicon glyphicon-chevron-right"></span>'   +
+                '</button>'+
+              '</div>' ;
+
+            self.navSection.css({
+              "width": self.containerWidth,
+              "margin": "auto"  
+            }).prepend(navBtn);  
 
             self.$container.css({
                 "width": self.containerWidth,
@@ -74,12 +92,21 @@ if ( typeof Object.create !== 'function' ) {
                      "max-width": "inherit", 
                      "max-height": self.itemWidth/2
                 })
-
             })
-             self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
+
+              self.$btnDir = $('.btn-dir');
+
+             
+             
+             $('#autoplay-btn').on('click', function(){
+              console.log('diapo auto !');
+            });
+
              self.items.on('click', function(){
                 self.launchSlideshow(this); 
              });
+
+             self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
 
       },
       // mise en forme specifique pour afficher l'integralite de la gallerie
@@ -89,7 +116,7 @@ if ( typeof Object.create !== 'function' ) {
             self.diapoUL.css({
                 "width": "inherit"
             });
-            self.navSection.hide();
+            self.$btnDir.hide();
       },    
       //mise en forme specifique pour affichage de seulement une ligne avec navigation
       setupDisplayPart: function(){
@@ -102,11 +129,11 @@ if ( typeof Object.create !== 'function' ) {
             });
              if(self.nbItems  > self.nbItemsDisplayed){
                // = je lie la méthode setNavigation au click sur les boutons
-                self.navSection.show().find('button').on('click', function(){
+                self.$btnDir.show().find('button').on('click', function(){
                   self.setNavigation(this);  
               });
             }else{
-                self.navSection.hide()
+                self.$btnDir.hide()
             };            
       },
       setNavigation: function(button){
@@ -157,8 +184,6 @@ if ( typeof Object.create !== 'function' ) {
                 var current_img = self.$item_clicked.find('img');
                 self.album = [];
                 self.createAlbum(current_img);
-
-                console.log($('#lightbox').length );
 
                 if ($('#lightbox').length > 0) {      // = passage d'une image à une autre quand slideshow ouvert
                     $( "#lb-area" ).fadeIn( "slow", function() {
@@ -219,7 +244,8 @@ if ( typeof Object.create !== 'function' ) {
             },
             setNav: function(){
               var self = this;
-              
+
+                // boutons nav du slideshow
                 self.$lightbox.find('.lb-prev').on('click', function(e) {
                     e.preventDefault();
                     if (self.currentImageIndex === 0) {

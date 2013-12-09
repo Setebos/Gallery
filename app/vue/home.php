@@ -2,7 +2,7 @@
 require_once("ressources/templates/header.php");   
 ?>
 
-<container  id="gallery">
+<container  id="gallery-full">
   <section class="categories">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -18,12 +18,8 @@ require_once("ressources/templates/header.php");
     </div>
   </section >
 
-  <section class="gallery">
-    <div class="diapo-nav clearfix">
-      <div class="btn-group pull-right">
-        <button data-dir="prev" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
-        <button data-dir ="next" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span>   </button>
-      </div>               
+  <section id="gallery">
+    <div id="diapo-nav">          
     </div>
     <div id="diapo">
       <ul>
@@ -47,7 +43,7 @@ require_once("ressources/templates/header.php");
 $(document).ready(function(){
   $("#diapo").slideshowPlugin(
   {
-    'show_entire_gallery' : true,
+    'show_entire_gallery' : false   ,
     'diaporama_width' : 800,
     'nb_images_per_line' : 5  
   });
