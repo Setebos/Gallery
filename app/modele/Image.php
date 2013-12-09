@@ -6,12 +6,14 @@ class Image implements JsonSerializable {
 	private $_title;
 	private $_description;
 	private $_location;
+	private $_position;
 	private $_gallery_id;
 
 	public function __construct($donnees) {
 		$this->setTitle($donnees['title']);
 		$this->setDescription($donnees['description']);
 		$this->setLocation($donnees['location']);
+		$this->setPosition($donnees['position']);
 		$this->setGalleryId($donnees['gallery_id']);
 		$this->setId($donnees['id']);
 	}
@@ -26,6 +28,10 @@ class Image implements JsonSerializable {
 
 	public function getDescription() {
 		return $this->_description;
+	}
+
+	public function getPosition() {
+		return $this->_position;
 	}
 
 	public function getLocation() {
@@ -50,6 +56,10 @@ class Image implements JsonSerializable {
 
 	public function setLocation($location) {
 		$this->_location = $location;
+	}
+
+	public function setPosition($position) {
+		$this->_position = $position;
 	}
 
 	public function setGalleryId($gallery_id) {

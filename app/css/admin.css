@@ -177,6 +177,48 @@ body{
     display: inline-block;
 }
 
+/***********        Upload Image - form part       ***********/
+
+.upload-image-form-part {
+    overflow: auto;
+    height: 100%;
+}
+
+.upload-image-form-header {
+    height: 13%;
+    border-bottom: 1px solid #000;
+}
+
+.upload-image-form-body {
+    height: 87%;
+}
+
+.upload-image-align label {
+    width: 200px;
+    display: inline-block;
+}
+
+.upload-image-align input {
+    display: inline-block;
+}
+
+.upload-image-valid {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.upload-image-cancel {
+    margin-top: 15px;
+    /*padding-top: 50px;*/
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.upload-image-checkbox {
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+}
+
 /***********        Surcharges bootstrap        ***********/
 
 .navbar-default {

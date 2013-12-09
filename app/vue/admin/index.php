@@ -24,7 +24,7 @@
 			 <div class="col-md-9 picture-part">
 			  	<div class="picture-header">
 			  		<div class="btn btn-default pull-right">
-			  			<a href="addPicture.php">Ajouter image</a>
+			  			<a href="<?= "index.php?section=select_image "?>">Ajouter image</a>
 			  		</div>
 			  		<h3>Images</h3>
 			  	</div>

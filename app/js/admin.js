@@ -62,7 +62,7 @@ $(document).ready(function() {
 						dataType: "html",
 						success: function(data) {
 							$(".gallery-body").html(data);
-							$(".conteneur-images").html("Galerie supprimée");
+							$(".conteneur-images").html("Aucune galerie sélectionnée");
 						}
 					})
 				},
@@ -92,7 +92,7 @@ $(document).ready(function() {
 						dataType: "html",
 						success: function(data) {
 							$(".gallery-body").html(data);
-							$(".conteneur-images").html("Galerie supprimée");
+							$(".conteneur-images").html("Aucune galerie sélectionnée");
 						}
 					})
 				},

@@ -60,3 +60,13 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'update_gallery')
 {                
   include_once("app/controleur/admin/update_gallery.php");
 }
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'select_image')
+{                
+  include_once("app/controleur/admin/select_image.php");
+}
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'upload_image')
+{                
+  include_once("app/controleur/admin/upload_image.php");
+}

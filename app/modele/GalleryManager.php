@@ -52,6 +52,28 @@ class GalleryManager {
 		return $listGalleries;
 	}
 
+	public function getGalleryNames() {
+		$listGalleries = array();
+
+		$q = $this->_db->query('SELECT name FROM gallery');
+
+		while($donnees = $q->fetch()) {
+			$listGalleries[] = $donnees;
+		}
+
+		return $listGalleries;
+	}
+
+	public function getGalleryByName($name) {
+		$name = (string) $name;
+
+		$q = $this->_db->query("SELECT id, name, description FROM gallery WHERE name = '".$name."'");
+
+		$donnees = $q->fetch(PDO::FETCH_ASSOC);
+
+		return new Gallery($donnees);
+	}
+
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 

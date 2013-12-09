@@ -9,10 +9,11 @@ class ImageManager {
 	}
 
 	public function createImage(Image $image) {
-		$q = $this->_db->prepare('INSERT INTO image SET title = :title, description = :description, location = :location, gallery_id = :gallery_id');
+		$q = $this->_db->prepare('INSERT INTO image SET title = :title, description = :description, position = :position, location = :location, gallery_id = :gallery_id');
 
 		$q->bindValue(':title', $image->getTitle());
 		$q->bindValue(':description', $image->getDescription());
+		$q->bindValue(':position', $image->getPosition());
 		$q->bindValue(':location', $image->getLocation());
 		$q->bindValue(':gallery_id', $image->getGalleryId());
 
@@ -20,10 +21,11 @@ class ImageManager {
 	}
 
 	public function updateImage(Image $image) {
-		$q = $this->_db->prepare('UPDATE image SET title = :title, description = :description, location = :location, gallery_id = :gallery_id WHERE id = :id');
+		$q = $this->_db->prepare('UPDATE image SET title = :title, description = :description, position = :position, location = :location, gallery_id = :gallery_id WHERE id = :id');
 
 		$q->bindValue(':title', $image->getTitle());
 		$q->bindValue(':description', $image->getDescription());
+		$q->bindValue(':position', $image->getPosition());
 		$q->bindValue(':location', $image->getLocation());
 		$q->bindValue(':gallery_id', $image->getGalleryId());
 		$q->bindValue(':id', $image->getId());
@@ -78,6 +80,18 @@ class ImageManager {
 		}
 
 		return $listImages;
+	}
+
+	public function getPositions($id) {
+		$listPositions = array();
+
+		$q = $this->_db->query('SELECT position FROM image WHERE gallery_id = '.$id);
+
+		while($donnees = $q->fetch()) {
+			$listPositions[] = $donnees;
+		}
+
+		return $listPositions;
 	}
 
 	public function getImagesByGallery_json($id) {
