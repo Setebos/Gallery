@@ -40,9 +40,10 @@ $listImages = $managerImage->getImagesByGallery($id);
 <div id="<?= "edit-gallery" . $id ?>" class="btn btn-default pull-right gallery-edit-button">
 	<a href="<?= "index.php?section=edit_gallery&id=".$id ?>">Modifier galerie</a>
 </div>
-<ul class="list-inline testAjax">
+<p>Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images</p>
+<ul class="list-inline sortable">
 	<?php foreach ($listImages as $image) {?>
-		<li class="picture-list">
+		<li id="<?= "item-".$image->getId() ?>" class="picture-list">
 			<div class="picture-div">
 				<img src="<?= $image->getLocation() ?>">
 			</div>

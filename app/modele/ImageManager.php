@@ -61,7 +61,7 @@ class ImageManager {
 	public function getImagesByGallery($id) {
 		$listImages = array();
 
-		$q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$id);
+		$q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$id.' ORDER BY position ');
 
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
 			$listImages[] = new Image($donnees);
