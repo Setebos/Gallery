@@ -13,23 +13,6 @@ body:after {
     height: 100%;
     z-index: 9999;
     background-color: rgba(0,0,0,.8);
-    /*display: none;*/
-}
-
-#lb-area2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-color:black;
-    opacity: 0;
-    /*display: none;*/
-}
-
-.preloading{
-    z-index: -1;
 }
 
 .lightbox{
@@ -38,31 +21,16 @@ body:after {
     top:40px;
     width: 100%;
     z-index: 10000;
-    text-align: center;
+    text-align: left;
 }
 
 
 .lb-container{
     position: relative;
     background-color: white;
-    *zoom: 1;
-    /*max-width: 800px;*/
-    /*width: 800px;*/
     height: auto;
     margin: 0 auto;
-    /*padding: 5px;*/
-/*    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;*/
 }
-
-/*.lb-container:after{
-    content: "";
-  display: table;
-  clear: both;
-}*/
 
 .lb-img-container{
     max-width: inherit;
@@ -73,12 +41,6 @@ body:after {
     display: block;
     height: auto;
     max-width: 900px;
-   
-/*    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;*/
 }
 
 .lb-nav{
@@ -138,18 +100,21 @@ body:after {
 
 .lb-data-container{
       margin: 0 auto;
-      padding: 5px;
+      padding: 0 5px 5px 5px;
       width: 100%;
-/*      overflow: hidden;*/
 }
 
 .lb-details{
     width: 100%;
-    /*height: 100%;*/
+    margin-left: 10px;
 }
+
+.lb-details h3{
+    margin: 0;
+}
+
 .lb-details p{
-    display: block;
-    /*height: 100%;*/
+    margin: 0;
 }
 
 .lb-close-container{
@@ -157,7 +122,7 @@ body:after {
 }
 
 .lb-close{
-    display: block;
+    display: inline;
     float: right;
     width: 30px;
     height: 30px;
@@ -181,26 +146,34 @@ body:after {
 
 /***********        Index - liste des photos        ***********/
 
-.gallery{
-    margin-top: 60px;
-}
+
 
 /* navigation */
-.gallery .diapo-nav{
-    margin: 0 20% 0 0;
-    display: block; 
+#diapo-nav{
+    display: table;
 }
 
-.diapo-nav ul{
+#diapo-nav #autoplay{
+    float: left;
+}
+
+#diapo-nav .btn-group{
+    float: right;
+}
+
+#diapo-nav ul{
     list-style: none;
 }
 
-.diapo-nav li{
+#diapo-nav li{
     display: inline-block;
 }
 
-.gallery .diapo-nav span{
+#diapo-nav span{
     font-size: 25px;
-    width: 30px;
+    width: 30px;  
 }
+
+
+
 
