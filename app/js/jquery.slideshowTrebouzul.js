@@ -22,8 +22,7 @@ if ( typeof Object.create !== 'function' ) {
                 'show_entire_gallery' : false,
                 'diaporama_width' : 750,
                 'nb_images_per_line' : 3,
-                'interval' : 4000,
-                'autoplay' : false
+                'displayDuration' : 5000
             }, options),
 
           self.container = elem;         // div diapo    
@@ -44,7 +43,7 @@ if ( typeof Object.create !== 'function' ) {
 
       },
       // mise en forme des éléments du plugin.
-      // A prevoir : generation de la navigation ?
+      // A faire : css sans bootstrap
       setup: function(){
             var self = this;
 
@@ -61,6 +60,7 @@ if ( typeof Object.create !== 'function' ) {
                 '</button>'+
               '</div>' ;
 
+            // mise en forme dynamique des éléments de la gallery suivant les options du plugin
             self.navSection.css({
               "width": self.containerWidth,
               "margin": "auto"  
@@ -96,14 +96,13 @@ if ( typeof Object.create !== 'function' ) {
 
               self.$btnDir = $('.btn-dir');
 
-             
-             
-             $('#autoplay-btn').on('click', function(){
+            $('#autoplay-btn').on('click', function(){
               console.log('diapo auto !');
+               self.launchSlideshow(this, true); 
             });
 
              self.items.on('click', function(){
-                self.launchSlideshow(this); 
+                self.launchSlideshow(this, false); 
              });
 
              self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
@@ -164,10 +163,10 @@ if ( typeof Object.create !== 'function' ) {
                 'margin-left': unit ? (unit + moveShift) : moveShift
             });
       },
-      launchSlideshow: function(item){
+      launchSlideshow: function(item, autoplay){
             var self = this;
             var slide = Object.create(slideshow);
-            slide.init(self, item);
+            slide.init(self, item, autoplay);
       }
 
     };
@@ -175,10 +174,10 @@ if ( typeof Object.create !== 'function' ) {
     // Slide show object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var slideshow = {
-            init: function(gallery, itemClicked){
+            init: function(gallery, itemClicked, autoplay){
                 var self = this;
                 self.gallery = gallery;                   //$('#diapo')
-
+                self.autoplay = autoplay;
                 self.$item_clicked = $(itemClicked);      // 'li' containing clicked picture
                 self.currentImageIndex = 0;
                 var current_img = self.$item_clicked.find('img');
@@ -251,7 +250,7 @@ if ( typeof Object.create !== 'function' ) {
                     if (self.currentImageIndex === 0) {
                         self.currentImageIndex = self.album.length - 1;
                     } else {
-                        self.currentImageIndex = self.currentImageIndex - 1
+                        self.currentImageIndex --;
                     }
                     self.changeLightbox();
                   });
@@ -295,7 +294,20 @@ if ( typeof Object.create !== 'function' ) {
                           $('.lb-nav').height($(".lb-img-container").outerHeight());
                           $(".lb-title h3").html(currentImg.title);
                           $(".lb-desc p").html(currentImg.desc);
-                    });                    
+                    }); 
+
+                    if (self.autoplay == true){
+                      self.autoplayDiaporama();
+                    }                 
+            },
+            autoplayDiaporama: function(){
+                  var self = this;
+
+                  $('.lb-nav').hide();
+                  console.log(self.gallery.params.displayDuration);
+                  setInterval(function(){
+                      $('.lb-next').click();
+                  }, self.gallery.params.displayDuration)
             },
             changeLightbox: function(){
                     var self = this;

@@ -45,7 +45,8 @@ $(document).ready(function(){
   {
     'show_entire_gallery' : false   ,
     'diaporama_width' : 800,
-    'nb_images_per_line' : 5  
+    'nb_images_per_line' : 5, 
+    'displayDuration' : 5000
   });
 })
 
