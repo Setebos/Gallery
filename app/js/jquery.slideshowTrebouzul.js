@@ -157,55 +157,26 @@ if ( typeof Object.create !== 'function' ) {
                 var current_img = self.$item_clicked.find('img');
                 self.album = [];
                 self.createAlbum(current_img);
-                
-                if ($('#lightbox').length > 0) {
+
+                console.log($('#lightbox').length );
+
+                if ($('#lightbox').length > 0) {      // = passage d'une image à une autre quand slideshow ouvert
                     $( "#lb-area" ).fadeIn( "slow", function() {
                         $('#lightbox').fadeIn("slow");
                         self.changeLightbox();
                   });
-                } else {
-                    self.setup();
+                } else {                                      // = premier chargement du slideshow
+                    self.setup();               
                 }
                 self.$lightbox = $('#lightbox');
 
-
+                // fermeture du slideshow
                 $('.lb-close').on('click', function(){
                       self.hideLightbox();  
                 });
 
-                self.$lightbox.find('.lb-prev').on('click', function(e) {
-                    e.preventDefault();
-                     $('#lightbox').fadeOut('slow');
-                    if (self.currentImageIndex === 0) {
-                        console.log("1st pic prev");
-                        self.currentImageIndex = self.album.length - 1;
-                       // self.changePicture(self.album.length - 1);
-                    } else {
-                        console.log("else pic prev");
-                        self.currentImageIndex = self.currentImageIndex - 1
-                      // self.changePicture(self.currentImageIndex - 1);
-                    }
-                    self.changeLightbox();
-                    // return false;
-                  });
-
-                self.$lightbox.find('.lb-next').on('click', function(e) {
-                    e.preventDefault();
-                    if (self.currentImageIndex === self.album.length - 1) {
-                      console.log("last pic next");
-                        // self.changePicture(0);
-                        self.currentImageIndex = 0;
-                      } else {
-                        console.log("else pic next");
-                        // self.changePicture(self.currentImageIndex + 1);
-                        self.currentImageIndex++;
-                      }
-                      self.changeLightbox();
-                      
-                      // return false;
-                  });
-
-
+               // gestion de la navigation
+               self.setNav();
             },
             setup: function(){
                     var self = this;
@@ -244,19 +215,34 @@ if ( typeof Object.create !== 'function' ) {
                     });
 
                     self.gallery.$container.append(lightbox);
-                    // $('.lb-area').hide();
-                    // $('.lb-area').show('slow');
-                    // $('#lightbox').hide();
-                    // self.hideLightbox();
-                    $( "#lb-area" ).fadeIn( "slow", function() {
-                        self.changeLightbox();
-                        // $('#lightbox').fadeIn("slow");
-                        
-                    }); 
+                    self.createLightbox();
+            },
+            setNav: function(){
+              var self = this;
+              
+                self.$lightbox.find('.lb-prev').on('click', function(e) {
+                    e.preventDefault();
+                    if (self.currentImageIndex === 0) {
+                        self.currentImageIndex = self.album.length - 1;
+                    } else {
+                        self.currentImageIndex = self.currentImageIndex - 1
+                    }
+                    self.changeLightbox();
+                  });
+
+                self.$lightbox.find('.lb-next').on('click', function(e) {
+                    e.preventDefault();
+                    if (self.currentImageIndex === self.album.length - 1) {
+                        self.currentImageIndex = 0;
+                    } else {
+                        self.currentImageIndex++;
+                    }
+                    self.changeLightbox();
+                  });
+
 
             },
             createAlbum: function(current_img){
-
                     var self = this;
                     self.gallery.items.each(function(index){
                         var img = $(this).children('img');
@@ -270,55 +256,60 @@ if ( typeof Object.create !== 'function' ) {
                         }
                     })
 
+            },  
+            createLightbox: function(){
+                    var self = this;
+                    
+                    $( "#lb-area" ).fadeIn( "slow", function() {
+                          $('#lightbox').fadeIn("slow");
+                          var currentImg = self.album[self.currentImageIndex];
+
+                          $('.lb-image').attr("src",""+currentImg.src+"");
+                          $('.lb-container').width($('.lb-image').width() + 20);
+                          $('.lb-nav').height($(".lb-img-container").outerHeight());
+                          $(".lb-title h3").html(currentImg.title);
+                          $(".lb-desc p").html(currentImg.desc);
+                    });                    
             },
             changeLightbox: function(){
                     var self = this;
-                    
-                    // $( "#lb-area" ).fadeIn( "slow", function() {
-                    //       $('#lightbox').fadeIn("slow");
-                        var currentImg = self.album[self.currentImageIndex];
+
+                    // Utilisation d'une Image jquery en preload pour changer contenu ligtbox
+                    // Permet de gérer le fadeOut tout en récupérant l'indispensable largeur de l'image.
+                     $('#lightbox').fadeOut('slow', function(){
+
+                        var currentImg = self.album[self.currentImageIndex];  
                         var preloadImg = new Image();
                         preloadImg.onload = function(){
-                            $('.preloading').append(preloadImg);
+                            $(preloadImg).addClass('lb-image');
+                            $('.lb-image').replaceWith($(preloadImg));
                             $('.lb-container').width($(preloadImg).width() + 20);
                             $('.lb-nav').height($(preloadImg).outerHeight());
-                            console.log("preload width : "+$(preloadImg).width());
+                            $(".lb-title h3").html(currentImg.title);
+                            $(".lb-desc p").html(currentImg.desc);
                         }
-                        preloadImg.src = currentImg.src;
+                        preloadImg.src = currentImg.src;                  
+                    });
+                    $('#lightbox').fadeIn('slow');
 
                         
-                        // mise en forme dynamique suivant l'image affichée
-                        
-                        // var maxHeight = $(window).height() * 70/100;
-                        // var maxWidth = $(window).width() * 70/100;                        
-                        // $('.lb-image').css({
-                        //     "max-width": ""+maxWidth+"px",
-                        //     "max-height": ""+maxHeight+"px"
-                        // });
-                        $('.lb-image').attr("src",""+currentImg.src+"");
-                        $('.lb-container').width($('.lb-image').width() + 20);
-                        $('.lb-nav').height($(".lb-img-container").outerHeight());
-                        $(".lb-title h3").html(currentImg.title);
-                        $(".lb-desc p").html(currentImg.desc);
-                      // });                    
             },
             hideLightbox: function(){
-                    var self = this;
+                  var self = this;
                    self.$lightbox.fadeOut("slow", function(){
-                      $('#lb-area').fadeOut("slow");
-                    });
-                    
+                      $('#lb-area').fadeOut("slow", function(){
+                          $('#lb-area').remove();
+                          $('#lightbox').remove();
+                      });
+                  }); 
             }
 
     }
 
     // Launch plugin //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // $.fn.slideshowPlugin=function(options)
-      // {
           return this.each(function(){
             var gal = Object.create(gallery);
             gal.init(options, this);
-            // (this).data('gallery', gal);
         });
 
       };
