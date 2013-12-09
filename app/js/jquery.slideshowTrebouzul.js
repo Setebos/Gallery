@@ -151,25 +151,35 @@ if ( typeof Object.create !== 'function' ) {
             init: function(options, container, item){
                 var self = this;
                 self.container = container;
-                // console.log( self.container.$container );
                 self.$item = $(item);
+                self.currentImageIndex = 0;
                 var current_img = self.$item.find('img');
                 self.src =  current_img.attr('src'); 
                 self.title = current_img.attr('title'); 
                 self.desc = current_img.data('desc');
-                // console.log("lb? "+ $('#lightbox').length);
                 
                 if ($('#lightbox').length > 0) {
-                    console.log("show lb");
                     self.showLightbox();
                 } else {
-                    console.log("setup !");
                     self.setup();
                 }
 
                 $('.lb-close').on('click', function(){
                       self.hideLightbox();  
                 });
+
+                self.$lightbox.find('.lb-prev').on('click', function(e) {
+                    console.log("1st pic");
+                    e.preventDefault();
+                    // if (self.currentImageIndex === 0) {
+                    //     console.log("1st pic");
+                    //   // _this.changeImage(_this.album.length - 1);
+                    // } else {
+                    //     console.log("else pic");
+                    //   // _this.changeImage(_this.currentImageIndex - 1);
+                    // }
+                    return false;
+                  });
 
 
             },
@@ -200,22 +210,26 @@ if ( typeof Object.create !== 'function' ) {
                         '</div>';
 
                     self.container.append(lightbox);
-                    
+                    self.$lightbox = $('#lightbox');
                     self.showLightbox();    
 
             },
             showLightbox: function(){
                     var self = this;
-                    // $('#lb-area').fadeIn("400");
-                    // $('#lightbox').fadeIn("1000");
                     
                     $( "#lb-area" ).fadeIn( "slow", function() {
                         $('#lightbox').fadeIn("1000");
+                        
+                        // mise en forme dynamique suivant l'image affichée
                         $('.lb-image').attr("src",""+self.src+"");
-                        var width = $('.lb-image').width();
-                        $('.lb-container').width(width + 20);
+                        var maxHeight = $(window).height() * 70/100;
+                        var maxWidth = $(window).width() * 70/100;                        
+                        $('.lb-image').css({
+                            "max-width": ""+maxWidth+"px",
+                            "max-height": ""+maxHeight+"px"
+                        });
+                        $('.lb-container').width($('.lb-image').width() + 20);
                         $('.lb-nav').height($(".lb-img-container").outerHeight());
-
                         $(".lb-title h3").html(self.title);
                          $(".lb-desc p").html(self.desc);
                       });
@@ -227,6 +241,7 @@ if ( typeof Object.create !== 'function' ) {
                     $('#lightbox').fadeOut();
                     $('#lb-area').fadeOut();
             }
+
     }
 
     // Launch plugin //////////////////////////////////////////////////////////////////////////////////////////////////////////////
