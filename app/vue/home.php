@@ -10,7 +10,7 @@ require_once("ressources/templates/header.php");
         <ul class="list-inline">
           <?php foreach ($listCategories as $category) {?>
           <li>
-            <a id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active" href="#"><?= $category->getName() ?></a>
+            <a id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active"><?= $category->getName() ?></a>
           </li>
           <?php } ?>
         </ul>
@@ -45,12 +45,19 @@ require_once("ressources/templates/header.php");
 // var ajaxFired= false
 
 $(document).ready(function(){
+
+        
+
+
   $("#diapo").slideshowPlugin({
     'show_entire_gallery' : false,
     'diaporama_width' : 800,
     'nb_images_per_line' : 3, 
     'displayDuration' : 4000
   });
+
+
+
 })
 
 </script>

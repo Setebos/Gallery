@@ -93,7 +93,7 @@ class ImageManager {
 	public function getImagesByCategory($id) {
 		$listImages = array();
 
-		$q = $this->_db->query('SELECT * FROM image WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.')');
+		$q = $this->_db->query('SELECT * FROM image WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.') ORDER BY position');
 
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
 			$listImages[] = new Image($donnees);
@@ -102,13 +102,12 @@ class ImageManager {
 		return $listImages;
 	}
 
-
 	public function getImagesByCategories($arrayCatIds) {
 		$listImages = array();
 
 		foreach($arrayCatIds as $id)
 		{
-		    $q = $this->_db->query('SELECT * FROM image WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.')');
+		    $q = $this->_db->query('SELECT * FROM image WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.') ORDER BY position');
 
 			while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
 				$listImages[] = new Image($donnees);
@@ -123,13 +122,12 @@ class ImageManager {
 
 		foreach($arrayCatIds as $id)
 		{
-		    $q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$id.' AND WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.')');
+		    $q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$idGallery.' AND id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.') ORDER BY position');
 
 			while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
 				$listImages[] = new Image($donnees);
 			}
 		}
-
 		return $listImages;
 	}
 
