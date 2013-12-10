@@ -23,10 +23,16 @@
   // recup de toutes les images
   $imageManager = new ImageManager($db);
 
- if (isset($_POST['searched'])) {
+  if (isset($_POST['catActiveIds'])) {
+    $listImages = $imageManager->getImagesByCategories($_POST['catActiveIds']);
+  } elseif (isset($_POST['searched'])) {
     $listImages = $imageManager->getImagesByResearch($_POST['searched']);
   } elseif (isset($_GET['gal'])) {
-    $listImages = $imageManager->getImagesByGallery($_GET['gal']);
+      if (isset($_POST['catActiveIds'])) {
+        $listImages = $imageManager->getImagesByCategories($_POST['catActiveIds'], $_GET['gal']);
+      } else {
+        $listImages = $imageManager->getImagesByGallery($_GET['gal']);
+      }
   } else {
     $listImages = $imageManager->getImagesByGallery($listGalleries[0]->getId());
   }

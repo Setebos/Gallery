@@ -82,6 +82,36 @@ class ImageManager {
 		return $listImages;
 	}
 
+	public function getImagesByCategories($arrayCatIds) {
+		$listImages = array();
+
+		foreach($arrayCatIds as $id)
+		{
+		    $q = $this->_db->query('SELECT * FROM image WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.')');
+
+			while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+				$listImages[] = new Image($donnees);
+			}
+		}
+
+		return $listImages;
+	}
+
+	public function getImagesByCategoriesGallery($arrayCatIds, $idGallery) {
+		$listImages = array();
+
+		foreach($arrayCatIds as $id)
+		{
+		    $q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$id.' AND WHERE id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.')');
+
+			while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+				$listImages[] = new Image($donnees);
+			}
+		}
+
+		return $listImages;
+	}
+
 	public function getImagesByResearch($searched_item){
 		$listImages = array();
 

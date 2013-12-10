@@ -28,7 +28,7 @@
                   <li><a href="<?= "index.php?section=login "?>">Se connecter  </a></li>
                 </ul>
                 <?php 
-                    (isset($_POST['searched']))? $placeholder = "".$_POST['searched']."" :  $placeholder = "Titre ou description";
+                    (isset($_POST['searched']) && $_POST['searched'] != '')? $placeholder = "".$_POST['searched']."" :  $placeholder = "Titre ou description";
                 ?>
                 <form method="post" action="<?= "index.php?section=home "?>" class="navbar-form navbar-right" role="search">
                   <div class="form-group">

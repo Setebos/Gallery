@@ -50,6 +50,7 @@ body{
     text-decoration: none;
     color: #494949;
     padding: 3px 7px;
+    margin-bottom: 5px;
 }
 
 .categories a:hover, .categories a.cat-active:hover{

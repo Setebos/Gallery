@@ -10,7 +10,7 @@ require_once("ressources/templates/header.php");
         <ul class="list-inline">
           <?php foreach ($listCategories as $category) {?>
           <li>
-            <a class="cat-name cat-active" href="#"><?= $category->getName() ?></a>
+            <a id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active" href="#"><?= $category->getName() ?></a>
           </li>
           <?php } ?>
         </ul>
