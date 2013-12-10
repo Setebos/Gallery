@@ -70,3 +70,8 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'upload_image')
 {                
   include_once("app/controleur/admin/upload_image.php");
 }
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'reposition_image')
+{                
+  include_once("app/controleur/admin/reposition_image.php");
+}

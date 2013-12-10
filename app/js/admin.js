@@ -39,6 +39,20 @@ $(document).ready(function() {
 			dataType: "html",
 			success: function(data) {
 				$( ".conteneur-images" ).html(data);
+				$(".conteneur-images").children("ul").sortable({ 
+					opacity: '0.7',
+					containment: "parent",
+					cursor: "move",
+					update: function() {
+						newOrder = $(this).sortable("serialize");
+						console.log(newOrder);
+						$.ajax({
+							url: "index.php?section=reposition_image",
+							type: "POST",
+							data: newOrder,
+						});
+					}
+				});
 			}
 		})
 	});
@@ -102,4 +116,11 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	$(document).on("hover", ".roll", function() {
+		$(this).stop().animate({
+		opacity: .7
+		}, "slow");
+	});
+		
 }); 

@@ -22,21 +22,18 @@ if ( typeof Object.create !== 'function' ) {
                 'show_entire_gallery' : false,
                 'diaporama_width' : 750,
                 'nb_images_per_line' : 3,
-                'interval' : 4000,
-                'autoplay' : false
+                'displayDuration' : 5000
             }, options),
 
-          self.container = elem;         // div diapo    
           self.$container = $(elem);   // $(diapo)
           self.diapoUL = self.$container.children('ul');
           self.items = self.$container.find('li');
-          self.nbItemsDisplayed =  self.params.nb_images_per_line;
-          self.itemWidth = self.params.diaporama_width / self.nbItemsDisplayed;
+          self.itemWidth = self.params.diaporama_width / self.params.nb_images_per_line;
           self.containerWidth =  self.params.diaporama_width;
           self.nbItems = self.items.length;
           self.totalWidth = self.nbItems * self.itemWidth;
 
-          self.navSection = $(".diapo-nav");
+          self.navSection = $("#diapo-nav");
 
           self.current = 0;     // current = index de l'image en tete de ligne
 
@@ -44,9 +41,28 @@ if ( typeof Object.create !== 'function' ) {
 
       },
       // mise en forme des éléments du plugin.
-      // A prevoir : generation de la navigation ?
+      // Todo : css sans bootstrap
       setup: function(){
             var self = this;
+
+            var navBtn =  
+              '<button id="autoplay-btn" type="button" class="btn btn-default autoplay-btn">' +
+                'Lancer le diaporama' +
+              '</button>' + 
+              '<div class="btn-group btn-dir">' +
+                '<button data-dir="prev" type="button" class="btn btn-default">' +
+                    '<span class="glyphicon glyphicon-chevron-left"></span>' +
+                '</button>' +
+                '<button data-dir ="next" type="button" class="btn btn-default">' +
+                    '<span class="glyphicon glyphicon-chevron-right"></span>'   +
+                '</button>'+
+              '</div>' ;
+
+            // mise en forme dynamique des éléments de la gallery suivant les options du plugin
+            self.navSection.css({
+              "width": self.containerWidth,
+              "margin": "auto"  
+            }).prepend(navBtn);  
 
             self.$container.css({
                 "width": self.containerWidth,
@@ -74,12 +90,21 @@ if ( typeof Object.create !== 'function' ) {
                      "max-width": "inherit", 
                      "max-height": self.itemWidth/2
                 })
-
             })
-             self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
+
+            self.$btnDir = $('.btn-dir');
+
+            // Attache de fonctionnalités aux éléments partagés du plugin
+            $('#autoplay-btn').on('click', function(){
+               self.launchSlideshow(this, true);  // true = lancer le slideshow avec defilement automatique
+            });
+
              self.items.on('click', function(){
-                self.launchSlideshow(this); 
+                self.launchSlideshow(this, false);   // false = lancer le slideshow avec defilement manuel
              });
+
+             // Mise en forme finale variant suivant les params
+             self.params.show_entire_gallery ==true? self.setupDisplayAll() :  self.setupDisplayPart();
 
       },
       // mise en forme specifique pour afficher l'integralite de la gallerie
@@ -89,7 +114,7 @@ if ( typeof Object.create !== 'function' ) {
             self.diapoUL.css({
                 "width": "inherit"
             });
-            self.navSection.hide();
+            self.$btnDir.hide();
       },    
       //mise en forme specifique pour affichage de seulement une ligne avec navigation
       setupDisplayPart: function(){
@@ -100,36 +125,38 @@ if ( typeof Object.create !== 'function' ) {
             self.diapoUL.css({
                 "width": self.totalWidth
             });
-             if(self.nbItems  > self.nbItemsDisplayed){
-               // = je lie la méthode setNavigation au click sur les boutons
-                self.navSection.show().find('button').on('click', function(){
-                  self.setNavigation(this);  
-              });
+
+            // Attache des fonctionnalités de navigation si besoin
+             if(self.nbItems  > self.params.nb_images_per_line){
+                self.$btnDir.show().find('button').on('click', function(){
+                    self.setNavigation(this);  
+                });
             }else{
-                self.navSection.hide()
+                self.$btnDir.hide()
             };            
       },
-      setNavigation: function(button){
+      setNavigation: function(buttonClicked){
 
             var self = this,
-            $buttonNav = $(button),
+            $buttonNav = $(buttonClicked),
             direction = $buttonNav.data('dir'),
             moveShift = self.itemWidth,
             unit;
 
             direction === 'next' ? ++self.current : --self.current;
 
-            // cas image 1 - click prev
+            // cas image 1 - click prev :
             if ( self.current === -1 ) {
-                self.current = self.nbItems - self.nbItemsDisplayed;
-                moveShift = self.totalWidth - self.itemWidth*self.nbItemsDisplayed; 
+                self.current = self.nbItems - self.params.nb_images_per_line;
+                moveShift = self.totalWidth - self.itemWidth*self.params.nb_images_per_line; 
                 direction = 'next';
-            } else if ( self.current === self.nbItems - (self.nbItemsDisplayed - 1) ) { // cas image final - click next
+            // cas image final - click next :
+            } else if ( self.current === self.nbItems - (self.params.nb_images_per_line - 1) ) { 
                 self.current = 0;
                 moveShift = 0;
-          }
+            }
 
-          // animation du diaporama
+          // animation de la gallery
             if ( direction && moveShift !== 0 ) {
                 unit = ( direction === 'next' ) ? '-=' : '+=';
             };
@@ -137,75 +164,42 @@ if ( typeof Object.create !== 'function' ) {
                 'margin-left': unit ? (unit + moveShift) : moveShift
             });
       },
-      launchSlideshow: function(item){
+      launchSlideshow: function(item, autoplay){
             var self = this;
             var slide = Object.create(slideshow);
-            slide.init(self, item);
+            slide.init(self, item, autoplay);
       }
 
     };
 
-    // Slide show object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Slideshow object //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var slideshow = {
-            init: function(gallery, itemClicked){
+            init: function(gallery, itemClicked, autoplay){
                 var self = this;
                 self.gallery = gallery;                   //$('#diapo')
-
+                self.autoplay = autoplay;
                 self.$item_clicked = $(itemClicked);      // 'li' containing clicked picture
                 self.currentImageIndex = 0;
-                var current_img = self.$item_clicked.find('img');
                 self.album = [];
-                self.createAlbum(current_img);
-                
-                if ($('#lightbox').length > 0) {
+                self.createAlbum(self.$item_clicked.find('img'));
+
+                if ($('#lightbox').length > 0) {      // = passage d'une image à une autre quand slideshow ouvert
                     $( "#lb-area" ).fadeIn( "slow", function() {
                         $('#lightbox').fadeIn("slow");
                         self.changeLightbox();
                   });
-                } else {
-                    self.setup();
+                } else {                                      // = premier chargement du slideshow
+                    self.setup();               
                 }
-                self.$lightbox = $('#lightbox');
 
-
+                // fermeture du slideshow
                 $('.lb-close').on('click', function(){
                       self.hideLightbox();  
                 });
 
-                self.$lightbox.find('.lb-prev').on('click', function(e) {
-                    e.preventDefault();
-                     $('#lightbox').fadeOut('slow');
-                    if (self.currentImageIndex === 0) {
-                        console.log("1st pic prev");
-                        self.currentImageIndex = self.album.length - 1;
-                       // self.changePicture(self.album.length - 1);
-                    } else {
-                        console.log("else pic prev");
-                        self.currentImageIndex = self.currentImageIndex - 1
-                      // self.changePicture(self.currentImageIndex - 1);
-                    }
-                    self.changeLightbox();
-                    // return false;
-                  });
-
-                self.$lightbox.find('.lb-next').on('click', function(e) {
-                    e.preventDefault();
-                    if (self.currentImageIndex === self.album.length - 1) {
-                      console.log("last pic next");
-                        // self.changePicture(0);
-                        self.currentImageIndex = 0;
-                      } else {
-                        console.log("else pic next");
-                        // self.changePicture(self.currentImageIndex + 1);
-                        self.currentImageIndex++;
-                      }
-                      self.changeLightbox();
-                      
-                      // return false;
-                  });
-
-
+               // gestion de la navigation
+               self.setNav();
             },
             setup: function(){
                     var self = this;
@@ -244,19 +238,36 @@ if ( typeof Object.create !== 'function' ) {
                     });
 
                     self.gallery.$container.append(lightbox);
-                    // $('.lb-area').hide();
-                    // $('.lb-area').show('slow');
-                    // $('#lightbox').hide();
-                    // self.hideLightbox();
-                    $( "#lb-area" ).fadeIn( "slow", function() {
-                        self.changeLightbox();
-                        // $('#lightbox').fadeIn("slow");
-                        
-                    }); 
+                    self.$lightbox = $('#lightbox');
+                    self.createLightbox();
+            },
+            setNav: function(){
+              var self = this;
+
+                // boutons nav du slideshow
+                self.$lightbox.find('.lb-prev').on('click', function(e) {
+                    e.preventDefault();
+                    if (self.currentImageIndex === 0) {
+                        self.currentImageIndex = self.album.length - 1;
+                    } else {
+                        self.currentImageIndex --;
+                    }
+                    self.changeLightbox();
+                  });
+
+                self.$lightbox.find('.lb-next').on('click', function(e) {
+                    e.preventDefault();
+                    if (self.currentImageIndex === self.album.length - 1) {
+                        self.currentImageIndex = 0;
+                    } else {
+                        self.currentImageIndex++;
+                    }
+                    self.changeLightbox();
+                  });
+
 
             },
             createAlbum: function(current_img){
-
                     var self = this;
                     self.gallery.items.each(function(index){
                         var img = $(this).children('img');
@@ -270,59 +281,74 @@ if ( typeof Object.create !== 'function' ) {
                         }
                     })
 
+            },  
+            createLightbox: function(){
+                    var self = this;
+                    
+                    $( "#lb-area" ).fadeIn( "slow", function() {
+                          self.$lightbox.fadeIn("slow");
+                          var currentImg = self.album[self.currentImageIndex];
+                          $('.lb-image').attr("src",""+currentImg.src+"");
+                          $('.lb-container').width($('.lb-image').width() + 20);
+                          $('.lb-nav').height($(".lb-img-container").outerHeight());
+                          $(".lb-title h3").html(currentImg.title);
+                          $(".lb-desc p").html(currentImg.desc);
+                    }); 
+
+                    if (self.autoplay == true){
+                          self.autoplayDiaporama();
+                    }                 
+            },
+            autoplayDiaporama: function(){
+                  var self = this;
+
+                  $('.lb-nav').hide();
+
+                  // simulation d'un click à interval régulier pour défilement auto
+                  setInterval(function(){
+                      $('.lb-next').click();
+                  }, self.gallery.params.displayDuration)
             },
             changeLightbox: function(){
                     var self = this;
-                    
-                    // $( "#lb-area" ).fadeIn( "slow", function() {
-                    //       $('#lightbox').fadeIn("slow");
-                        var currentImg = self.album[self.currentImageIndex];
+
+                    // Utilisation d'une Image jquery en preload pour changer contenu ligtbox
+                    // Permet de gérer le fadeOut tout en récupérant l'indispensable largeur de l'image.
+                     self.$lightbox.fadeOut('slow', function(){
+                        var currentImg = self.album[self.currentImageIndex];  
                         var preloadImg = new Image();
                         preloadImg.onload = function(){
-                            $('.preloading').append(preloadImg);
+                            $(preloadImg).addClass('lb-image');
+                            $('.lb-image').replaceWith($(preloadImg));
                             $('.lb-container').width($(preloadImg).width() + 20);
                             $('.lb-nav').height($(preloadImg).outerHeight());
-                            console.log("preload width : "+$(preloadImg).width());
+                            $(".lb-title h3").html(currentImg.title);
+                            $(".lb-desc p").html(currentImg.desc);
                         }
-                        preloadImg.src = currentImg.src;
+                        preloadImg.src = currentImg.src;                  
+                    });
 
-                        
-                        // mise en forme dynamique suivant l'image affichée
-                        
-                        // var maxHeight = $(window).height() * 70/100;
-                        // var maxWidth = $(window).width() * 70/100;                        
-                        // $('.lb-image').css({
-                        //     "max-width": ""+maxWidth+"px",
-                        //     "max-height": ""+maxHeight+"px"
-                        // });
-                        $('.lb-image').attr("src",""+currentImg.src+"");
-                        $('.lb-container').width($('.lb-image').width() + 20);
-                        $('.lb-nav').height($(".lb-img-container").outerHeight());
-                        $(".lb-title h3").html(currentImg.title);
-                        $(".lb-desc p").html(currentImg.desc);
-                      // });                    
+                    self.$lightbox.fadeIn('slow');            
             },
             hideLightbox: function(){
-                    var self = this;
+                  var self = this;
                    self.$lightbox.fadeOut("slow", function(){
-                      $('#lb-area').fadeOut("slow");
-                    });
-                    
+                      $('#lb-area').fadeOut("slow", function(){
+                          $('#lb-area').remove();
+                          $('#lightbox').remove();
+                      });
+                  }); 
             }
 
     }
 
     // Launch plugin //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // $.fn.slideshowPlugin=function(options)
-      // {
           return this.each(function(){
             var gal = Object.create(gallery);
             gal.init(options, this);
-            // (this).data('gallery', gal);
         });
 
       };
-
 
 
   })(jQuery);

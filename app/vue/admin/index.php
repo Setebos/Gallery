@@ -31,7 +31,7 @@
 			  	<div class="picture-body">
                     <div class="conteneur-images">
                     	<h3>Aucune galerie sélectionnée</h3>
-                    	<ul class="list-inline">
+                    	<ul class="list-inline sortable">
 	                    	<?php foreach ($listImages as $image) {?>
 		                    	<li class="picture-list">
 	                        		<div class="picture-div">
