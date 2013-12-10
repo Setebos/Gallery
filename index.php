@@ -75,3 +75,13 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'reposition_image')
 {                
   include_once("app/controleur/admin/reposition_image.php");
 }
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'new_category')
+{                
+  include_once("app/controleur/admin/new_category.php");
+}
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'create_category')
+{                
+  include_once("app/controleur/admin/create_category.php");
+}

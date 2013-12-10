@@ -38,6 +38,16 @@ class CategoryManager {
     	return new Category($donnees);
 	}
 
+	public function getCategoryByName($name) {
+		$name = (string) $name;
+
+		$q = $this->_db->query("SELECT * FROM category WHERE name = '".$name."'");
+
+		$donnees = $q->fetch(PDO::FETCH_ASSOC);
+
+		return new Gallery($donnees);
+	}
+
 	public function getListCategories() {
 		$listCategories = array();
 
