@@ -82,6 +82,19 @@ class ImageManager {
 		return $listImages;
 	}
 
+	public function getImagesByResearch($searched_item){
+		$listImages = array();
+
+		$q = $this->_db->query('SELECT * FROM image WHERE title LIKE "%'.$searched_item.'%" OR description LIKE "%'.$searched_item.'%" ');
+
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+			$listImages[] = new Image($donnees);
+		}
+
+		return $listImages;
+
+	}
+
 	public function getPositions($id) {
 		$listPositions = array();
 
@@ -92,10 +105,6 @@ class ImageManager {
 		}
 
 		return $listPositions;
-	}
-
-	public function getImagesByGallery_json($id) {
-		return json_encode($this->getImagesByGallery($id));
 	}
 
 	public function setDb(PDO $db) {

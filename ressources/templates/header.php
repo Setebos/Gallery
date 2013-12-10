@@ -27,20 +27,24 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="<?= "index.php?section=login "?>">Se connecter  </a></li>
                 </ul>
-
-                <form class="navbar-form navbar-right" role="search">
+                <?php 
+                    (isset($_POST['searched']))? $placeholder = "".$_POST['searched']."" :  $placeholder = "Titre ou description";
+                ?>
+                <form method="post" action="<?= "index.php?section=home "?>" class="navbar-form navbar-right" role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Categorie, titre...">
+                    <input type="text" name="searched" class="form-control" placeholder="<?= $placeholder; ?>">
                   </div>
-                  <button type="submit" class="btn btn-default">Chercher</button>
+                  <button type="submit" class="btn btn-default">Rechercher</button>
                 </form>
+
                 <div id="ajax-gallery">
                   <ul id="galleries-list" class="nav navbar-nav navbar-right">
                     <?php foreach ($listGalleries as $gallery) {?>
                       <li id="<?= "gallery" . $gallery->getId() ?>" class="gallery-desc " /
                         data-placement="bottom" data-original-title="<?= $gallery->getDescription(); ?>">
-                        <?php (isset($_GET['gal']) && $_GET['gal'] == $gallery->getId()) || 
-                        (!isset($_GET['gal']) && $gallery == $listGalleries[0])?  
+                        <?php 
+                        (isset($_GET['gal']) && $_GET['gal'] == $gallery->getId() && (!isset($_POST['searched']))) || 
+                        (!isset($_GET['gal']) && $gallery == $listGalleries[0] && (!isset($_POST['searched'])))?  
                         $class = "gal-active" : $class = "" ?>
                             <a href="index.php?section=home&gal=<?= $gallery->getId()  ?>" / 
                               class="<?=$class  ?>"><?= $gallery->getName() ?></a>

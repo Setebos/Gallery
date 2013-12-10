@@ -12,29 +12,23 @@
   include_once("app/modele/Image.php");
   include_once("app/modele/ImageManager.php");
 
-
-
-    // var_dump($_GET['gal']);
-    // echo($_GET['gal']);
-
   // recup de toutes les galeries
-  $managerGallery = new GalleryManager($db);
-  $listGalleries = $managerGallery->getListGalleries();
-  // var_dump($listGalleries[0]);
-  // $listGalleries_json = json_encode($managerGallery->getListGalleries());
+  $galleryManager = new GalleryManager($db);
+  $listGalleries = $galleryManager->getListGalleries();
 
   // recup de toutes les categories
-  $managerCategory = new CategoryManager($db);
-  $listCategories = $managerCategory->getListCategories();
-  // $listCategories_json = json_encode($managerCategory->getListCategories());
+  $categoryManager = new CategoryManager($db);
+  $listCategories = $categoryManager->getListCategories();
 
   // recup de toutes les images
-  $managerImage = new ImageManager($db);
+  $imageManager = new ImageManager($db);
 
-   if (isset($_GET['gal'])) {
-    $listImages = $managerImage->getImagesByGallery($_GET['gal']);
+ if (isset($_POST['searched'])) {
+    $listImages = $imageManager->getImagesByResearch($_POST['searched']);
+  } elseif (isset($_GET['gal'])) {
+    $listImages = $imageManager->getImagesByGallery($_GET['gal']);
   } else {
-      $listImages = $managerImage->getImagesByGallery($listGalleries[0]->getId());
+    $listImages = $imageManager->getImagesByGallery($listGalleries[0]->getId());
   }
 
   include_once('app/vue/home.php');
