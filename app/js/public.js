@@ -1,11 +1,11 @@
  $(document).ready(function(){
 
     // gestion des galeries (class active + tri ajax)
-      $(".gallery-desc").on('click', function(){
-          $(".gal-active").removeClass('gal-active');
-          $(this).find(':first-child').addClass('gal-active');
-          var idGallery = $(this).attr('id').substring(7);
-      });
+      // $(".gallery-desc").on('click', function(){
+      //     $(".gal-active").removeClass('gal-active');
+      //     $(this).find(':first-child').addClass('gal-active');
+      //     var idGallery = $(this).attr('id').substring(7);
+      // });
 
 
     // gestion des categories (class active + tri ajax)

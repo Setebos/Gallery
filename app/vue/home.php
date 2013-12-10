@@ -19,16 +19,20 @@ require_once("ressources/templates/header.php");
   </section >
 
   <section id="gallery">
-    <div id="diapo-nav">          
-    </div>
-    <div id="diapo">
-      <ul>
-        <?php foreach ($listImages as $image) {?>
+    <?php if (empty($listImages)) {?>
+      <p class="text-center"> <em>Aucune image à afficher</em> </p>
+    <?php } else { ?>
+      
+      <div id="diapo-nav">          
+      </div>
+      <div id="diapo">
+        <ul>
+          <?php foreach ($listImages as $image) {?>
         <li>
           <img src="<?= $image->getLocation(); ?>" 
           title="<?= $image->getTitle(); ?>" data-desc="<?= $image->getDescription(); ?>">
         </li>
-        <?php } ?>
+        <?php }} ?>
       </ul>
     </div>
   </section >
@@ -44,7 +48,7 @@ $(document).ready(function(){
   $("#diapo").slideshowPlugin({
     'show_entire_gallery' : false,
     'diaporama_width' : 800,
-    'nb_images_per_line' : 2, 
+    'nb_images_per_line' : 3, 
     'displayDuration' : 4000
   });
 })
