@@ -1,17 +1,7 @@
 
 $(document).ready(function() {
 
-	// $(".gallery-list").children(".gallery-suppr-button").css('display', 'none');
-
-/*	$(".gallery-list").click(function() {
-		window.location = $(this).find("a").eq(0).attr('href');
-	});*/
-
-/*	$(document).on("click", ".gallery-list", function(event) {
-		$('.gallery-active').removeClass('gallery-active').addClass('gallery-list');
-		$('.gallery-list').removeClass('gallery-list').addClass('gallery-active');
-		console.log($(this));
-	});*/
+	/***************  INDEX  *****************/
 
 	$(document).on("mouseenter", ".gallery-list", function() {
 		$(this).css({'cursor':'pointer'});
@@ -21,10 +11,6 @@ $(document).ready(function() {
 	$(document).on("mouseleave", ".gallery-list", function() {
 		$(this).children(".gallery-suppr-button").css('display', 'none');
 	});
-
-/*	,function(){
-		$(this).children(".gallery-suppr-button").css('display', 'none');
-	});  */
 
 	$(document).on("click", ".gallery-list", function() {
 		/*console.log($(this));*/
@@ -115,12 +101,40 @@ $(document).ready(function() {
 				}
 			}
 		});
+	});	
+
+	$(document).on("click", ".picture-div", function() {
+		var idLong = $(this).children("img").attr('id');
+		var idCourt = idLong.substring(5);
+		console.log(idCourt);
+	}); 
+
+	/***************  NOUVELLE IMAGE  *****************/
+
+	$(document).on("click", ".upload-image-new-category", function() {
+		var display = $(".new-category").css("display");
+		if (display == "none") {
+			$(".new-category").css("display", "block");
+		} else {
+			$(".new-category").css("display", "none");
+		};
+		
 	});
 
-	$(document).on("hover", ".roll", function() {
-		$(this).stop().animate({
-		opacity: .7
-		}, "slow");
+	$(document).on("click", "#categorySubmit", function(event) {
+		event.preventDefault();
+		var category = $("#categoryName").val();
+		console.log(category);
+		$.ajax({
+			type: "POST",
+			url: "index.php?section=create_category",
+			data: {name: category},
+			dataType: "html",
+			success: function(data) {
+				$(".new-category").css("display", "none");
+				$(".list-categories").html(data);
+			}
+		})
 	});
-		
+
 }); 

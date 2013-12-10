@@ -1,22 +1,5 @@
 <?php
 
-/*include("../../../ressources/config.php");
-include_once("../..//modele/Gallery.php");
-include_once("../..//modele/GalleryManager.php");
-include_once("../..//modele/ImageManager.php");
-include_once("../..//modele/Image.php");
-
-$options = array(
-    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-); 
-
-try {
-     $db = new PDO($config["db"]["dbengine"].':host='.$config["db"]["host"].';dbname='.$config["db"]["dbname"], $config["db"]["username"], $config["db"]["password"], $options);
-  }
-  catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-  }*/
-
 include("ressources/config.php");
 include_once("app/modele/Gallery.php");
 include_once("app/modele/GalleryManager.php");
@@ -44,8 +27,9 @@ $listImages = $managerImage->getImagesByGallery($id);
 <ul class="list-inline sortable">
 	<?php foreach ($listImages as $image) {?>
 		<li id="<?= "item-".$image->getId() ?>" class="picture-list">
+			<span class="roll"></span>
 			<div class="picture-div">
-				<img src="<?= $image->getLocation() ?>">
+				<img id="<?= "item-".$image->getId() ?>" src="<?= $image->getLocation() ?>">
 			</div>
 		</li>
 	<?php } ?>

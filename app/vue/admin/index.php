@@ -35,6 +35,9 @@
 	                    	<?php foreach ($listImages as $image) {?>
 		                    	<li class="picture-list">
 	                        		<div class="picture-div">
+	                        			<div class="picture-delete">
+				                        	<span class="glyphicon glyphicon-trash"></span>
+				                        </div>
 	                        			<img src="<?= $image->getLocation() ?>">
 	                    			</div>
 	                    		</li>

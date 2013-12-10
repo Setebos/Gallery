@@ -45,6 +45,10 @@ body{
     padding: 3px 7px;
 }
 
+.categories li {
+    margin-bottom: 10px;
+}
+
 .categories a{
     border-radius: 10px;
     text-decoration: none;

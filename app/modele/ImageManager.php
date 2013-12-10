@@ -58,6 +58,26 @@ class ImageManager {
 		return $listImages;
 	}
 
+	public function getPositions($id) {
+		$listPositions = array();
+
+		$q = $this->_db->query('SELECT position FROM image WHERE gallery_id = '.$id);
+
+		while($donnees = $q->fetch()) {
+			$listPositions[] = $donnees;
+		}
+
+		return $listPositions;
+	}
+
+	public function getImageByPosition($position, $idGallery) {
+		$q = $this->_db->query('SELECT * FROM image WHERE position = '.$position.' AND gallery_id = '.$idGallery);
+
+		$donnees = $q->fetch(PDO::FETCH_ASSOC);
+
+    	return new Image($donnees);
+    }
+	
 	public function getImagesByGallery($id) {
 		$listImages = array();
 
@@ -82,6 +102,7 @@ class ImageManager {
 		return $listImages;
 	}
 
+
 	public function getImagesByCategories($arrayCatIds) {
 		$listImages = array();
 
@@ -97,7 +118,7 @@ class ImageManager {
 		return $listImages;
 	}
 
-	public function getImagesByCategoriesGallery($arrayCatIds, $idGallery) {
+	public function getImagesByCategoriesAndGallery($arrayCatIds, $idGallery) {
 		$listImages = array();
 
 		foreach($arrayCatIds as $id)
@@ -112,6 +133,7 @@ class ImageManager {
 		return $listImages;
 	}
 
+
 	public function getImagesByResearch($searched_item){
 		$listImages = array();
 
@@ -122,20 +144,9 @@ class ImageManager {
 		}
 
 		return $listImages;
-
 	}
 
-	public function getPositions($id) {
-		$listPositions = array();
 
-		$q = $this->_db->query('SELECT position FROM image WHERE gallery_id = '.$id);
-
-		while($donnees = $q->fetch()) {
-			$listPositions[] = $donnees;
-		}
-
-		return $listPositions;
-	}
 
 	public function setDb(PDO $db) {
 		$this->_db = $db;
