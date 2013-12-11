@@ -3,14 +3,14 @@ $(document).ready(function() {
 
 	/***************  INDEX  *****************/
 
-	$(document).on("mouseenter", ".gallery-list", function() {
-		$(this).css({'cursor':'pointer'});
-		$(this).children(".gallery-suppr-button").css('display', 'inline-block');
-	});
+	// $(document).on("mouseenter", ".gallery-list", function() {
+	// 	$(this).css({'cursor':'pointer'});
+	// 	$(this).children(".gallery-suppr-button").css('display', 'inline-block');
+	// });
 
-	$(document).on("mouseleave", ".gallery-list", function() {
-		$(this).children(".gallery-suppr-button").css('display', 'none');
-	});
+	// $(document).on("mouseleave", ".gallery-list", function() {
+	// 	$(this).children(".gallery-suppr-button").css('display', 'none');
+	// });
 
 	$(document).on("click", ".gallery-list", function() {
 		/*console.log($(this));*/
@@ -43,8 +43,9 @@ $(document).ready(function() {
 		})
 	});
 
-	$(document).on("click", ".gallery-suppr-button", function() {
-		var idLong = $(this).siblings(".affichage").attr('id');
+	$(document).on("click", ".gal-suppr-btn", function() {
+		console.log($(this).parent());
+		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
 	 	$("#dialog-confirm").css("display", "block")
 		$( "#dialog-confirm" ).dialog({

@@ -6,11 +6,47 @@ html{
 
 
 body{
-    background-color: #e7e7e7;
+    background-color: #f5f5f5;
     height: 100%;
 }
 
+.btn-admin{
+    color: #fff;
+    background-color: #ff5d55;
+    border-color: #db2d27;
+    display: inline-block;
+    padding: 5px 18px;
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+    /*line-height: 1.428571429;*/
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    float: left;
+}
 
+.btn-admin:hover{
+    color: #fff;
+    background-color: #db2d27;
+}
+
+.btn-admin a {
+color: #fff;
+text-decoration: none;
+}
+
+.btn-admin a:hover {
+color: #fff;
+text-decoration: none;
+}
 
 /***********        Index - gallery part        ***********/
 .height-full{       /* pour permettre gallery-part en height 100% */
@@ -18,54 +54,88 @@ body{
 }
 
 .gallery-part{
-    background-color: #757575;
+    margin: 20px 20px 20px 35px;
+    background-color: #e7e7e7;
     overflow: auto;
-    height: 100%;
-    padding-left: 30px;
+    min-height: 45%;
+    padding: 0;
 }
 
 .gallery-part h3{
-    color:#fff;
+    padding: 15px;
+    margin: 0;
     }
 
 .gallery-header{
-    height: 13%;
+    height: auto;
     border-bottom: 1px solid #fff;
 }
 
 .gallery-body {
-    height: 80%;
+    max-height: 40%;
 }
 
-.gallery-suppr-button {
-    display: none;
-    z-index: 999;
-}
-
-.gallery-list {
-    background-color: #606060;
-    height: 50px;
-    text-align: center;
-    padding-top: 15px;
-    width: 100%;
-}
-
-.gallery-list:hover {
-    background-color: #757575;
-}
-
-.gallery-list a {
-    color: white;  
-}
-
-.gallery-list div {
+.gal-vign-container {
+    background-color: #fff;
+    margin: 15px;
+    padding: 5px;
+    width: 130px;
     display: inline-block;
 }
 
-.gallery-list > .gallery-suppr-button {
+.gal-vign-container:hover{
+    -webkit-box-shadow: #666 1px 2px 3px;
+    -moz-box-shadow: #666 1px 2px 3px;
+    box-shadow: #666 1px 2px 3px;
+    behavior: url(/pie/PIE.htc);
+}
+
+.gal-vign-picture{
+    cursor: pointer;
+    position: relative;
+}
+
+.gal-vign-detail{
+    padding: 2px;
+}
+
+.gal-vign-detail p{
+    line-height: 1;
+    margin: 0;
+}
+
+.gal-vign-detail a{
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+}
+
+.gal-suppr-btn{
     display: none;
     z-index: 999;
+    float: right;
+    cursor: pointer;
 }
+
+.gal-vign-container > .gal-suppr-btn {
+    display: none;
+    z-index: 999;
+    float: right;
+}
+
+.gal-vign-container:hover .gal-suppr-btn {
+    display: inline;
+    float: right;
+    z-index: 0;
+    position: relative;
+    /*top:100px;*/
+}
+
+/*.gal-vign-container > .gal-suppr-btn{
+    display: none;
+    z-index: 999;
+    float: right;
+}*/
 
 .gallery-list:hover a {
     color: #FF5D55;
@@ -92,10 +162,6 @@ body{
 
 .gallery-active div {
     display: inline-block;
-}
-
-.affichage {
-    width: 80%;
 }
 
 #dialog-confirm {
