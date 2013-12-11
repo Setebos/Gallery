@@ -15,18 +15,14 @@ if  (!isset($_GET['section']) OR $_GET['section'] == 'home')
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'login')
 {                    
-  include_once("app/vue/login.php");
+  // include_once("app/vue/login.php");
+  include_once("app/controleur/home_controller.php");
 }
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'login_controller')
 {                    
   include_once("app/controleur/login_controller.php");
 }
-
-// if  (isset($_GET['section']) AND $_GET['section'] == 'search_controller')
-// {                
-//   include_once("app/controleur/search_controller.php");
-// }
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'logout_controller')
 {                

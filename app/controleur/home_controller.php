@@ -25,23 +25,28 @@
 
   $current_gal = $listGalleries[0]->getId();
 
-
-  if (isset($_POST['searched'])) {
+  if  (isset($_GET['section']) AND $_GET['section'] == 'login') {                    
+      include_once("app/vue/login.php");
+  } else {
+      if (isset($_POST['searched'])) {
       $current_gal = '0';
       $listImages = $imageManager->getImagesByResearch($_POST['searched']);
-  } elseif (isset($_POST['gal']) && isset($_POST['catActiveIds'])) {
-      $current_gal = $_POST['gal'];
-      $listImages = $imageManager->getImagesByCategoriesAndGallery($_POST['catActiveIds'], $_POST['gal']);
-  } elseif (isset($_POST['catActiveIds'])) {
-      $current_gal = $listGalleries[0]->getId();
-      $listImages = $imageManager->getImagesByCategoriesAndGallery($_POST['catActiveIds'], $listGalleries[0]->getId());
-  } elseif (isset($_GET['gal'])) {
-      $current_gal = $_GET['gal'];
-      $listImages = $imageManager->getImagesByGallery($_GET['gal']);
-  } else {
-      $listImages = $imageManager->getImagesByGallery($listGalleries[0]->getId());
+      } elseif (isset($_POST['gal']) && isset($_POST['catActiveIds'])) {
+          $current_gal = $_POST['gal'];
+          $listImages = $imageManager->getImagesByCategoriesAndGallery($_POST['catActiveIds'], $_POST['gal']);
+      } elseif (isset($_POST['catActiveIds'])) {
+          $current_gal = $listGalleries[0]->getId();
+          $listImages = $imageManager->getImagesByCategoriesAndGallery($_POST['catActiveIds'], $listGalleries[0]->getId());
+      } elseif (isset($_GET['gal'])) {
+          $current_gal = $_GET['gal'];
+          $listImages = $imageManager->getImagesByGallery($_GET['gal']);
+      } else {
+          $listImages = $imageManager->getImagesByGallery($listGalleries[0]->getId());
+      }
+
+      include_once('app/vue/home.php');
   }
 
 
-  include_once('app/vue/home.php');
+  
 
