@@ -106,7 +106,7 @@ $(document).ready(function() {
 	$(document).on("click", ".picture-div", function() {
 		var idLong = $(this).children("img").attr('id');
 		var idCourt = idLong.substring(6);
-		var lien = "index.php?section=delete_image&id=" + idCourt;
+		var lien = "index.php?section=edit_image&id=" + idCourt;
 		console.log(lien);
 		if(! $(this).hasClass("picture-selected")) {
 			$(".picture-div").removeClass("picture-selected");
