@@ -12,8 +12,13 @@
         <script type="text/javascript" src="app/js/jquery.slideshowTrebouzul.js"/></script>
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
         <!--[if IE]>
-            <script src="js/html5-ie.js"></script>
-            <script src="js/html5shiv.js"></script>
+            <script src="app/js/html5-ie.js"></script>
+            <script src="app/js/html5shiv.js"></script>
+        <![endif]-->
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="../../assets/js/html5shiv.js"></script>
+          <script src="../../assets/js/respond.min.js"></script>
         <![endif]-->
     </head> 
 
