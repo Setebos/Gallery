@@ -147,8 +147,6 @@ class ImageManager {
 		return $listImages;
 	}
 
-
-
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 
