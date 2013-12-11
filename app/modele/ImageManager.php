@@ -113,14 +113,11 @@ class ImageManager {
 				$listImages[] = new Image($donnees);
 			}
 		}
-
 		return $listImages;
 	}
 
 	public function getImagesByCategoriesAndGallery($arrayCatIds, $idGallery) {
 		$listImages = array();
-
-		var_dump($arrayCatIds[0]);
 
 		if($arrayCatIds[0] == "empty"){
 			return $listImages;
