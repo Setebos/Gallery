@@ -15,6 +15,7 @@ $(document).ready(function() {
 	$(document).on("click", ".gallery-list", function() {
 		/*console.log($(this));*/
 		$('.gallery-active').removeClass('gallery-active').addClass('gallery-list').children(".gallery-suppr-button").css('display', 'none');
+		$(".picture-options").css("display", "none");
 		$(this).removeClass('gallery-list').addClass('gallery-active');
 		var idLong = $(this).children(".affichage").attr('id');
 		var idCourt = idLong.substring(7);
@@ -31,7 +32,6 @@ $(document).ready(function() {
 					cursor: "move",
 					update: function() {
 						newOrder = $(this).sortable("serialize");
-						console.log(newOrder);
 						$.ajax({
 							url: "index.php?section=reposition_image",
 							type: "POST",
@@ -105,9 +105,23 @@ $(document).ready(function() {
 
 	$(document).on("click", ".picture-div", function() {
 		var idLong = $(this).children("img").attr('id');
-		var idCourt = idLong.substring(5);
-		console.log(idCourt);
+		var idCourt = idLong.substring(6);
+		var lien = "index.php?section=delete_image&id=" + idCourt;
+		console.log(lien);
+		if(! $(this).hasClass("picture-selected")) {
+			$(".picture-div").removeClass("picture-selected");
+			$(this).addClass("picture-selected");
+			$(".picture-options").css("display", "block");
+			$(".edit-picture-button").children("a").attr("href", lien);
+		} else {
+			$(this).removeClass("picture-selected");
+			$(".picture-options").css("display", "none");
+		}
 	}); 
+
+	$(document).on("click", ".picture-options", function() {
+
+	})
 
 	/***************  NOUVELLE IMAGE  *****************/
 

@@ -11,6 +11,7 @@
         <script type="text/javascript" src="app/js/public.js"/></script>
         <script type="text/javascript" src="app/js/jquery.slideshowTrebouzul.js"/></script>
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
+        <script type="text/javascript" src="app/js/respond.js"></script>
         <!--[if IE]>
             <script src="app/js/html5-ie.js"></script>
             <script src="app/js/html5shiv.js"></script>

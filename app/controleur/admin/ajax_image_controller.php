@@ -29,7 +29,7 @@ $listImages = $managerImage->getImagesByGallery($id);
 		<li id="<?= "item-".$image->getId() ?>" class="picture-list">
 			<span class="roll"></span>
 			<div class="picture-div">
-				<img id="<?= "item-".$image->getId() ?>" src="<?= $image->getLocation() ?>">
+				<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocation() ?>">
 			</div>
 		</li>
 	<?php } ?>
