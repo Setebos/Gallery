@@ -33,7 +33,7 @@
 	                        <div class="form-group">
 	                            <label name="imageGallery">Galerie : </label>
 	                            <select name="imageGallery">
-	                            	<? foreach ($listGalleries as $gallery) {
+	                            	<?php foreach ($listGalleries as $gallery) {
 	                            		echo "<option>" . $gallery['name'] . "</option>";
 	                            	}?>
                             	</select>
@@ -48,10 +48,10 @@
 						    </div>
 						    <div class="form-group list-categories">
 					        	<label name="imageCategories">Choisissez des catégories : </label>
-					        	<? foreach ($listCategories as $category) {
+					        	<?php foreach ($listCategories as $category) {
 					        		?>
                             		<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-                            	<? } ?>
+                            	<?php } ?>
 						    </div>
 						    <div class="btn btn-default col-md-offset-4 upload-image-new-category">
 						    	<a href="#">Ajouter catégorie</a>
