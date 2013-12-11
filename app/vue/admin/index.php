@@ -20,43 +20,43 @@
 		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
 		                        	<span class="gal-suppr-btn glyphicon glyphicon-trash"></span>
 		                       </div>
-		                       
 	                    </div>
                   	<?php } ?>
 		 		</div>
 			 </div>
 			 <div class="col-md-8 picture-part">
 			  	<div class="picture-header">
-			  		<div class="btn btn-default pull-right">
-			  			<a href="<?= "index.php?section=select_image "?>">Ajouter image</a>
+			  		<div class="btn-admin pull-right"  title="Ajouter une galerie">
+			  			<a href="<?= "index.php?section=select_image "?>">+</a>
 			  		</div>
+			  		<p class="pull-right" id="filter-cat">Filtrer par catégories</p>
 			  		<h3>Images</h3>
-			  		
+			  	</div>	
 			  	<div class="picture-body">
-                    <div class="conteneur-images">
-                    	<h3>Aucune galerie sélectionnée</h3>
-                    	<ul class="list-inline sortable">
-	                    	<?php foreach ($listImages as $image) {?>
-		                    	<li class="picture-list">
-	                        		<div class="picture-div">
-	                        			<div class="picture-delete">
-				                        	<span class="glyphicon glyphicon-trash"></span>
-				                        </div>
-	                        			<img src="<?= $image->getLocation() ?>">
-	                    			</div>
-	                    		</li>
-	                  		<?php } ?>
-                    	</ul>
-                	</div>
-                	<div class="picture-options">
-                		<div class="btn btn-default edit-picture-button">
-                		 	<a href="<?= "index.php?section=edit_image "?>">Modifier l'image</a>
-                		</div>
-                		<br/>
-                		<div class="btn btn-default">
-                		 	<a href="<?= "index.php?section=delete_image "?>">Supprimer l'image</a>
-                		</div>
-                	</div>
+	                    	<div class="conteneur-images">
+		                    	<h3>Aucune galerie sélectionnée</h3>
+		                    	<ul class="list-inline sortable">
+			                    	<?php foreach ($listImages as $image) {?>
+				                    	<li class="picture-list">
+			                        		<div class="picture-div">
+			                        			<div class="picture-delete">
+						                        	<span class="glyphicon glyphicon-trash"></span>
+						                        </div>
+			                        			<img src="<?= $image->getLocation() ?>">
+			                    			</div>
+			                    		</li>
+			                  		<?php } ?>
+		                    	</ul>
+	                		</div>
+		                	<div class="picture-options">
+		                		<div class="btn btn-default edit-picture-button">
+		                		 	<a href="<?= "index.php?section=edit_image "?>">Modifier l'image</a>
+		                		</div>
+		                		<br/>
+		                		<div class="btn btn-default">
+		                		 	<a href="<?= "index.php?section=delete_image "?>">Supprimer l'image</a>
+		                		</div>
+		                	</div>
 			 	</div>
 			 </div>
 		</div>

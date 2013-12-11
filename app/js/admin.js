@@ -3,21 +3,14 @@ $(document).ready(function() {
 
 	/***************  INDEX  *****************/
 
-	// $(document).on("mouseenter", ".gallery-list", function() {
-	// 	$(this).css({'cursor':'pointer'});
-	// 	$(this).children(".gallery-suppr-button").css('display', 'inline-block');
-	// });
 
-	// $(document).on("mouseleave", ".gallery-list", function() {
-	// 	$(this).children(".gallery-suppr-button").css('display', 'none');
-	// });
 
-	$(document).on("click", ".gallery-list", function() {
-		/*console.log($(this));*/
+	$(document).on("click", ".gal-vign-container", function() {
+		console.log($(this).attr('id'));
 		$('.gallery-active').removeClass('gallery-active').addClass('gallery-list').children(".gallery-suppr-button").css('display', 'none');
 		$(".picture-options").css("display", "none");
 		$(this).removeClass('gallery-list').addClass('gallery-active');
-		var idLong = $(this).children(".affichage").attr('id');
+		var idLong = $(this).attr('id');
 		var idCourt = idLong.substring(7);
 		$.ajax({
 			type: "POST",
