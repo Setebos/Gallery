@@ -32,6 +32,7 @@ if ( typeof Object.create !== 'function' ) {
           self.containerWidth =  self.params.diaporama_width;
           self.nbItems = self.items.length;
           self.totalWidth = self.nbItems * self.itemWidth;
+          self.autoplay = false;
 
           self.navSection = $("#diapo-nav");
 
@@ -96,6 +97,7 @@ if ( typeof Object.create !== 'function' ) {
 
             // Attache de fonctionnalités aux éléments partagés du plugin
             $('#autoplay-btn').on('click', function(){
+
                self.launchSlideshow(this, true);  // true = lancer le slideshow avec defilement automatique
             });
 
@@ -120,10 +122,11 @@ if ( typeof Object.create !== 'function' ) {
       setupDisplayPart: function(){
             var self = this;
             self.$container.css({
-                "overflow": "hidden "
+                "overflow": "hidden"
             });
             self.diapoUL.css({
-                "width": self.totalWidth
+                "width": self.totalWidth, 
+                "overflow": "hidden"
             });
 
             // Attache des fonctionnalités de navigation si besoin
@@ -195,6 +198,9 @@ if ( typeof Object.create !== 'function' ) {
 
                 // fermeture du slideshow
                 $('.lb-close').on('click', function(){
+                      self.hideLightbox();  
+                });
+                $('#lb-area').on('click', function(){
                       self.hideLightbox();  
                 });
 
