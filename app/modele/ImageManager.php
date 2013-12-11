@@ -120,6 +120,12 @@ class ImageManager {
 	public function getImagesByCategoriesAndGallery($arrayCatIds, $idGallery) {
 		$listImages = array();
 
+		var_dump($arrayCatIds[0]);
+
+		if($arrayCatIds[0] == "empty"){
+			return $listImages;
+		}
+
 		foreach($arrayCatIds as $id)
 		{
 		    $q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$idGallery.' AND id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.') ORDER BY position');

@@ -12,9 +12,10 @@
           id = $(this).attr('id').substring(3);
           catActiveIds.push(id);
         })
-        console.log("begin");
-        console.log(catActiveIds);
-        
+   
+        if(catActiveIds.length == 0){
+          catActiveIds.push("empty");
+        };
 
         $.ajax({
     		  type: "POST",
@@ -22,12 +23,7 @@
     		  data: {catActiveIds: catActiveIds, gal: gal},
           dataType: "html",
     		  success: function(data, textStatus, XHR){
-    		      $("body").html(data).promise().done(function(){
-                $cat.removeClass('cat-active');
-              });
-              console.log("this 2 :"+$cat.html());
-              // console.log($cat);
-              
+    		      $("body").html(data);              
     		  },
     		  error: function (XHR, textStatus, errorThrown){
               console.log('quel echec');
@@ -35,14 +31,10 @@
     		});
 
         $(document).ajaxSuccess(function( event, xhr, settings ) {
-          console.log("ajaxSucess event");
-          console.log("cat active : " + catActiveIds);
           $(".cat-name").removeClass('cat-active').each(function(){
             $cat = $(this)
             id = $cat.attr('id').substring(3);
             if( jQuery.inArray(id, catActiveIds) != -1) {
-              console.log("id : " + id);
-              console.log(jQuery.inArray( id, catActiveIds) != -1);
               $cat.addClass('cat-active');
             };
           })
