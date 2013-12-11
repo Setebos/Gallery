@@ -27,6 +27,33 @@
 			  			<a href="<?= "index.php?section=select_image "?>">Ajouter image</a>
 			  		</div>
 			  		<h3>Images</h3>
+			  		<div class="category-header">
+			  			<h4>Filtrer par catégories</h4>
+				  		<div class="form-group list-categories">
+				  			<form class="new-category-align" method="post" action="#" role="form">
+				  				<? foreach ($listCategories as $category) {
+									?>
+									<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
+								<? } ?>
+								<button id="categoryFilterBtn" type="submit" class="btn btn-default btn-sm">Filtrer</button>
+				  			</form>
+							
+						</div>
+						<!-- <div class="new-category">
+						    	<form class="new-category-align" method="post" action="#" role="form">
+									<div class="new-category-valid">
+										<label name="categoryName">Nom de catégorie : </label>
+										<input id="categoryName" type="text" name="categoryName" />
+									</div>
+									<div class="new-category-valid">
+								    	<div class="new-category-valid">
+								        	<button id="categorySubmit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
+								        </div>
+									</div>
+								</form>
+						    </div>
+					    </div> -->
+			  		</div>
 			  	</div>
 			  	<div class="picture-body">
                     <div class="conteneur-images">

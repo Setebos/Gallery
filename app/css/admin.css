@@ -116,6 +116,21 @@ body{
     margin-right: 10px;
 }
 
+/***********        Index - category part        ***********/
+.picture-header .category-header{
+    background-color: #afafaf;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    width: 80%;
+}
+.picture-header .category-header h4{
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    height: inherit;
+}
+
 /***********        Index - picture part        ***********/
 .picture-part{
     overflow: auto;
@@ -123,7 +138,7 @@ body{
 }
 
 .picture-header{
-    height: 13%;
+    height: auto;
     border-bottom: 1px solid #000;
 }
 
