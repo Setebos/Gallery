@@ -44,6 +44,15 @@
 	                  		<?php } ?>
                     	</ul>
                 	</div>
+                	<div class="picture-options">
+                		<div class="btn btn-default edit-picture-button">
+                		 	<a href="<?= "index.php?section=edit_image "?>">Modifier l'image</a>
+                		</div>
+                		<br/>
+                		<div class="btn btn-default">
+                		 	<a href="<?= "index.php?section=delete_image "?>">Supprimer l'image</a>
+                		</div>
+                	</div>
 			 	</div>
 			 </div>
 		</div>
