@@ -3,6 +3,36 @@ $(document).ready(function() {
 
 	/***************  INDEX  *****************/
 
+/** Gestion partie filtre **/
+	$(".cat-filters").each(function() {
+	  $.data(this, "realHeight", $(this).height());
+	}).css({ display: "none" });
+
+	$(document).on("click", "#filter-cat-btn", function(){
+		var div = $(this).parents(".cat-filters");
+		$(".cat-filters").toggle(function() {
+		  div.animate({ height: div.data("realHeight") }, 600);
+		}, function() {
+		  div.animate({ height: 0 }, 600);
+		});
+	});
+
+
+/** Gestion partie nouvelle catégorie **/
+	$(".new-cat").each(function() {
+	  $.data(this, "realHeight", $(this).height());
+	  console.log($(this).data("realHeight"));
+	}).css({ display: "none" });
+
+	$(document).on("click", "#new-cat-btn", function(){
+		console.log("new cat !");
+		var div = $(this).parents(".new-cat");
+		$(".new-cat").toggle(function() {
+		  div.animate({ height: div.data("realHeight") }, 600);
+		}, function() {
+		  div.animate({ height: 0 }, 600);
+		});
+	});
 
 
 	$(document).on("click", ".gal-vign-container", function() {
