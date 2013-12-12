@@ -119,10 +119,6 @@ $(document).ready(function() {
 		}
 	}); 
 
-	$(document).on("click", ".picture-options", function() {
-
-	})
-
 	/***************  NOUVELLE IMAGE  *****************/
 
 	$(document).on("click", ".upload-image-new-category", function() {
@@ -138,7 +134,6 @@ $(document).ready(function() {
 	$(document).on("click", "#categorySubmit", function(event) {
 		event.preventDefault();
 		var category = $("#categoryName").val();
-		console.log(category);
 		$.ajax({
 			type: "POST",
 			url: "index.php?section=create_category",

@@ -8,6 +8,7 @@ include_once("app/modele/CategoryManager.php");
 include_once("app/modele/Category.php");
 include_once("app/modele/ImageCategoryManager.php");
 include_once("app/modele/ImageCategory.php");
+include_once("app/modele/ResizeImage.php");
 
 if ($_FILES['imageUpload']['error'] > 0) {
     echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
@@ -50,6 +51,14 @@ if ($_FILES['imageUpload']['error'] > 0) {
             ));
 
             $imageManager->createImage($newImage);
+
+            $resize = new ResizeImage($destination);
+            $resize->resizeTo(400, 400, 'maxWidth');
+
+            $destinationThumbnail = 'app/img/' . time() . '_' . $title . "-thumbnail" .$fileExtension;
+
+            $resize->saveImage($destinationThumbnail);
+
             $newImage = $imageManager->getImageByPosition($position, $gallery->getId());
 
             foreach ($imageCategories as $imageCategory) {

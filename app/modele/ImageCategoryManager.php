@@ -17,6 +17,10 @@ class ImageCategoryManager {
 		$q->execute();
 	}
 
+	public function deleteImageCategories($id) {
+		$this->_db->exec('DELETE FROM image_category WHERE image_id = '.$id);
+	}
+
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 

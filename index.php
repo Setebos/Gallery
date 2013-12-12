@@ -98,3 +98,8 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'edit_image')
   include_once("app/controleur/admin/edit_image.php");
 }
 
+if  (isset($_GET['section']) AND $_GET['section'] == 'update_image')
+{                
+  include_once("app/controleur/admin/update_image.php");
+}
+
