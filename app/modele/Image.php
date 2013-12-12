@@ -6,6 +6,8 @@ class Image implements JsonSerializable {
 	private $_title;
 	private $_description;
 	private $_location;
+	private $_location_thumbnail;
+	private $_location_admin;
 	private $_position;
 	private $_gallery_id;
 
@@ -13,6 +15,8 @@ class Image implements JsonSerializable {
 		$this->setTitle($donnees['title']);
 		$this->setDescription($donnees['description']);
 		$this->setLocation($donnees['location']);
+		// $this->setLocation($donnees['location_thumbnail']);
+		// $this->setLocation($donnees['location_admin']);
 		$this->setPosition($donnees['position']);
 		$this->setGalleryId($donnees['gallery_id']);
 		$this->setId($donnees['id']);
@@ -38,6 +42,14 @@ class Image implements JsonSerializable {
 		return $this->_location;
 	}
 
+	public function getLocationThumbnail() {
+		return $this->_location_thumbnail;
+	}
+
+	public function getLocationAdmin() {
+		return $this->_location_admin;
+	}
+
 	public function getGalleryId() {
 		return $this->_gallery_id;
 	}
@@ -56,6 +68,14 @@ class Image implements JsonSerializable {
 
 	public function setLocation($location) {
 		$this->_location = $location;
+	}
+
+	public function setLocationAdmin($locationAdmin) {
+		$this->_location_admin = $locationAdmin;
+	}
+
+	public function setLocationThumbnail($locationThumbnail) {
+		$this->_location_thumbnail = $locationThumbnail;
 	}
 
 	public function setPosition($position) {

@@ -70,6 +70,14 @@ class ResizeImage
 	    $this->origHeight = imagesy($this->image);
 	}
 
+	public function getWidth() {
+		return $this->origWidth;
+	}
+
+	public function getHeight() {
+		return $this->origHeight;
+	}
+
 	/**
 	 * Save the image as the image type the original image was
 	 *
@@ -152,6 +160,52 @@ class ResizeImage
 				$this->resizeHeight = $height;
 			break;
 
+			case 'crop':
+				if($this->origWidth > $width || $this->origHeight > $height)
+				{
+					if ( $this->origWidth < $this->origHeight ) {
+				    	 $this->resizeHeight = $this->resizeHeightByWidth($width);
+			  			 $this->resizeWidth  = $width;
+					} else if( $this->origWidth > $this->origHeight ) {
+						$this->resizeWidth  = $this->resizeWidthByHeight($height);
+						$this->resizeHeight = $height;
+					}
+				} else {
+		            $this->resizeWidth = $this->origWidth;
+		            $this->resizeHeight = $this->origHeight;
+		        }
+		        $centreX = round($this->resizeWidth / 2);
+	            $centreY = round($this->resizeHeight / 2);
+	            // var_dump($this->resizeWidth);
+	            // var_dump($this->resizeHeight);
+	            // var_dump($centreX);
+	            // var_dump($centreY);
+
+	            //dimensions : 120x120
+	            $x1 = $centreX - 60;
+	            $y1 = $centreY - 60; 
+	            $x2 = $centreX + 60;
+	            $y2 = $centreY + 60;
+
+	            if($this->resizeWidth == 120) {
+	            	$this->resizeHeight = $y2 - $y1;
+	            } elseif ($this->resizeHeight == 120) {
+	            	$this->resizeWidth = $x2 - $x1;
+	            }
+
+	            // var_dump($x1);
+	            // var_dump($x2);
+	            // var_dump($y1);
+	            // var_dump($y2);
+
+		  //       $x1 = max($x1, 0);
+				// $y1 = max($y1, 0);
+				// $x2 = min($x2, $this->resizeWidth);
+				// $y2 = min($y2, $this->resizeHeight);
+				// $this->resizeWidth = $x2 - $x1;
+				// $this->resizeHeight = $y2 - $y1;
+			break;
+
 			default:
 				if($this->origWidth > $width || $this->origHeight > $height)
 				{
@@ -163,11 +217,44 @@ class ResizeImage
 						$this->resizeHeight = $height;
 					}
 				} else {
-		            $this->resizeWidth = $width;
-		            $this->resizeHeight = $height;
+		            $this->resizeWidth = $this->origWidth;
+		            $this->resizeHeight = $this->origHeight;
 		        }
 			break;
 		}
+
+		$this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
+    	imagecopyresampled($this->newImage, $this->image, 0, 0, $x1, $y1, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
+	}
+
+	public function cropTo($x1, $y1 = 0, $x2 = 0, $y2 = 0, $resizeOption = 'default') {
+		// if (is_array($x1) && 4 == count($x1)) {
+		// 	list($x1, $y1, $x2, $y2) = $x1;
+		// }
+		switch(strtolower($resizeOption)) {
+
+			case 'height':
+
+			break;
+
+			case 'width':
+				# code...
+			break;
+
+			default:
+				# code...
+			break;
+		}
+		
+
+		
+
+		$x1 = max($x1, 0);
+		$y1 = max($y1, 0);
+		$x2 = min($x2, $this->origWidth);
+		$y2 = min($y2, $this->origHeight);
+		$this->resizeWidth = $x2 - $x1;
+		$this->resizeHeight = $y2 - $y1;
 
 		$this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
     	imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
