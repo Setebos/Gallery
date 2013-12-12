@@ -27,7 +27,7 @@
             <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">Gallery Powa - Administration</a>
+                    <a class="navbar-brand" href="index.php?section=admin_index">Gallery Powa - Administration</a>
                 </div>
                
                 <ul class="nav navbar-nav navbar-right">
