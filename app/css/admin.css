@@ -10,7 +10,9 @@ body{
     height: 100%;
 }
 
-
+a:hover{
+    text-decoration: none;
+}
 /***********        Index - gallery part        ***********/
 
 
@@ -114,12 +116,13 @@ body{
     margin: 20px 35px 20px 20px;
     overflow: auto;
     height: 100%;
-    min-height: 45%;
+/*    min-height: 45%;*/
     padding: 0;
 }
 
 .picture-header{
     position: relative;
+    height: auto;
 }
 
 .picture-header ul{
@@ -150,7 +153,10 @@ body{
 .picture-part .cat-filters, .picture-part .new-cat{
     padding: 10px;
     border-bottom: 1px solid #fff;
+    height: auto;
 }
+
+/***********        Cat management in picture header        ***********/
 
 .cat-filters .btn-admin{
     color: #fff;
@@ -176,9 +182,48 @@ body{
     border: none;
 }
 
+.new-cat .well{
+    width: auto;
+}
+
+.new-cat .list-inline>li:first-child {
+    padding-left: 7px;
+}
+
+.new-cat .cat-label{
+    display: inline-block;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #494949;
+    padding: 3px 10px;
+    margin-bottom: 5px;
+    background-color: #ff5d55;
+    color: #fff;
+}
+
+.new-cat .cat-label a{
+    color: #fff;
+    cursor: default;
+}
+
+.new-cat .cat-label .span-delete-cat{
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.new-cat .cat-label .span-delete-cat a{
+    cursor: pointer;
+    /*font-weight: bold;*/
+}
+
+.new-cat .cat-label .span-delete-cat a:hover{
+    font-weight: bolder;
+}
+
 
 .picture-body {
-    height: 80%;
+    height: auto;
+    min-height: 65%;
     padding: 0px  15px;
 }
 

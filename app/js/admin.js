@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 	/***************  INDEX  *****************/
 
-/** Gestion partie filtre **/
+/** Gestion partie filtre par catégorie **/
 	$(".cat-filters").each(function() {
 	  $.data(this, "realHeight", $(this).height());
 	}).css({ display: "none" });
@@ -21,11 +21,9 @@ $(document).ready(function() {
 /** Gestion partie nouvelle catégorie **/
 	$(".new-cat").each(function() {
 	  $.data(this, "realHeight", $(this).height());
-	  console.log($(this).data("realHeight"));
 	}).css({ display: "none" });
 
 	$(document).on("click", "#new-cat-btn", function(){
-		console.log("new cat !");
 		var div = $(this).parents(".new-cat");
 		$(".new-cat").toggle(function() {
 		  div.animate({ height: div.data("realHeight") }, 600);
@@ -35,8 +33,9 @@ $(document).ready(function() {
 	});
 
 
+/** Affichage images par gallery + sortable **/
 	$(document).on("click", ".gal-vign-container", function() {
-		console.log($(this).attr('id'));
+		// TODO classes à revoir
 		$('.gallery-active').removeClass('gallery-active').addClass('gallery-list').children(".gallery-suppr-button").css('display', 'none');
 		$(".picture-options").css("display", "none");
 		$(this).removeClass('gallery-list').addClass('gallery-active');
@@ -47,6 +46,7 @@ $(document).ready(function() {
 			url: "index.php?section=admin_ajax_image",
 			data: { id: idCourt },
 			dataType: "html",
+			// TODO : réactiver le sortable !!!!
 			success: function(data) {
 				$( ".conteneur-images" ).html(data);
 				$(".conteneur-images").children("ul").sortable({ 
@@ -65,6 +65,8 @@ $(document).ready(function() {
 			}
 		})
 	});
+
+
 
 	$(document).on("click", ".gal-suppr-btn", function() {
 		console.log($(this).parent());
@@ -159,6 +161,9 @@ $(document).ready(function() {
 		
 	});
 
+
+	/***************  NOUVELLE CATEGORIE  *****************/
+
 	$(document).on("click", "#categorySubmit", function(event) {
 		event.preventDefault();
 		var category = $("#categoryName").val();
@@ -171,6 +176,23 @@ $(document).ready(function() {
 			success: function(data) {
 				$(".new-category").css("display", "none");
 				$(".list-categories").html(data);
+			}
+		})
+	});
+
+/* dans l'entete image */
+	$(document).on("click", "#new-cat-submit", function(event) {
+		event.preventDefault();
+		var categoryInput = $(this).parent().find('input');
+		$.ajax({
+			type: "POST",
+			url: "index.php?section=create_category",
+			data: {name: categoryInput.val()},
+			dataType: "html",
+			success: function(data) {
+				$(".new-category").css("display", "none");
+				$(".list-categories").html(data);
+				categoryInput.val("");
 			}
 		})
 	});
