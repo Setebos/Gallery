@@ -129,7 +129,7 @@ class ResizeImage
 			case 'precrop':
 				if($this->origWidth > $width || $this->origHeight > $height)
 				{
-					if ( $this->origWidth < $this->origHeight ) {
+					if ( $this->origWidth <= $this->origHeight ) {
 				    	 $this->resizeHeight = $this->resizeHeightByWidth($width);
 			  			 $this->resizeWidth  = $width;
 					} else if( $this->origWidth > $this->origHeight ) {
@@ -144,8 +144,6 @@ class ResizeImage
 
 			case 'crop':
 
-				var_dump($this->origWidth);
-
 		        if($this->origWidth < 120 || $this->origHeight < 120) {
 		        	$this->newImage = imagecreatetruecolor($this->origWidth, $this->origHeight);
 					return imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->origWidth, $this->origHeight, $this->origWidth, $this->origHeight);
@@ -154,7 +152,7 @@ class ResizeImage
 
 				if($this->origWidth > $width || $this->origHeight > $height)
 				{
-					if ( $this->origWidth < $this->origHeight ) {
+					if ( $this->origWidth <= $this->origHeight ) {
 				    	 $this->resizeHeight = $this->resizeHeightByWidth($width);
 			  			 $this->resizeWidth  = $width;
 					} else if( $this->origWidth > $this->origHeight ) {
@@ -185,7 +183,7 @@ class ResizeImage
 			default:
 				if($this->origWidth > $width || $this->origHeight > $height)
 				{
-					if ( $this->origWidth > $this->origHeight ) {
+					if ( $this->origWidth >= $this->origHeight ) {
 				    	 $this->resizeHeight = $this->resizeHeightByWidth($width);
 			  			 $this->resizeWidth  = $width;
 					} else if( $this->origWidth < $this->origHeight ) {
@@ -198,6 +196,7 @@ class ResizeImage
 		        }
 			break;
 		}
+
 
 		$this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
 		if($resizeOption == "crop") {
