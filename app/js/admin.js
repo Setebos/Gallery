@@ -251,8 +251,8 @@ $(document).ready(function() {
 
 
 /***************  SUPRESSION CATEGORIE  *****************/
-$(document).on("click", ".span-del-cat", function() {
-	console.log( $(this).attr('id').substring(7));
+$(".picture-header-option-part").on("click", ".span-del-cat", function() {
+		console.log("click del cat");
 		var idLong = $(this).attr('id');
 		var idCourt = idLong.substring(7);
 	 	$("#dial-del-cat").css("display", "block");
@@ -270,12 +270,9 @@ $(document).on("click", ".span-del-cat", function() {
 						data: { id: idCourt },
 						dataType: "html",
 						success: function(data) {
-							console.log("succès !");
-							console.log(data);
 							$(".picture-header-option-part").html(data);
 						},
 						error: function(){
-						      console.log("erreur bouh !");
 						}
 					})
 				},

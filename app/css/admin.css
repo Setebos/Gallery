@@ -144,15 +144,15 @@ a:hover{
     margin: 0;
 }
 
-.picture-header #filter-cat-btn p{
+/*.picture-header #filter-cat-btn p{
     position: absolute;
     bottom: 0px;
     right: 70px;
-}
+}*/
 .picture-header #new-cat-btn p{
     position: absolute;
     bottom: 0px;
-    right: 250px;
+    right: 70px;
     /*line-height: auto;*/
 }
 
@@ -172,16 +172,16 @@ a:hover{
 
 /***********        Cat management in picture header        ***********/
 
-.cat-filters .btn-admin{
+/*.cat-filters .btn-admin{
     color: #fff;
     background-color: #ff5d55;
-    /*border-color: #db2d27;*/
+    /*border-color: #db2d27;
     display: inline-block;
     padding: 5px 10px;
     margin: 0;
     font-size: 14px;
     font-weight: normal;
-    /*line-height: 1.428571429;*/
+    /*line-height: 1.428571429;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -194,7 +194,7 @@ a:hover{
     user-select: none;
     float: left;
     border: none;
-}
+}*/
 
 .new-cat .well{
     width: auto;
@@ -227,18 +227,14 @@ a:hover{
     margin: 0;
 }
 
-.new-cat .cat-label .span-delete-cat{
+.new-cat .cat-label .span-del-cat{
     padding-left: 10px;
     cursor: pointer;
 }
 
-.new-cat .cat-label .span-delete-cat a{
-    cursor: pointer;
-    /*font-weight: bold;*/
-}
-
-.new-cat .cat-label .span-delete-cat a:hover{
+.new-cat .cat-label .span-del-cat:hover{
     font-weight: bolder;
+    cursor: pointer;
 }
 
 

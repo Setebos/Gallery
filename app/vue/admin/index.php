@@ -38,30 +38,12 @@
 			  		</div>
 			  		<ul>
 			  			<li>
-			  				<a href="#" id="filter-cat-btn"><p>Filtrer par catégories</p></a>
-			  			</li>
-			  			<li>
 			  				<a href="#" id="new-cat-btn"><p>Editer les catégories</p></a>
 			  			</li>
 			  		</ul>
 			  		<h3>Images</h3>
 			  	</div>
 			  	<div class="picture-header-option-part">
-				  	<div class="cat-filters">
-				  		<div class="row">
-					  		<div class="col-md-11">
-						  		<div class="form-group list-categories">
-									<?php foreach ($listCategories as $category) {
-										?>
-											<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-									<?php } ?>
-								</div>
-							</div>
-							<div class="col-md-1">
-					  			<button id="cat-filters-submit" type="submit" class="btn-admin">Filtrer !</button>
-					  		</div>
-						</div>
-				  	</div>	
 				  	<div class="new-cat">
 				  		<div class="row">
 				  			<div class="col-md-9">
@@ -71,7 +53,7 @@
 							          <li class="cat-label">
 							            <p id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active"><?= $category->getName() ?></p>
 							            <span id="<?= "del-cat" . $category->getId() ?>" class="span-del-cat">
-							            	<a >X</a>
+							            	X
 							            </span>
 							          </li>
 						          <?php } ?>
