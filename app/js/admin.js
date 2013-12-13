@@ -186,12 +186,11 @@ $(document).ready(function() {
 		var categoryInput = $(this).parent().find('input');
 		$.ajax({
 			type: "POST",
-			url: "index.php?section=create_category",
+			url: "index.php?section=create_category_from_header",
 			data: {name: categoryInput.val()},
 			dataType: "html",
 			success: function(data) {
-				$(".new-category").css("display", "none");
-				$(".list-categories").html(data);
+				$(".picture-header-option-part").html(data);
 				categoryInput.val("");
 			}
 		})

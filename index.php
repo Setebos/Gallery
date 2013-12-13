@@ -93,6 +93,11 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'create_category')
   include_once("app/controleur/admin/create_category.php");
 }
 
+if  (isset($_GET['section']) AND $_GET['section'] == 'create_category_from_header')
+{                
+  include_once("app/controleur/admin/create_category_from_header.php");
+}
+
 if  (isset($_GET['section']) AND $_GET['section'] == 'edit_image')
 {                
   include_once("app/controleur/admin/edit_image.php");
