@@ -1,7 +1,4 @@
  <div class="upload-image-form-part">
-  	<div class="upload-image-form-header">
-  		<h3>Editer l'image</h3>
-  	</div>
   	<div class="upload-image-form-body">
   		<div class="well">
             <form class="upload-image-align" method="post" action="<?= "index.php?section=update_image"?>" role="form">
@@ -23,17 +20,23 @@
                 </div>
                 <div class="form-group">
                     <label name="imageDescription">Description : </label>
-                    <textarea cols="45" rows="4" name="imageDescription"><?= $image->getDescription() ?></textarea>
+                    <textarea cols="60" rows="4" name="imageDescription"><?= $image->getDescription() ?></textarea>
                 </div>
 			    <div class="form-group list-categories">
 		        	<label name="imageCategories">Choisissez des catégories : </label>
 		        	<ul class="list-inline">
 		        		<?php foreach ($listCategories as $category) {
-		        		?>
-			        		<li>
-			        			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-			        		</li>
-                		<?php } ?>
+		        			if(in_array($category, $categories)) {
+		        			?>
+				        		<li>
+				        			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>" checked><?= $category->getName() ?>
+				        		</li>
+			        		<?php } else {
+		        			?>
+			        			<li>
+				        			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
+				        		</li>
+                			<?php }} ?>
             			<li>
             				<div class="btn btn-default btn-sm upload-image-new-category">
 						    	<a href="#" title="créer une nouvelle catégorie">+</a>
@@ -47,7 +50,7 @@
                 		<a href="<?= "index.php?section=admin_index "?>">Annuler</a>
                 	</div>
                 	<div class="upload-image-valid">
-                    	<button type="submit" class="btn btn-default">Créer</button>
+                    	<button type="submit" class="btn btn-default">Modifier</button>
                     </div>
             	</div>
             </form>

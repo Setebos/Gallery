@@ -160,7 +160,7 @@ $(document).ready(function() {
 
 	/***************  AFFICHAGE INFO IMAGE  *****************/
 
-	$(document).on("click", ".picture-div", function() {
+	$(document).on("click", ".picture-div", function(event) {
 		event.preventDefault();
 		var idLong = $(this).children("img").attr('id');
 		var idCourt = idLong.substring(6);
