@@ -22,4 +22,5 @@ $galleryName = $gallery->getName();
 $categories = $categoryManager->getCategoriesByImage($id);
 
 
-include_once('app/vue/admin/edit_image.php');
+include_once('app/vue/admin/edit_image_modal.php');
+// include_once('app/vue/admin/edit_image.php');

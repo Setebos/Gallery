@@ -11,9 +11,9 @@ require_once("ressources/templates/admin/header.php");
 			  		<h3>Galeries</h3>
 			 	</div>
 			 </div>
-			 <div class="col-md-9 upload-image-form-part">
+			 <div class="col-md-8 upload-image-form-part">
 			  	<div class="upload-image-form-header">
-			  		<h3>Nouvelle image</h3>
+			  		<h3>Editer l'image</h3>
 			  	</div>
 			  	<div class="upload-image-form-body">
 			  		<div class="well">
