@@ -53,10 +53,10 @@
 				  		<div class="row">
 					  		<div class="col-md-11">
 						  		<div class="form-group list-categories">
-									<? foreach ($listCategories as $category) {
+									<?php foreach ($listCategories as $category) {
 										?>
 											<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-									<? } ?>
+									<?php } ?>
 								</div>
 							</div>
 							<div class="col-md-1">
