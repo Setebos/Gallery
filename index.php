@@ -98,7 +98,7 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'create_category_from_heade
   include_once("app/controleur/admin/create_category_from_header.php");
 }
 
-if  (isset($_GET['section']) AND $_GET['section'] == 'idelete_category')
+if  (isset($_GET['section']) AND $_GET['section'] == 'delete_category')
 {                
   include_once("app/controleur/admin/delete_category.php");
 }

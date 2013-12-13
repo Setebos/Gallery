@@ -3,29 +3,30 @@
 include_once("app/modele/CategoryManager.php");
 include_once("app/modele/Category.php");
 
+
+// var_dump($_POST["id"]);
+
 if(isset($_POST["id"])) {
-    var_dump($_POST["id"]);
     $id = $_POST['id'];
 }
 
-
 $categoryManager = new CategoryManager($db);
-$category = $categoryManager->getCategory($id);
+// $category = $categoryManager->getCategory($id);
+// var_dump($category);
 
+$categoryManager->deleteCategory($id);
 
-$categoryManager->deleteCategory($category);
-
-$categories = $manager->getListCategories();
+$listCategories = $categoryManager->getListCategories();
 ?>
 
 <div class="cat-filters">
         <div class="row">
             <div class="col-md-11">
                 <div class="form-group list-categories">
-                    <? foreach ($listCategories as $category) {
+                    <?php foreach ($listCategories as $category) {
                         ?>
-                            <input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-                    <? } ?>
+                            <input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?php echo $category->getName() ?>"><?= $category->getName() ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="col-md-1">

@@ -25,8 +25,8 @@ class CategoryManager {
 		$q->execute();
 	}
 
-	public function deleteCategory(Category $category) {
-		$this->_db->exec('DELETE FROM category WHERE id = '.$category->getId());
+	public function deleteCategory($id) {
+		$this->_db->exec('DELETE FROM category WHERE id = '.$id);
 	}
 
 	public function getCategory($id) {

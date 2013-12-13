@@ -13,7 +13,7 @@ $config = array(
         "dbengine" => "mysql",
          "dbname" => "jsgallery",
             "username" => "root",
-            "password" => "",
+            "password" => "d4t4",
             "host" => "localhost"
     ),
         // ,

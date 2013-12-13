@@ -229,7 +229,7 @@ $(document).ready(function() {
 			success: function(data) {
 				$(".new-category").css("display", "none");
 				$(".list-categories").html(data);
-			}
+			},
 		})
 	});
 
@@ -252,10 +252,10 @@ $(document).ready(function() {
 
 /***************  SUPRESSION CATEGORIE  *****************/
 $(document).on("click", ".span-del-cat", function() {
-	console.log(this);
+	console.log( $(this).attr('id').substring(7));
 		var idLong = $(this).attr('id');
 		var idCourt = idLong.substring(7);
-	 	$("#dial-del-cat").css("display", "block")
+	 	$("#dial-del-cat").css("display", "block");
 		$( "#dial-del-cat" ).dialog({
 			resizable: false,
 			height:300,
@@ -270,7 +270,12 @@ $(document).on("click", ".span-del-cat", function() {
 						data: { id: idCourt },
 						dataType: "html",
 						success: function(data) {
+							console.log("succès !");
+							console.log(data);
 							$(".picture-header-option-part").html(data);
+						},
+						error: function(){
+						      console.log("erreur bouh !");
 						}
 					})
 				},
