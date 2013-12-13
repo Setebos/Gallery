@@ -158,7 +158,7 @@ $(document).ready(function() {
 		});
 	});	
 
-
+	/***************  AFFICHAGE INFO IMAGE  *****************/
 
 	$(document).on("click", ".picture-div", function() {
 		event.preventDefault();
@@ -166,7 +166,7 @@ $(document).ready(function() {
 		var idCourt = idLong.substring(6);
 		var lien = "index.php?section=edit_image&id=" + idCourt;
 		console.log(lien);
-		show_modal( lien, 'modal_discussion');
+		show_modal( lien, 'modal_info_pic');
 		if(! $(this).hasClass("picture-selected")) {
 			$(".picture-div").removeClass("picture-selected");
 			$(this).addClass("picture-selected");
@@ -177,6 +177,30 @@ $(document).ready(function() {
 			$(".picture-options").css("display", "none");
 		}
 	}); 
+
+	var show_modal = function(path, element, params) {
+	  // $('#'+element+' .loading_content').show();
+	  $('#'+element+' .ajax_content').html('');
+	  // $('#'+element+' img.loader').hide();
+	  $('#'+element+'').modal();
+	  $.ajax({
+	    url: path,
+	    data: params,
+	    type: "get",
+	    dataType: "html",
+	    success: function(html) {
+	      $('#'+element+' .ajax_content').html(html);
+	    },
+	    error: function(){
+	      $('#'+element+' .ajax_content').html("<p class='alert alert-error'>Une erreur est survenue.</p>");
+	    },
+	    complete: function(){
+	      $('#'+element+' .loading_content').hide();
+	    }
+	  });
+	}
+
+	
 
 	/***************  NOUVELLE IMAGE  *****************/
 
@@ -223,5 +247,11 @@ $(document).ready(function() {
 			}
 		})
 	});
+
+
+
+	
+
+
 
 }); 
