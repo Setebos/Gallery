@@ -16,21 +16,21 @@ class ImageManager {
 		$q->bindValue(':position', $image->getPosition());
 		$q->bindValue(':location', $image->getLocation());
 		// $q->bindValue(':location_thumbnail', $image->getLocationThumbnail());
-		// $q->bindValue(':location_admin', $image->getLocationAdmin());
+		// $q->bindValue(':location_miniature', $image->getLocationMiniature());
 		$q->bindValue(':gallery_id', $image->getGalleryId());
 
 		$q->execute();
 	}
 
 	public function updateImage(Image $image) {
-		$q = $this->_db->prepare('UPDATE image SET title = :title, description = :description, position = :position, location = :location, location_thumbnail = :location_thumbnail, location_admin = :location_admin, gallery_id = :gallery_id WHERE id = :id');
+		$q = $this->_db->prepare('UPDATE image SET title = :title, description = :description, position = :position, location = :location, location_thumbnail = :location_thumbnail, location_miniature = :location_miniature, gallery_id = :gallery_id WHERE id = :id');
 
 		$q->bindValue(':title', $image->getTitle());
 		$q->bindValue(':description', $image->getDescription());
 		$q->bindValue(':position', $image->getPosition());
 		$q->bindValue(':location', $image->getLocation());
 		$q->bindValue(':location_thumbnail', $image->getLocationThumbnail());
-		$q->bindValue(':location_admin', $image->getLocationAdmin());
+		$q->bindValue(':location_miniature', $image->getLocationMiniature());
 		$q->bindValue(':gallery_id', $image->getGalleryId());
 		$q->bindValue(':id', $image->getId());
 
