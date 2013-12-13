@@ -29,7 +29,7 @@ require_once("ressources/templates/header.php");
         <ul>
           <?php foreach ($listImages as $image) {?>
         <li>
-          <img src="<?= $image->getLocation(); ?>" 
+          <img src="<?= $image->getLocationMiniature(); ?>" 
           title="<?= $image->getTitle(); ?>" data-desc="<?= $image->getDescription(); ?>">
         </li>
         <?php }} ?>

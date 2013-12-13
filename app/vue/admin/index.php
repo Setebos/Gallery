@@ -38,7 +38,7 @@
 	                        			<div class="picture-delete">
 				                        	<span class="glyphicon glyphicon-trash"></span>
 				                        </div>
-	                        			<img src="<?= $image->getLocation() ?>">
+	                        			<img src="<?= $image->getLocationThumbnail() ?>">
 	                    			</div>
 	                    		</li>
 	                  		<?php } ?>

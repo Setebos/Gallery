@@ -38,7 +38,8 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
 
     if (in_array($fileExtension, $validExtensions)) {
-        $destination = 'app/img/' . time() . '_' . $title . $fileExtension ;
+        $time = time();
+        $destination = 'app/img/' . $time . '_' . $title . $fileExtension ;
         
         if (move_uploaded_file($_FILES['imageUpload']['tmp_name'], $destination)) {
             $newImage = new Image(array(
@@ -66,7 +67,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
             $resize->resizeTo(120, 120, "crop");
 
-            $destinationThumbnail = 'app/img/' . time() . '_' . $title . "-thumbnail" . $fileExtension;
+            $destinationThumbnail = 'app/img/' . $time . '_' . $title . "-thumbnail" . $fileExtension;
 
             $resize->saveImage($destinationThumbnail);
 
@@ -77,7 +78,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
             $resize = new ResizeImage($destination);
             $resize->resizeTo(400, 400);
 
-            $destinationMiniature = 'app/img/' . time() . '_' . $title . "-miniature" .$fileExtension;
+            $destinationMiniature = 'app/img/' . $time . '_' . $title . "-miniature" .$fileExtension;
 
             $resize->saveImage($destinationMiniature);
 

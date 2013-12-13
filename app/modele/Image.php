@@ -15,8 +15,12 @@ class Image implements JsonSerializable {
 		$this->setTitle($donnees['title']);
 		$this->setDescription($donnees['description']);
 		$this->setLocation($donnees['location']);
-		// $this->setLocation($donnees['location_miniature']);
-		// $this->setLocation($donnees['location_thumbnail']);
+		if(isset($donnees['location_miniature'])) {
+			$this->setLocationMiniature($donnees['location_miniature']);
+		}
+		if(isset($donnees['location_thumbnail'])) {
+			$this->setLocationThumbnail($donnees['location_thumbnail']);
+		}
 		$this->setPosition($donnees['position']);
 		$this->setGalleryId($donnees['gallery_id']);
 		$this->setId($donnees['id']);

@@ -277,8 +277,9 @@ if ( typeof Object.create !== 'function' ) {
                     var self = this;
                     self.gallery.items.each(function(index){
                         var img = $(this).children('img');
+                        var source = img.attr('src').split('-miniature');
                         self.album.push({
-                            src: img.attr('src'),
+                            src: ""+source[0]+""+source[1]+"",
                             title: img.attr('title'),
                             desc: img.data('desc')
                           });
@@ -294,6 +295,7 @@ if ( typeof Object.create !== 'function' ) {
                     $( "#lb-area" ).fadeIn( "slow", function() {
                           self.$lightbox.fadeIn("slow");
                           var currentImg = self.album[self.currentImageIndex];
+                          // var src = currentImg.src.split('-miniature');
                           $('.lb-image').attr("src",""+currentImg.src+"");
                           $('.lb-container').width($('.lb-image').width() + 20);
                           $('.lb-nav').height($(".lb-img-container").outerHeight());
