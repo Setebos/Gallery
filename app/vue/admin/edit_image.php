@@ -17,7 +17,7 @@ require_once("ressources/templates/admin/header.php");
 			  	</div>
 			  	<div class="upload-image-form-body">
 			  		<div class="well">
-	                    <form class="upload-image-align" enctype="multipart/form-data" method="post" action="<?= "index.php?section=upload_image"?>" role="form">
+	                    <form class="upload-image-align" method="post" action="<?= "index.php?section=update_image"?>" role="form">
 	                        <div class="form-group">
 	                            <label name="imageName">Titre de l'image : </label>
 	                            <input type="text" name="imageName" value="<?= $image->getTitle() ?>"/>
@@ -27,7 +27,7 @@ require_once("ressources/templates/admin/header.php");
 	                            <select name="imageGallery">
 	                            	<?php foreach ($listGalleries as $galleries) {
 	                            		if ($galleries['name'] == $galleryName) {
-	                            			echo ('<option selected="selected">' . $galleries['name'] . '</option>');
+	                            			echo ('<option selected>' . $galleries['name'] . '</option>');
 	                            		} else {
 	                            			echo ('<option>' . $galleries['name'] . '</option>');
 	                            		}
@@ -41,13 +41,19 @@ require_once("ressources/templates/admin/header.php");
 						    <div class="form-group list-categories">
 					        	<label name="imageCategories">Choisissez des catégories : </label>
 					        	<?php foreach ($listCategories as $category) {
-					        		?>
-                            		<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-                            	<?php } ?>
+					        		if(in_array($category, $categories)) {
+				        			?>
+				        				<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>" checked><?= $category->getName() ?>
+					        		<?php } else {
+				        			?>
+				        				<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
+					        		<?php }
+					        		} ?>
 						    </div>
 						    <div class="btn btn-default col-md-offset-4 upload-image-new-category">
 						    	<a href="#">Ajouter catégorie</a>
 						    </div>
+						    <input type="hidden" name="id" value=<?= $id ?>>
 	                        <div class="col-md-offset-4">
 		                        <div class= "upload-image-cancel">
 	                        		<a href="<?= "index.php?section=admin_index "?>">Annuler</a>

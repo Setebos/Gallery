@@ -21,13 +21,5 @@ $gallery = $galleryManager->getGallery($gallery);
 $galleryName = $gallery->getName();
 $categories = $categoryManager->getCategoriesByImage($id);
 
-var_dump($categories);
-var_dump($listCategories);
-var_dump($listGalleries);
-
-foreach ($listGalleries as $gallery) {
-	var_dump($gallery['name']);
-}
-
 
 include_once('app/vue/admin/edit_image.php');
