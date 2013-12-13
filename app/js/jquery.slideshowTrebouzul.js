@@ -295,7 +295,6 @@ if ( typeof Object.create !== 'function' ) {
                     $( "#lb-area" ).fadeIn( "slow", function() {
                           self.$lightbox.fadeIn("slow");
                           var currentImg = self.album[self.currentImageIndex];
-                          // var src = currentImg.src.split('-miniature');
                           $('.lb-image').attr("src",""+currentImg.src+"");
                           $('.lb-container').width($('.lb-image').width() + 20);
                           $('.lb-nav').height($(".lb-img-container").outerHeight());

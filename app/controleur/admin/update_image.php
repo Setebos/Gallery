@@ -53,6 +53,8 @@ $updateImage = new Image(array(
     'title' => $title,
     'description' => $description,
     'location' => $image->getLocation(),
+    'location_thumbnail' => $image->getLocationThumbnail(),
+    'location_miniature' => $image->getLocationMiniature(),
     'position' => $position,
     'gallery_id' => $gallery->getId()
 ));
