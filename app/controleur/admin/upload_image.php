@@ -9,7 +9,6 @@ include_once("app/modele/Category.php");
 include_once("app/modele/ImageCategoryManager.php");
 include_once("app/modele/ImageCategory.php");
 include_once("app/modele/ResizeImage.php");
-include_once("app/modele/ImageManipulator.php");
 
 if ($_FILES['imageUpload']['error'] > 0) {
     echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
@@ -57,11 +56,21 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
             $resize = new ResizeImage($destination);
             
+            $resize->resizeTo(120, 120, "precrop");
+
+            $temp = 'app/img/temp-' . $title . $fileExtension;
+
+            $resize->saveImage($temp);
+
+            $resize = new ResizeImage($temp);
+
             $resize->resizeTo(120, 120, "crop");
 
             $destinationThumbnail = 'app/img/' . time() . '_' . $title . "-thumbnail" . $fileExtension;
 
             $resize->saveImage($destinationThumbnail);
+
+            unlink($temp);
            
             //Création du thumnail public
 
