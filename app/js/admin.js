@@ -3,21 +3,43 @@ $(document).ready(function() {
 
 	/***************  INDEX  *****************/
 
-	$(document).on("mouseenter", ".gallery-list", function() {
-		$(this).css({'cursor':'pointer'});
-		$(this).children(".gallery-suppr-button").css('display', 'inline-block');
+/** Gestion partie filtre par catégorie **/
+	$(".cat-filters").each(function() {
+	  $.data(this, "realHeight", $(this).height());
+	}).css({ display: "none" });
+
+	$(document).on("click", "#filter-cat-btn", function(){
+		var div = $(this).parents(".cat-filters");
+		$(".cat-filters").toggle(function() {
+		  div.animate({ height: div.data("realHeight") }, 600);
+		}, function() {
+		  div.animate({ height: 0 }, 600);
+		});
 	});
 
-	$(document).on("mouseleave", ".gallery-list", function() {
-		$(this).children(".gallery-suppr-button").css('display', 'none');
+
+/** Gestion partie nouvelle catégorie **/
+	$(".new-cat").each(function() {
+	  $.data(this, "realHeight", $(this).height());
+	}).css({ display: "none" });
+
+	$(document).on("click", "#new-cat-btn", function(){
+		var div = $(this).parents(".new-cat");
+		$(".new-cat").toggle(function() {
+		  div.animate({ height: div.data("realHeight") }, 600);
+		}, function() {
+		  div.animate({ height: 0 }, 600);
+		});
 	});
 
-	$(document).on("click", ".gallery-list", function() {
-		/*console.log($(this));*/
+
+/** Affichage images par gallery + sortable **/
+	$(document).on("click", ".gal-vign-container", function() {
+		// TODO classes à revoir
 		$('.gallery-active').removeClass('gallery-active').addClass('gallery-list').children(".gallery-suppr-button").css('display', 'none');
 		$(".picture-options").css("display", "none");
 		$(this).removeClass('gallery-list').addClass('gallery-active');
-		var idLong = $(this).children(".affichage").attr('id');
+		var idLong = $(this).attr('id');
 		var idCourt = idLong.substring(7);
 		$.ajax({
 			type: "POST",
@@ -43,8 +65,41 @@ $(document).ready(function() {
 		})
 	});
 
-	$(document).on("click", ".gallery-suppr-button", function() {
-		var idLong = $(this).siblings(".affichage").attr('id');
+
+
+	$(document).on("click", ".gal-suppr-btn", function() {
+		var idLong = $(this).parents(".gal-vign-container").attr('id');
+		var idCourt = idLong.substring(7);
+	 	$("#dialog-confirm").css("display", "block")
+		$( "#dialog-confirm" ).dialog({
+			resizable: false,
+			height:300,
+			width: 300,
+			modal: true,
+			buttons: {
+				"Confirmer": function() {
+					$( this ).dialog( "close" );
+					$.ajax({
+						type: "POST",
+						url: "index.php?section=delete_gallery",
+						data: { id: idCourt },
+						dataType: "html",
+						success: function(data) {
+							$(".gallery-body").html(data);
+							$(".conteneur-images").html("Aucune galerie sélectionnée");
+						}
+					})
+				},
+				"Annuler": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+
+	$(document).on("click", ".gal-edit-btn", function() {
+		console.log($(this).parent());
+		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
 	 	$("#dialog-confirm").css("display", "block")
 		$( "#dialog-confirm" ).dialog({
@@ -103,11 +158,15 @@ $(document).ready(function() {
 		});
 	});	
 
+
+
 	$(document).on("click", ".picture-div", function() {
+		event.preventDefault();
 		var idLong = $(this).children("img").attr('id');
 		var idCourt = idLong.substring(6);
 		var lien = "index.php?section=edit_image&id=" + idCourt;
 		console.log(lien);
+		show_modal( lien, 'modal_discussion');
 		if(! $(this).hasClass("picture-selected")) {
 			$(".picture-div").removeClass("picture-selected");
 			$(this).addClass("picture-selected");
@@ -131,6 +190,9 @@ $(document).ready(function() {
 		
 	});
 
+
+	/***************  NOUVELLE CATEGORIE  *****************/
+
 	$(document).on("click", "#categorySubmit", function(event) {
 		event.preventDefault();
 		var category = $("#categoryName").val();
@@ -142,6 +204,22 @@ $(document).ready(function() {
 			success: function(data) {
 				$(".new-category").css("display", "none");
 				$(".list-categories").html(data);
+			}
+		})
+	});
+
+/* dans l'entete image */
+	$(document).on("click", "#new-cat-submit", function(event) {
+		event.preventDefault();
+		var categoryInput = $(this).parent().find('input');
+		$.ajax({
+			type: "POST",
+			url: "index.php?section=create_category_from_header",
+			data: {name: categoryInput.val()},
+			dataType: "html",
+			success: function(data) {
+				$(".picture-header-option-part").html(data);
+				categoryInput.val("");
 			}
 		})
 	});

@@ -3,16 +3,15 @@
 ?>
 
 	    <div class="row height-full">
-		  	<div class="col-md-3 gallery-part">
+		  	<div class="col-md-3 gallery-part-full-height">
 			  	<div class="gallery-header">
-			  		<div class="btn btn-default  pull-right">
-			  			<a href="<?= "index.php?section=new_gallery "?>">Ajouter galerie</a>
-			  		</div>
-			  		<h3>Galeries</h3>
+			  		<h4><a href="index.php?section=admin_index">< Retour à la liste des galeries</a></h4>
+			 	</div>
+			 	<div class="gallery-body-full-height">
 			 	</div>
 			 </div>
-			 <div class="col-md-9 new-gallery-form-part">
-			  	<div class="new-gallery-form-header">
+			 <div class="col-md-8 picture-part">
+			  	<div class="picture-header">
 			  		<h3>Nouvelle galerie</h3>
 			  	</div>
 			  	<div class="new-gallery-form-body">

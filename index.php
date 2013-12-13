@@ -68,9 +68,9 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'update_gallery')
   include_once("app/controleur/admin/update_gallery.php");
 }
 
-if  (isset($_GET['section']) AND $_GET['section'] == 'select_image')
+if  (isset($_GET['section']) AND $_GET['section'] == 'new_image')
 {                
-  include_once("app/controleur/admin/select_image.php");
+  include_once("app/controleur/admin/new_image.php");
 }
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'upload_image')
@@ -91,6 +91,11 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'new_category')
 if  (isset($_GET['section']) AND $_GET['section'] == 'create_category')
 {                
   include_once("app/controleur/admin/create_category.php");
+}
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'create_category_from_header')
+{                
+  include_once("app/controleur/admin/create_category_from_header.php");
 }
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'edit_image')
