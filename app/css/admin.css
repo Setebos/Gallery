@@ -220,6 +220,13 @@ a:hover{
     cursor: default;
 }
 
+.new-cat .cat-label p{
+    color: #fff;
+    cursor: default;
+    display: inline-block;
+    margin: 0;
+}
+
 .new-cat .cat-label .span-delete-cat{
     padding-left: 10px;
     cursor: pointer;

@@ -52,7 +52,7 @@ $(document).ready(function(){
   $("#diapo").slideshowPlugin({
     'show_entire_gallery' : false,
     'diaporama_width' : 1000,
-    'nb_images_per_line' : 2, 
+    'nb_images_per_line' : 4, 
     'displayDuration' : 4000
   });
 

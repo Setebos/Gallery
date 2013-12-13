@@ -19,15 +19,13 @@
 		                       <div class="gal-vign-detail">
 		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
 		                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
-										<span class="glyphicon glyphicon-trash">
-										</span>
-									</button>
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
 		                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
 			                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
-											<span class="glyphicon glyphicon-pencil"></span>
-										</button>
-									</a>
-									
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+							</a>		
 		                       </div>
 	                    </div>
                   	<?php } ?>
@@ -70,12 +68,12 @@
 				  				<p> Catégories existantes </p>
 				  				<ul class="list-inline">
 						          <?php foreach ($listCategories as $category) {?>
-						          <li class="cat-label">
-						            <a id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active"><?= $category->getName() ?></a>
-						            <span class="span-delete-cat">
-						            	<a id="<?= "del-cat" . $category->getId() ?>">X</a>
-						            </span>
-						          </li>
+							          <li class="cat-label">
+							            <p id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active"><?= $category->getName() ?></p>
+							            <span id="<?= "del-cat" . $category->getId() ?>" class="span-del-cat">
+							            	<a >X</a>
+							            </span>
+							          </li>
 						          <?php } ?>
 						        </ul>
 				  			</div>
@@ -116,10 +114,18 @@
 			 	</div>
 			 </div>
 		</div>
+		<!-- 		Alert suppression galerie			  -->
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
 			<p>
 				<span class="glyphicon glyphicon-warning-sign"></span>
-				Supprimer la galerie détruira toutes les images la composant. Êtes-vous sur de vouloir effectuer cette action?
+				Supprimer la galerie détruira toutes les images la composant. Êtes-vous sur de vouloir effectuer cette action ?
+			</p>
+		</div>
+		<!-- 		Alert suppression categorie			  -->
+		<div id="dial-del-cat" title="Supprimer la categorie ?">
+			<p>
+				<span class="glyphicon glyphicon-warning-sign"></span>
+				Confirmez-vous la suppression de la catégorie ?
 			</p>
 		</div>
 

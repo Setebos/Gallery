@@ -9,6 +9,7 @@ $(document).ready(function() {
 	}).css({ display: "none" });
 
 	$(document).on("click", "#filter-cat-btn", function(){
+		console.log("click filter cat");
 		var div = $(this).parents(".cat-filters");
 		$(".cat-filters").toggle(function() {
 		  div.animate({ height: div.data("realHeight") }, 600);
@@ -66,7 +67,7 @@ $(document).ready(function() {
 	});
 
 
-
+/** Suppression galerie **/
 	$(document).on("click", ".gal-suppr-btn", function() {
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
@@ -249,6 +250,36 @@ $(document).ready(function() {
 	});
 
 
+/***************  SUPRESSION CATEGORIE  *****************/
+$(document).on("click", ".span-del-cat", function() {
+	console.log(this);
+		var idLong = $(this).attr('id');
+		var idCourt = idLong.substring(7);
+	 	$("#dial-del-cat").css("display", "block")
+		$( "#dial-del-cat" ).dialog({
+			resizable: false,
+			height:300,
+			width: 300,
+			modal: true,
+			buttons: {
+				"Confirmer": function() {
+					$( this ).dialog( "close" );
+					$.ajax({
+						type: "POST",
+						url: "index.php?section=delete_category",
+						data: { id: idCourt },
+						dataType: "html",
+						success: function(data) {
+							$(".picture-header-option-part").html(data);
+						}
+					})
+				},
+				"Annuler": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
 
 	
 
