@@ -1,12 +1,5 @@
 <?php
-/**
- * Resize image class will allow you to resize an image
- *
- * Can resize to exact size
- * Max width size while keep aspect ratio
- * Max height size while keep aspect ratio
- * Automatic while keep aspect ratio
- */
+
 class ResizeImage
 {
 	private $ext;
@@ -17,11 +10,6 @@ class ResizeImage
 	private $resizeWidth;
 	private $resizeHeight;
 
-	/**
-	 * Class constructor requires to send through the image filename
-	 *
-	 * @param string $filename - Filename of the image you want to resize
-	 */
 	public function __construct( $filename )
 	{
 		if(file_exists($filename))
@@ -32,11 +20,6 @@ class ResizeImage
 		}
 	}
 
-	/**
-	 * Set the image variable by using image create
-	 *
-	 * @param string $filename - The image filename
-	 */
 	private function setImage( $filename )
 	{
 		$size = getimagesize($filename);
@@ -78,14 +61,6 @@ class ResizeImage
 		return $this->origHeight;
 	}
 
-	/**
-	 * Save the image as the image type the original image was
-	 *
-	 * @param  String[type] $savePath     - The path to store the new image
-	 * @param  string $imageQuality 	  - The qulaity level of image to create
-	 *
-	 * @return Saves the image
-	 */
 	public function saveImage($savePath, $imageQuality="100", $download = false)
 	{
 	    switch($this->ext)
@@ -126,15 +101,6 @@ class ResizeImage
 	    imagedestroy($this->newImage);
 	}
 
-	/**
-	 * Resize the image to these set dimensions
-	 *
-	 * @param  int $width        	- Max width of the image
-	 * @param  int $height       	- Max height of the image
-	 * @param  string $resizeOption - Scale option for the image
-	 *
-	 * @return Save new image
-	 */
 	public function resizeTo( $width, $height, $resizeOption = 'default' )
 	{
 		switch(strtolower($resizeOption))
@@ -160,7 +126,7 @@ class ResizeImage
 				$this->resizeHeight = $height;
 			break;
 
-			case 'crop':
+			case 'precrop':
 				if($this->origWidth > $width || $this->origHeight > $height)
 				{
 					if ( $this->origWidth < $this->origHeight ) {
@@ -174,12 +140,34 @@ class ResizeImage
 		            $this->resizeWidth = $this->origWidth;
 		            $this->resizeHeight = $this->origHeight;
 		        }
+			break;
+
+			case 'crop':
+
+				var_dump($this->origWidth);
+
+		        if($this->origWidth < 120 || $this->origHeight < 120) {
+		        	$this->newImage = imagecreatetruecolor($this->origWidth, $this->origHeight);
+					return imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->origWidth, $this->origHeight, $this->origWidth, $this->origHeight);
+					break;
+				}
+
+				if($this->origWidth > $width || $this->origHeight > $height)
+				{
+					if ( $this->origWidth < $this->origHeight ) {
+				    	 $this->resizeHeight = $this->resizeHeightByWidth($width);
+			  			 $this->resizeWidth  = $width;
+					} else if( $this->origWidth > $this->origHeight ) {
+						$this->resizeWidth  = $this->resizeWidthByHeight($height);
+						$this->resizeHeight = $height;
+					}
+				} else {
+		            $this->resizeWidth = $this->origWidth;
+		            $this->resizeHeight = $this->origHeight;
+		        }
+
 		        $centreX = round($this->resizeWidth / 2);
 	            $centreY = round($this->resizeHeight / 2);
-	            // var_dump($this->resizeWidth);
-	            // var_dump($this->resizeHeight);
-	            // var_dump($centreX);
-	            // var_dump($centreY);
 
 	            //dimensions : 120x120
 	            $x1 = $centreX - 60;
@@ -192,18 +180,6 @@ class ResizeImage
 	            } elseif ($this->resizeHeight == 120) {
 	            	$this->resizeWidth = $x2 - $x1;
 	            }
-
-	            // var_dump($x1);
-	            // var_dump($x2);
-	            // var_dump($y1);
-	            // var_dump($y2);
-
-		  //       $x1 = max($x1, 0);
-				// $y1 = max($y1, 0);
-				// $x2 = min($x2, $this->resizeWidth);
-				// $y2 = min($y2, $this->resizeHeight);
-				// $this->resizeWidth = $x2 - $x1;
-				// $this->resizeHeight = $y2 - $y1;
 			break;
 
 			default:
@@ -224,61 +200,19 @@ class ResizeImage
 		}
 
 		$this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
-    	imagecopyresampled($this->newImage, $this->image, 0, 0, $x1, $y1, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
-	}
-
-	public function cropTo($x1, $y1 = 0, $x2 = 0, $y2 = 0, $resizeOption = 'default') {
-		// if (is_array($x1) && 4 == count($x1)) {
-		// 	list($x1, $y1, $x2, $y2) = $x1;
-		// }
-		switch(strtolower($resizeOption)) {
-
-			case 'height':
-
-			break;
-
-			case 'width':
-				# code...
-			break;
-
-			default:
-				# code...
-			break;
+		if($resizeOption == "crop") {
+			return imagecopy($this->newImage, $this->image, 0, 0, $x1, $y1, $this->resizeWidth, $this->resizeHeight);
+		} else {
+			imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
 		}
-		
-
-		
-
-		$x1 = max($x1, 0);
-		$y1 = max($y1, 0);
-		$x2 = min($x2, $this->origWidth);
-		$y2 = min($y2, $this->origHeight);
-		$this->resizeWidth = $x2 - $x1;
-		$this->resizeHeight = $y2 - $y1;
-
-		$this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
-    	imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
+    	
 	}
 
-	/**
-	 * Get the resized height from the width keeping the aspect ratio
-	 *
-	 * @param  int $width - Max image width
-	 *
-	 * @return Height keeping aspect ratio
-	 */
 	private function resizeHeightByWidth($width)
 	{
 		return floor(($this->origHeight/$this->origWidth)*$width);
 	}
 
-	/**
-	 * Get the resized width from the height keeping the aspect ratio
-	 *
-	 * @param  int $height - Max image height
-	 *
-	 * @return Width keeping aspect ratio
-	 */
 	private function resizeWidthByHeight($height)
 	{
 		return floor(($this->origWidth/$this->origHeight)*$height);

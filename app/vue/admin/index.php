@@ -18,7 +18,16 @@
 		                      </div>
 		                       <div class="gal-vign-detail">
 		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
-		                        	<span class="gal-suppr-btn glyphicon glyphicon-trash"></span>
+		                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
+										<span class="glyphicon glyphicon-trash">
+										</span>
+									</button>
+		                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
+			                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+									</a>
+									
 		                       </div>
 	                    </div>
                   	<?php } ?>
@@ -27,7 +36,7 @@
 			 <div class="col-md-8 picture-part">
 			  	<div class="picture-header">
 			  		<div class="btn-admin pull-right"  title="Ajouter une image à la galerie">
-			  			<a href="<?= "index.php?section=select_image "?>">+</a>
+			  			<a href="<?= "index.php?section=new_image "?>">+</a>
 			  		</div>
 			  		<ul>
 			  			<li>
@@ -88,11 +97,11 @@
                     	<ul class="list-inline sortable">
 	                    	<?php foreach ($listImages as $image) {?>
 		                    	<li class="picture-list">
-	                        		<div class="picture-div">
-	                        			<div class="picture-delete">
+	                        		<div class="picture-div" data-toggle="modal" data-target="#myModal">
+	                        			<!-- <div class="picture-delete">
 				                        	<span class="glyphicon glyphicon-trash"></span>
-				                        </div>
-	                        			<img src="<?= $image->getLocation() ?>">
+				                        </div> -->
+	                        			<img src="<?= $image->getLocation() ?>" title="<?= $image->getTitle() ?>">
 	                    			</div>
 	                    		</li>
 	                  		<?php } ?>
@@ -116,6 +125,27 @@
 				Supprimer la galerie détruira toutes les images la composant. Êtes-vous sur de vouloir effectuer cette action?
 			</p>
 		</div>
+
+		<!-- 		Modal affichage info images			  -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      </div>
+		      <div class="modal-body">
+		        ...
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+
 	</body>
 	<script type="text/javascript" src="app/js/admin.js"></script>
 </html>

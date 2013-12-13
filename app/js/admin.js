@@ -46,7 +46,6 @@ $(document).ready(function() {
 			url: "index.php?section=admin_ajax_image",
 			data: { id: idCourt },
 			dataType: "html",
-			// TODO : réactiver le sortable !!!!
 			success: function(data) {
 				$( ".conteneur-images" ).html(data);
 				$(".conteneur-images").children("ul").sortable({ 
@@ -69,6 +68,36 @@ $(document).ready(function() {
 
 
 	$(document).on("click", ".gal-suppr-btn", function() {
+		var idLong = $(this).parents(".gal-vign-container").attr('id');
+		var idCourt = idLong.substring(7);
+	 	$("#dialog-confirm").css("display", "block")
+		$( "#dialog-confirm" ).dialog({
+			resizable: false,
+			height:300,
+			width: 300,
+			modal: true,
+			buttons: {
+				"Confirmer": function() {
+					$( this ).dialog( "close" );
+					$.ajax({
+						type: "POST",
+						url: "index.php?section=delete_gallery",
+						data: { id: idCourt },
+						dataType: "html",
+						success: function(data) {
+							$(".gallery-body").html(data);
+							$(".conteneur-images").html("Aucune galerie sélectionnée");
+						}
+					})
+				},
+				"Annuler": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+
+	$(document).on("click", ".gal-edit-btn", function() {
 		console.log($(this).parent());
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
@@ -129,11 +158,15 @@ $(document).ready(function() {
 		});
 	});	
 
+
+
 	$(document).on("click", ".picture-div", function() {
+		event.preventDefault();
 		var idLong = $(this).children("img").attr('id');
 		var idCourt = idLong.substring(6);
 		var lien = "index.php?section=edit_image&id=" + idCourt;
 		console.log(lien);
+		show_modal( lien, 'modal_discussion');
 		if(! $(this).hasClass("picture-selected")) {
 			$(".picture-div").removeClass("picture-selected");
 			$(this).addClass("picture-selected");

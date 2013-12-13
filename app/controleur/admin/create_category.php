@@ -34,10 +34,19 @@ $listCategories = $manager->getListCategories();
 
 <div class="form-group list-categories">
 	<label name="imageCategories">Choisissez des catégories : </label>
-	<? foreach ($listCategories as $category) {
+	<ul class="list-inline">
+		<?php foreach ($listCategories as $category) {
 		?>
-		<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
-	<? } ?>
+    		<li>
+    			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
+    		</li>
+		<?php } ?>
+		<li>
+			<div class="btn btn-default btn-sm upload-image-new-category">
+		    	<a href="#" title="créer une nouvelle catégorie">+</a>
+		    </div>
+		</li>
+	</ul>
 </div>
 
 

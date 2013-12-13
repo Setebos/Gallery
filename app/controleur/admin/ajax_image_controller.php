@@ -17,12 +17,6 @@ $listImages = $managerImage->getImagesByGallery($id);
 ?>
 
 <h3 class="gallery-title"><?= $gallerySelect ?></h3>
-<div id="<?= "delete-gallery" . $id ?>" class="btn btn-default pull-right gallery-delete-button">
-	<a href="#">Supprimer galerie</a>
-</div>
-<div id="<?= "edit-gallery" . $id ?>" class="btn btn-default pull-right gallery-edit-button">
-	<a href="<?= "index.php?section=edit_gallery&id=".$id ?>">Modifier galerie</a>
-</div>
 <p>Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images</p>
 <ul class="list-inline sortable">
 	<?php foreach ($listImages as $image) {?>

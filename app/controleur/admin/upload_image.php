@@ -9,7 +9,6 @@ include_once("app/modele/Category.php");
 include_once("app/modele/ImageCategoryManager.php");
 include_once("app/modele/ImageCategory.php");
 include_once("app/modele/ResizeImage.php");
-include_once("app/modele/ImageManipulator.php");
 
 if ($_FILES['imageUpload']['error'] > 0) {
     echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
@@ -40,7 +39,6 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
     if (in_array($fileExtension, $validExtensions)) {
         $destination = 'app/img/' . time() . '_' . $title . $fileExtension ;
-        //$manipulator = new ImageManipulator($_FILES['imageUpload']['tmp_name']);
         
         if (move_uploaded_file($_FILES['imageUpload']['tmp_name'], $destination)) {
             $newImage = new Image(array(
@@ -58,55 +56,37 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
             $resize = new ResizeImage($destination);
             
+            $resize->resizeTo(120, 120, "precrop");
+
+            $temp = 'app/img/temp-' . $title . $fileExtension;
+
+            $resize->saveImage($temp);
+
+            $resize = new ResizeImage($temp);
+
             $resize->resizeTo(120, 120, "crop");
-            // var_dump($resize);
 
-            // $width  = $resize->getWidth();
-            // $height = $resize->getHeight();
+            $destinationThumbnail = 'app/img/' . time() . '_' . $title . "-thumbnail" . $fileExtension;
 
-            // if($width == 120) {
+            $resize->saveImage($destinationThumbnail);
 
-            // } elseif ($height == 120) {
-            //     $centreX = round($width / 2);
-            //     $x1 = $centreX - 60;
-            //     $x2 = $centreX + 60;
-            //     $y1 = 
-            // }
-
-            //$resize->cropTo($x1, $y1, $x2, $y2);
-
-            $destinationAdmin = 'app/img/' . time() . '_' . $title . "-thumbnail-admin" . $fileExtension;
-
-            $resize->saveImage($destinationAdmin);
-
-            
-
-            // if($fileExtension == ".jpg" || $fileExtension == ".jpeg") {
-            //     $manipulator->save($destinationAdmin);
-            // } elseif ($fileExtension == ".gif") {
-            //     $manipulator->save($destinationAdmin, IMAGETYPE_GIF);
-            // } 
-            // elseif ($fileExtension == ".png") {
-            //     $manipulator->save($destinationAdmin, IMAGETYPE_PNG);
-            // } 
+            unlink($temp);
            
-
             //Création du thumnail public
 
             $resize = new ResizeImage($destination);
             $resize->resizeTo(400, 400);
 
-            $destinationThumbnail = 'app/img/' . time() . '_' . $title . "-thumbnail-public" .$fileExtension;
+            $destinationMiniature = 'app/img/' . time() . '_' . $title . "-miniature" .$fileExtension;
 
-            $resize->saveImage($destinationThumbnail);
+            $resize->saveImage($destinationMiniature);
 
             //Rattachement aux catégories
 
             $newImage = $imageManager->getImageByPosition($position, $gallery->getId());
 
-            $newImage->setLocationAdmin($destinationAdmin);
+            $newImage->setLocationMiniature($destinationMiniature);
             $newImage->setLocationThumbnail($destinationThumbnail);
-            //var_dump($newImage);
             $imageManager->updateImage($newImage);
 
 
