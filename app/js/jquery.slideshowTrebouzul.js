@@ -209,19 +209,20 @@ if ( typeof Object.create !== 'function' ) {
             },
             setup: function(){
                     var self = this;
+
+                    var currentImg = self.album[self.currentImageIndex];
+
                     var lightbox =
                         '<div id="lb-area">' +
                         '</div>'+
                         '<div id="lightbox" class="lightbox">' +
                             '<div class="lb-container">' +
                                 '<div class="lb-img-container">' + 
-                                    '<img class="lb-image" src="" />' +
+                                   
                                     '<div class="lb-nav">' +
                                         '<a class="lb-prev" href="" ></a>'+
                                         '<a class="lb-next" href="" ></a>'+
                                     '</div>'+
-                                '</div>' +
-                                '<div class="preloading">' +
                                 '</div>' +
                                 '<div class="lb-data-container">' + 
                                     '<div class="lb-details">' +
@@ -291,16 +292,40 @@ if ( typeof Object.create !== 'function' ) {
             },  
             createLightbox: function(){
                     var self = this;
+
+                     var imageHtml = '<img class="lb-image" src=""+currentImg.src+"" />';
+
+                     var currentImg = self.album[self.currentImageIndex];  
+                    var preloadImg = new Image();
+                    preloadImg.onload = function(){
+                      $(this).hide();
+                      console.log("preloadimg"+$(this));
+                      console.log($(this)); 
+                        $(preloadImg).addClass('lb-image');
+                        $(".lb-container")
+                          .removeClass('loading')
+                        $(".lb-img-container")
+                          .prepend(this);
+                        // $('.lb-image').replaceWith($(preloadImg));
+                        $('.lb-container').width($(preloadImg).width() + 20);
+                        $('.lb-nav').height($(preloadImg).outerHeight());
+                        $(".lb-title h3").html(currentImg.title);
+                        $(".lb-desc p").html(currentImg.desc);
+                        
+                        $(this).fadeIn();
+                    }
+                    preloadImg.src = currentImg.src;              
+
                     
-                    $( "#lb-area" ).fadeIn( "slow", function() {
-                          self.$lightbox.fadeIn("slow");
-                          var currentImg = self.album[self.currentImageIndex];
-                          $('.lb-image').attr("src",""+currentImg.src+"");
-                          $('.lb-container').width($('.lb-image').width() + 20);
-                          $('.lb-nav').height($(".lb-img-container").outerHeight());
-                          $(".lb-title h3").html(currentImg.title);
-                          $(".lb-desc p").html(currentImg.desc);
-                    }); 
+                    // $( "#lb-area" ).fadeIn( "slow", function() {
+                    //       self.$lightbox.fadeIn("slow");
+                    //       var currentImg = self.album[self.currentImageIndex];
+                    //       $('.lb-image').attr("src",""+currentImg.src+"");
+                    //       $('.lb-container').width($('.lb-image').width() + 20);
+                    //       $('.lb-nav').height($(".lb-img-container").outerHeight());
+                    //       $(".lb-title h3").html(currentImg.title);
+                    //       $(".lb-desc p").html(currentImg.desc);
+                    // }); 
 
                     if (self.autoplay == true){
                           self.autoplayDiaporama();

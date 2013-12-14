@@ -1,6 +1,6 @@
 /***********        Index - diaporama        ***********/
 body:after {
-  content: url(../img/close.png) url(../img/prev.png) url(../img/next.png);
+  content: url(../img/loader.gif) url(../img/close.png) url(../img/prev.png) url(../img/next.png);
   display: none;
 }
 
@@ -21,10 +21,11 @@ body:after {
 .lightbox{
     position: absolute;
     left: 0;
-    top:40px;
+    top:50px;
     width: 100%;
     z-index: 10000;
     text-align: left;
+
 }
 
 
@@ -35,6 +36,12 @@ body:after {
     margin: 0 auto;
 }
 
+.lb-img-container .loading{
+    background: url(../img/loader.gif) no-repeat center center;
+    width: 300px;
+    height: 300px; 
+}
+
 .lb-img-container{
     max-width: inherit;
     padding: 10px;
@@ -43,7 +50,7 @@ body:after {
 .lightbox .lb-image {
     display: block;
     height: auto;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 .lb-nav{

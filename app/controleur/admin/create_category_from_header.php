@@ -31,8 +31,6 @@ if($existe == false) {
 $listCategories = $manager->getListCategories();
 
 
-
-
 ?>
 	<div class="new-cat">
 		<div class="row">
