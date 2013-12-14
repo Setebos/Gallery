@@ -32,7 +32,6 @@ if ( typeof Object.create !== 'function' ) {
           self.containerWidth =  self.params.diaporama_width;
           self.nbItems = self.items.length;
           self.totalWidth = self.nbItems * self.itemWidth;
-          self.autoplay = false;
 
           self.navSection = $("#diapo-nav");
 
@@ -97,7 +96,6 @@ if ( typeof Object.create !== 'function' ) {
 
             // Attache de fonctionnalités aux éléments partagés du plugin
             $('#autoplay-btn').on('click', function(){
-
                self.launchSlideshow(this, true);  // true = lancer le slideshow avec defilement automatique
             });
 
@@ -168,6 +166,7 @@ if ( typeof Object.create !== 'function' ) {
             });
       },
       launchSlideshow: function(item, autoplay){
+        console.log("autoplay ? : "+autoplay);
             var self = this;
             var slide = Object.create(slideshow);
             slide.init(self, item, autoplay);
@@ -186,6 +185,7 @@ if ( typeof Object.create !== 'function' ) {
                 self.currentImageIndex = 0;
                 self.album = [];
                 self.createAlbum(self.$item_clicked.find('img'));
+                self.lbTimer = "";                                    // to stop setInterval function used in autoplay
 
                 if ($('#lightbox').length > 0) {      // = passage d'une image à une autre quand slideshow ouvert
                     $( "#lb-area" ).fadeIn( "slow", function() {
@@ -200,9 +200,9 @@ if ( typeof Object.create !== 'function' ) {
                 $('.lb-close').on('click', function(){
                       self.hideLightbox();  
                 });
-                $('#lb-area').on('click', function(){
+                 $('#lb-area').on('click', function(){
                       self.hideLightbox();  
-                });
+                  });
 
                // gestion de la navigation
                self.setNav();
@@ -292,41 +292,23 @@ if ( typeof Object.create !== 'function' ) {
             },  
             createLightbox: function(){
                     var self = this;
-
-                     var imageHtml = '<img class="lb-image" src=""+currentImg.src+"" />';
-
                      var currentImg = self.album[self.currentImageIndex];  
                     var preloadImg = new Image();
                     preloadImg.onload = function(){
                       $(this).hide();
-                      console.log("preloadimg"+$(this));
-                      console.log($(this)); 
                         $(preloadImg).addClass('lb-image');
-                        $(".lb-container")
-                          .removeClass('loading')
-                        $(".lb-img-container")
-                          .prepend(this);
-                        // $('.lb-image').replaceWith($(preloadImg));
+                        $(".lb-container").removeClass('loading');
+                        // $(".lb-title h3").html(currentImg.title);
+                        // $(".lb-desc p").html(currentImg.desc);
+                        $(".lb-img-container").prepend(this);
                         $('.lb-container').width($(preloadImg).width() + 20);
                         $('.lb-nav').height($(preloadImg).outerHeight());
-                        $(".lb-title h3").html(currentImg.title);
-                        $(".lb-desc p").html(currentImg.desc);
-                        
                         $(this).fadeIn();
                     }
-                    preloadImg.src = currentImg.src;              
-
-                    
-                    // $( "#lb-area" ).fadeIn( "slow", function() {
-                    //       self.$lightbox.fadeIn("slow");
-                    //       var currentImg = self.album[self.currentImageIndex];
-                    //       $('.lb-image').attr("src",""+currentImg.src+"");
-                    //       $('.lb-container').width($('.lb-image').width() + 20);
-                    //       $('.lb-nav').height($(".lb-img-container").outerHeight());
-                    //       $(".lb-title h3").html(currentImg.title);
-                    //       $(".lb-desc p").html(currentImg.desc);
-                    // }); 
-
+                    preloadImg.src = currentImg.src;      
+                    $(".lb-title h3").html(currentImg.title);
+                    $(".lb-desc p").html(currentImg.desc);        
+                    console.log("autoplay in createlb : "+self.autoplay);
                     if (self.autoplay == true){
                           self.autoplayDiaporama();
                     }                 
@@ -337,7 +319,7 @@ if ( typeof Object.create !== 'function' ) {
                   $('.lb-nav').hide();
 
                   // simulation d'un click à interval régulier pour défilement auto
-                  setInterval(function(){
+                 self.lbTimer= setInterval(function(){
                       $('.lb-next').click();
                   }, self.gallery.params.displayDuration)
             },
@@ -366,6 +348,7 @@ if ( typeof Object.create !== 'function' ) {
                   var self = this;
                    self.$lightbox.fadeOut("slow", function(){
                       $('#lb-area').fadeOut("slow", function(){
+                          clearInterval(self.lbTimer);
                           $('#lb-area').remove();
                           $('#lightbox').remove();
                       });
