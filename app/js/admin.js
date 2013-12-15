@@ -283,8 +283,33 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		});
 	});
 
-	
+	/***************  VALIDATION FORMULAIRE  *****************/
 
-
+	$("#galleryName").keyup(function() {
+		var validateGalleryName = $('#validateGalleryName');
+		var t = this; 
+		if (this.value != this.lastValue) {
+		  	if (this.timer) {
+		  		clearTimeout(this.timer);	
+		  	} 
+		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
+		  
+		  	this.timer = setTimeout(function () {
+		  		console.log(t.value);
+		    	$.ajax({
+		      		url: 'index.php?section=check_form',
+		      		data: {action: "checkGallery", galleryName: t.value},
+		      		dataType: 'json',
+		      		type: 'post',
+		      		success: function(data) {
+		      			console.log("succes");
+		        		validateGalleryName.html(data.msg);
+		      		}
+		    	});
+		  	}, 200);
+		  
+		  	this.lastValue = this.value;
+		}
+	});
 
 }); 
