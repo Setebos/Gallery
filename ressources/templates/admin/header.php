@@ -6,23 +6,18 @@
         <title>Test Gallery js - Espace admin </title>
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
         <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <script type="text/javascript" src="app/js/jquery_min.js"></script>
         <script type="text/javascript" src="app/js/jquery-ui.min.js"></script>
         <!--   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
         <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
-
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
         <script type="text/javascript" src="app/js/respond.js"></script>
         
         <!--[if IE]>
             <script src="app/js/html5-ie.js"></script>
             <script src="app/js/html5shiv.js"></script>
-        <![endif]-->
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="../../assets/js/html5shiv.js"></script>
-          <script src="../../assets/js/respond.min.js"></script>
+            <script src="app/js/respond.js"></script>
         <![endif]-->
     </head>
 

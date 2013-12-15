@@ -36,7 +36,7 @@ body:after {
     margin: 0 auto;
 }
 
-.lb-img-container .loading{
+.lb-container .loading{
     background: url(../img/loader.gif) no-repeat center center;
     width: 300px;
     height: 300px; 

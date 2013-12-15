@@ -41,4 +41,20 @@
         });
     });
 
+
+  // AUTOCOMPLETE ////////////////////////////////////////////////////////////////////////////////////////
+
+  var liste = [
+     "chat",
+     "tortue",
+     "chatortue"
+  ];
+
+
+
+
+   $("#search-input").autocomplete({
+      source: 'app/modele/autocomplete.php'
+   }); 
+
 })

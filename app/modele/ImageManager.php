@@ -151,6 +151,22 @@ class ImageManager {
 		return $listImages;
 	}
 
+	// retourne les termes possibles pour l'autocompletion, parmi le titre
+	public function getImagesTerms($term){
+		$listTerms = array();
+
+		var_dump($listTerms);
+
+		$q = $this->_db->query('SELECT title FROM image WHERE title LIKE "'.$term.'%"  ');
+
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+			var_dump($donnees);
+			array_push($listTerms, $donnees);
+		}
+
+		return $$listTerms;
+	}
+
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 

@@ -45,11 +45,14 @@ $config = array(
     Creating constants for heavily used paths makes things a lot easier.
     ex. require_once(LIBRARY_PATH . "Paginator.php")
 */
+defined("BASE_PATH")
+    or define("BASE_PATH", $_SERVER["DOCUMENT_ROOT"] . "/Gallery");
+
 defined("LIBRARY_PATH")
-    or define("LIBRARY_PATH", realpath(dirname(__FILE__) . '/library'));
+    or define("LIBRARY_PATH", BASE_PATH . '/ressources/library');
     
 defined("TEMPLATES_PATH")
-    or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));
+    or define("TEMPLATES_PATH", BASE_PATH . '/ressources/templates');
 
 /*
     Error reporting.

@@ -7,19 +7,17 @@
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <link rel="stylesheet" type="text/css" href="app/css/plugin.css"/>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="app/js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="app/js/public.js"/></script>
         <script type="text/javascript" src="app/js/jquery.slideshowTrebouzul.js"/></script>
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
-        <script type="text/javascript" src="app/js/respond.js"></script>
+        <!--<script type="text/javascript" src="app/js/respond.js"></script>-->
         <!--[if IE]>
             <script src="app/js/html5-ie.js"></script>
             <script src="app/js/html5shiv.js"></script>
-        <![endif]-->
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="../../assets/js/html5shiv.js"></script>
-          <script src="../../assets/js/respond.min.js"></script>
+            <script src="app/js/respond.js"></script>
         <![endif]-->
     </head> 
 
@@ -38,7 +36,7 @@
                 ?>
                 <form method="post" action="<?= "index.php?section=home "?>" class="navbar-form navbar-right" role="search">
                   <div class="form-group">
-                    <input type="text" name="searched" class="form-control" placeholder="<?= $placeholder; ?>">
+                    <input type="text" id="search-input" name="searched" class="form-control" placeholder="<?= $placeholder; ?>">
                   </div>
                   <button type="submit" class="btn btn-default">Rechercher</button>
                 </form>
