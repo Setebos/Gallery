@@ -63,9 +63,10 @@
 						  		<form class="form-inline" role="form">
 						  			<p> Ajouter une catégorie </p>
 								  <div class="form-group">
-								    <input type="email" class="form-control" placeholder="Nom de la catégorie">
+								    <input id="newCategory" type="email" class="form-control" placeholder="Nom de la catégorie">
 								  </div>
 								  <button id="new-cat-submit" type="submit" class="btn btn-default btn-sm">+</button>
+								  <span id="validateCategoryName"></span>
 								</form>
 							</div>
 						</div>

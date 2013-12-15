@@ -312,4 +312,58 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		}
 	});
 
+	$("#editGallery").keyup(function() {
+		var validateGalleryName = $('#validateGalleryName');
+		var t = this; 
+		var editGallery = $(this).attr("class");
+		if (this.value != this.lastValue) {
+		  	if (this.timer) {
+		  		clearTimeout(this.timer);	
+		  	} 
+		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
+		  
+		  	this.timer = setTimeout(function () {
+		  		console.log(t.value);
+		    	$.ajax({
+		      		url: 'index.php?section=check_form',
+		      		data: {action: "checkGallery", galleryName: t.value, editGallery: editGallery},
+		      		dataType: 'json',
+		      		type: 'post',
+		      		success: function(data) {
+		        		validateGalleryName.html(data.msg);
+		      		}
+		    	});
+		  	}, 200);
+		  
+		  	this.lastValue = this.value;
+		}
+	});
+
+	$(document).on("keyup", "#categoryName", function() {
+		var validateCategoryName = $('#validateCategoryName');
+		var t = this; 
+		if (this.value != this.lastValue) {
+		  	if (this.timer) {
+		  		clearTimeout(this.timer);	
+		  	} 
+		  	validateCategoryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
+		  
+		  	this.timer = setTimeout(function () {
+		  		console.log(t.value);
+		    	$.ajax({
+		      		url: 'index.php?section=check_form',
+		      		data: {action: "checkCategory", categoryName: t.value},
+		      		dataType: 'json',
+		      		type: 'post',
+		      		success: function(data) {
+		      			console.log("succes");
+		        		validateCategoryName.html(data.msg);
+		      		}
+		    	});
+		  	}, 200);
+		  
+		  	this.lastValue = this.value;
+		}
+	});
+
 }); 
