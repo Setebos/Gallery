@@ -19,7 +19,8 @@
 	                    <form class="new-gallery-align" method="post" action="<?= "index.php?section=create_gallery "?>" role="form">
 	                        <div class="form-group">
 	                            <label name="galleryName">Nom : </label>
-	                            <input type="text" name="galleryName" />
+	                            <input id="galleryName" type="text" name="galleryName" />
+	                            <span id="validateGalleryName"></span>
 	                        </div>
 	                        <div ng-class="expression"ss="form-group">
 	                            <label name="galleryDescription">Description : </label>
@@ -39,4 +40,5 @@
 			 </div>
 		</div>
 	</body>
+	<script type="text/javascript" src="app/js/admin.js"></script>
 </html>

@@ -72,6 +72,18 @@ class CategoryManager {
 		return $listCategories;
 	}
 
+	public function getCategoryNames() {
+		$listCategories = array();
+
+		$q = $this->_db->query('SELECT name FROM category');
+
+		while($donnees = $q->fetch()) {
+			$listCategories[] = $donnees;
+		}
+
+		return $listCategories;
+	}
+
 	public function setDb(PDO $db) {
 		$this->_db = $db;
 	} 
