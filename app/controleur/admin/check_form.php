@@ -41,7 +41,7 @@ function galleryNameTaken($galleryName, $listGalleries, $editGallery) {
 	}
 }
 
-function categoryNameTaken($categoryName, $listGalleries, $editCategory) {
+function categoryNameTaken($categoryName, $listCategories, $editCategory) {
 	if ($categoryName == $editCategory) {
 			return false;
 	} else {
@@ -82,7 +82,7 @@ function checkGalleryName($galleryName, $listGalleries, $editGallery) {
 	return $response;
 }
 
-function checkCategoryName($categoryName, $listCategories, $editCategory = null) {
+function checkCategoryName($categoryName, $listCategories, $editCategory) {
 	$response = array();
 
 	if(!$categoryName) {

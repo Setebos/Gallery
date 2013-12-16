@@ -63,10 +63,10 @@
 						  		<form class="form-inline" role="form">
 						  			<p> Ajouter une catégorie </p>
 								  <div class="form-group">
-								    <input id="newCategory" type="email" class="form-control" placeholder="Nom de la catégorie">
+								    <input id="categoryName" type="email" class="form-control" placeholder="Nom de la catégorie">
 								  </div>
 								  <button id="new-cat-submit" type="submit" class="btn btn-default btn-sm">+</button>
-								  <span id="validateCategoryName"></span>
+								  <br/><span id="validateCategoryName"></span>
 								</form>
 							</div>
 						</div>
@@ -85,7 +85,7 @@
 	                  		<?php } ?>
                     	</ul>
             		</div>
-                	<div class="picture-options">
+                	<!-- <div class="picture-options">
                 		<div class="btn btn-default edit-picture-button">
                 		 	<a href="<?= "index.php?section=edit_image "?>">Modifier l'image</a>
                 		</div>
@@ -94,7 +94,7 @@
                 		 	<a href="<?= "index.php?section=delete_image "?>">Supprimer l'image</a>
                 		</div>
                 	</div>
-			 	</div>
+			 	</div> -->
 			 </div>
 		</div>
 		<!-- 		Alert suppression galerie			  -->
