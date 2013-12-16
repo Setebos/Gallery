@@ -14,8 +14,11 @@
 			 		<?php foreach ($listGalleries as $gallery) {?>
 	                    <div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
 	                    		<div class="gal-vign-picture">
-		                        	<!-- <img src="http://placehold.it/120&text=pic"> -->
-		                        	<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
+	                    			 <?php if ($listFirstImages[$gallery->getId()] != null) {?>
+		                        		<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
+		                        	<?php } else { ?>
+		                        	<img src="http://placehold.it/120&text=pic">
+		                        	<?php } ?>
 		                      	</div>
 		                       	<div class="gal-vign-detail">
 		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
