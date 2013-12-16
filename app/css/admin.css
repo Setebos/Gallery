@@ -103,7 +103,7 @@ a:hover{
     background-color: #ff5d55;
 }
 
-#dialog-confirm {
+#dialog-confirm,  #dial-del-cat{
     display: none;
 }
 
