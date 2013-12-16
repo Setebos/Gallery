@@ -94,6 +94,26 @@ class ImageManager {
 		return $listImages;
 	}
 
+	public function getFirstImageByGallery($id) {
+		$firstImage;
+
+		try
+		{
+			$q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$id.' AND position = 1 ');
+
+			while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+				$firstImage = new Image($donnees);
+			}
+		}catch(PDOException $err)
+		{
+			echo "errrreur !";
+			var_dump($err->getMessage());
+		}
+
+		
+		return $firstImage;
+	}
+
 	public function getImagesByCategory($id) {
 		$listImages = array();
 

@@ -16,4 +16,12 @@ $listGalleries = $managerGallery->getListGalleries();
 $listImages = $managerImage->getListImages();
 $listCategories = $managerCategory->getListCategories();
 
+$listFirstImages = array();
+
+foreach ($listGalleries as $gallery) {
+	$id = $gallery->getId();
+	$listFirstImages[$id] = $managerImage->getFirstImageByGallery($id);
+}
+
+
 include_once('app/vue/admin/index.php');

@@ -14,13 +14,14 @@
 			 		<?php foreach ($listGalleries as $gallery) {?>
 	                    <div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
 	                    		<div class="gal-vign-picture">
-		                        	<img src="http://placehold.it/120&text=pic">
-		                      </div>
-		                       <div class="gal-vign-detail">
+		                        	<!-- <img src="http://placehold.it/120&text=pic"> -->
+		                        	<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
+		                      	</div>
+		                       	<div class="gal-vign-detail">
 		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
 		                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
-								<span class="glyphicon glyphicon-trash"></span>
-							</button>
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
 		                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
 			                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
 									<span class="glyphicon glyphicon-pencil"></span>
@@ -46,7 +47,7 @@
 			  	<div class="picture-header-option-part">
 				  	<div class="new-cat">
 				  		<div class="row">
-				  			<div class="col-md-9">
+				  			<div class="col-md-8">
 				  				<p> Catégories existantes </p>
 				  				<ul class="list-inline">
 						          <?php foreach ($listCategories as $category) {?>
@@ -59,11 +60,11 @@
 						          <?php } ?>
 						        </ul>
 				  			</div>
-					  		<div class="col-md-3 well">
+					  		<div class="col-md-3 well ">
 						  		<form class="form-inline" role="form">
 						  			<p> Ajouter une catégorie </p>
 								  <div class="form-group">
-								    <input id="newCategory" type="email" class="form-control" placeholder="Nom de la catégorie">
+								    <input id="newCategory" class="form-control" placeholder="Nom de la catégorie">
 								  </div>
 								  <button id="new-cat-submit" type="submit" class="btn btn-default btn-sm">+</button>
 								  <span id="validateCategoryName"></span>

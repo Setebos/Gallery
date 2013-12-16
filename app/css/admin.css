@@ -172,32 +172,15 @@ a:hover{
 
 /***********        Cat management in picture header        ***********/
 
-/*.cat-filters .btn-admin{
-    color: #fff;
-    background-color: #ff5d55;
-    /*border-color: #db2d27;
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 0;
-    font-size: 14px;
-    font-weight: normal;
-    /*line-height: 1.428571429;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    float: left;
-    border: none;
-}*/
+.new-cat .row {
+margin-right: 0px;
+margin-left: 0px;
+}
 
 .new-cat .well{
     width: auto;
+    margin: 0 10px 0 0;
+    float: right;
 }
 
 .new-cat .list-inline>li:first-child {

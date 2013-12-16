@@ -21,7 +21,7 @@ $listCategories = $categoryManager->getListCategories();
 
     <div class="new-cat">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <p> Catégories existantes </p>
                 <ul class="list-inline">
                   <?php foreach ($listCategories as $category) {?>
