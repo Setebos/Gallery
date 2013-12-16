@@ -2,6 +2,8 @@
 
 include_once("app/modele/GalleryManager.php");
 include_once("app/modele/Gallery.php");
+include_once("app/modele/ImageManager.php");
+include_once("app/modele/Image.php");
 
 if(isset($_POST["id"])) {
 	$id = $_POST['id'];
@@ -13,20 +15,45 @@ if(isset($_GET["id"])) {
 
 
 $managerGallery = new GalleryManager($db);
+$managerImage = new ImageManager($db);
 
 $gallerySelect = $managerGallery->getGallery($id);
 $managerGallery->deleteGallery($gallerySelect);
 
 $listGalleries = $managerGallery->getListGalleries();
+
+$listFirstImages = array();
+
+foreach ($listGalleries as $gallery) {
+    $id = $gallery->getId();
+    $listFirstImages[$id] = $managerImage->getFirstImageByGallery($id);
+}
+
+
+
 ?>
 
 <div class="gallery-body">
-	<?php foreach ($listGalleries as $gallery) {?>
-    <div class="gallery-list">
-        <div class="affichage" id="<?= "gallery" . $gallery->getId() ?>"><a href="#"><?= $gallery->getName() ?></a></div>
-        <div class="gallery-suppr-button">
-        	<span class="glyphicon glyphicon-trash"></span>
+    <?php foreach ($listGalleries as $gallery) {?>
+        <div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
+                <div class="gal-vign-picture">
+                     <?php if ($listFirstImages[$gallery->getId()] != null) {?>
+                        <img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
+                    <?php } else { ?>
+                    <img src="http://placehold.it/120&text=pic">
+                    <?php } ?>
+                </div>
+                <div class="gal-vign-detail">
+                    <a href="#"><p><?= $gallery->getName() ?></p></a>
+                    <button class="btn btn-default btn-xsm gal-suppr-btn">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
+                        <button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </a>        
+               </div>
         </div>
-    </div>
-	<?php } ?>
+    <?php } ?>
 </div>
