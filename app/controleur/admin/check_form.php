@@ -88,7 +88,7 @@ function checkCategoryName($categoryName, $listCategories, $editCategory) {
 	if(!$categoryName) {
 		$response = array(
 			'ok' => false, 
-	    	'msg' => "Veuillez entrer un nom de catégorie"
+	    	'msg' => "Entrez un nom de catégorie"
     	);
 	} elseif (!preg_match('/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/', $categoryName)) {
 		$response = array(

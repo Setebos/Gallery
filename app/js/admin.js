@@ -417,7 +417,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		}
 	});
 
-	$("#newGalleryForm").submit(function(event) {
+	$("#newGalleryForm, #editGalleryForm").submit(function(event) {
 		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
 		var galleryName = $('#galleryName').val();
 		var ok = true;
@@ -428,6 +428,10 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		} else if (!galleryName.match(accepted)) {
 			$('#validateGalleryName').addClass("form-error");
 			$('#validateGalleryName').html("Utilisez uniquement des caractères alphanumériques");
+			ok = false;
+		} else if ($('#validateGalleryName').text() == "Ce nom est déjà utilisé"){
+			$('#validateGalleryName').addClass("form-error");
+			$('#validateGalleryName').html("Ce nom est déjà utilisé");
 			ok = false;
 		} else {
 			$('#validateGalleryName').html("")
