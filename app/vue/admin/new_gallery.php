@@ -16,7 +16,7 @@
 			  	</div>
 			  	<div class="new-gallery-form-body">
 			  		<div class="well">
-	                    <form class="new-gallery-align" method="post" action="<?= "index.php?section=create_gallery "?>" role="form">
+	                    <form id="newGalleryForm" class="new-gallery-align" method="post" action="<?= "index.php?section=create_gallery "?>" role="form">
 	                        <div class="form-group">
 	                            <label name="galleryName">Nom : </label>
 	                            <input id="galleryName" type="text" name="galleryName" />

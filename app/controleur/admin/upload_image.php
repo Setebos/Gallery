@@ -13,10 +13,18 @@ include_once("app/modele/ResizeImage.php");
 if ($_FILES['imageUpload']['error'] > 0) {
     echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
 } else {
-    $title = $_POST['imageName'];
+
+    $title = htmlspecialchars($_POST['imageName']);
     $imageGallery = $_POST['imageGallery'];
-    $description = $_POST['imageDescription'];
-    $imageCategories = $_POST['imageCategories'];
+    if(isset($_POST['imageDescription'])) {
+        $description = htmlspecialchars($_POST['imageDescription']);
+    } else {
+        $description = null;
+    }
+    if(isset($_POST['imageCategories'])) {
+        $imageCategories = htmlspecialchars($_POST['imageCategories']);
+    }
+    
     $validExtensions = array('.jpg', '.jpeg', '.gif', '.png');
     $fileName = strstr($_FILES['imageUpload']['name'], ".", true);
     $fileExtension = strstr($_FILES['imageUpload']['name'], ".");
@@ -91,16 +99,17 @@ if ($_FILES['imageUpload']['error'] > 0) {
             $newImage->setLocationThumbnail($destinationThumbnail);
             $imageManager->updateImage($newImage);
 
-
-            foreach ($imageCategories as $imageCategory) {
-                $category = $categoryManager->getCategoryByName($imageCategory);
-                $categories = new ImageCategory(array(
-                    'image_id' => $newImage->getId(),
-                    'category_id' => $category->getId()
-                ));
-                $imageCategoryManager->createImageCategory($categories);
-            }
-            header('Location: index.php?section=admin_index');  
+            if(isset($_POST['imageCategories'])) {
+                foreach ($imageCategories as $imageCategory) {
+                    $category = $categoryManager->getCategoryByName($imageCategory);
+                    $categories = new ImageCategory(array(
+                        'image_id' => $newImage->getId(),
+                        'category_id' => $category->getId()
+                    ));
+                    $imageCategoryManager->createImageCategory($categories);
+                }
+            } 
+            header('Location: index.php?section=admin_index'); 
         }
 
     } else {

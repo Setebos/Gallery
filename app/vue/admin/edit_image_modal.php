@@ -61,8 +61,10 @@
                         <input class="categoryName" type="text" name="categoryName" placeholder="Nouvelle catégorie"/>
                     </div>
                     <button type="submit" class="btn-sm btn-default categorySubmit">Créer</button>
+                    <span id="validateCategoryName"></span>
                 </form>
             </div>
+
     	</div>
   	</div>
  </div>

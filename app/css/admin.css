@@ -446,6 +446,12 @@ margin-left: 0px;
     margin-bottom: 10px;
 }
 
+/***********        Formulaires        ***********/
+
+.form-error {
+    color: #B94A48;
+}
+
 
 /***********        Surcharges bootstrap        ***********/
 

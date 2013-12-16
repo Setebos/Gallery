@@ -16,7 +16,7 @@ class ResizeImage
 		{
 			$this->setImage( $filename );
 		} else {
-			throw new Exception('Image ' . $filename . ' can not be found, try another image.');
+			throw new Exception('L\'image ' . $filename . ' n\'existe pas.');
 		}
 	}
 
@@ -27,26 +27,21 @@ class ResizeImage
 
 		switch($this->ext)
 	    {
-	    	// Image is a JPG
 	        case 'image/jpg':
 	        case 'image/jpeg':
-	        	// create a jpeg extension
 	            $this->image = imagecreatefromjpeg($filename);
 	            break;
 
-	        // Image is a GIF
 	        case 'image/gif':
 	            $this->image = @imagecreatefromgif($filename);
 	            break;
 
-	        // Image is a PNG
 	        case 'image/png':
 	            $this->image = @imagecreatefrompng($filename);
 	            break;
 
-	        // Mime type not found
 	        default:
-	            throw new Exception("File is not an image, please use another file type.", 1);
+	            throw new Exception("Le fichier n'est pas une image.", 1);
 	    }
 
 	    $this->origWidth = imagesx($this->image);
@@ -67,14 +62,12 @@ class ResizeImage
 	    {
 	        case 'image/jpg':
 	        case 'image/jpeg':
-	        	// Check PHP supports this file type
 	            if (imagetypes() & IMG_JPG) {
 	                imagejpeg($this->newImage, $savePath, $imageQuality);
 	            }
 	            break;
 
 	        case 'image/gif':
-	        	// Check PHP supports this file type
 	            if (imagetypes() & IMG_GIF) {
 	                imagegif($this->newImage, $savePath);
 	            }
@@ -83,7 +76,6 @@ class ResizeImage
 	        case 'image/png':
 	            $invertScaleQuality = 9 - round(($imageQuality/100) * 9);
 
-	            // Check PHP supports this file type
 	            if (imagetypes() & IMG_PNG) {
 	                imagepng($this->newImage, $savePath, $invertScaleQuality);
 	            }
@@ -126,7 +118,7 @@ class ResizeImage
 				$this->resizeHeight = $height;
 			break;
 
-			case 'precrop':
+			case 'precrop': //Redimensionnement de l'image avant crop pour la partie admin 
 				if($this->origWidth > $width || $this->origHeight > $height)
 				{
 					if ( $this->origWidth <= $this->origHeight ) {
@@ -142,9 +134,9 @@ class ResizeImage
 		        }
 			break;
 
-			case 'crop':
+			case 'crop': //crop pour la partie admin
 
-		        if($this->origWidth < 120 || $this->origHeight < 120) {
+		        if($this->origWidth < 120 || $this->origHeight < 120) { //Si l'image d'origine est plus petite que le thumbnail désiré, pas de crop
 		        	$this->newImage = imagecreatetruecolor($this->origWidth, $this->origHeight);
 					return imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->origWidth, $this->origHeight, $this->origWidth, $this->origHeight);
 					break;
