@@ -51,10 +51,31 @@
   ];
 
 
-
-
-   $("#search-input").autocomplete({
-      source: 'app/modele/autocomplete.php'
-   }); 
+  $("#search-input").autocomplete( {
+    source: function(request,response) {
+        $.ajax ( {
+          url: "index.php?section=autocomplete",
+          type:"get",
+          data: {term: request.term},
+          dataType: "json",
+          success: function(data) {
+            console.log('quel succes');
+            response($.map(data, function(item){
+              console.log(item.value);
+              return {
+                label: item.value,
+                value: item.value
+              }
+            }));
+          },
+          error: function (XHR, textStatus, errorThrown){
+            console.log(XHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+              console.log('quel echec');
+          }
+        })
+    }
+  });
 
 })
