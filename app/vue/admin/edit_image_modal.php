@@ -1,7 +1,15 @@
  <div class="upload-image-form-part">
   	<div class="upload-image-form-body">
   		<div class="well">
+            
             <form class="upload-image-align" method="post" action="<?= "index.php?section=update_image"?>" role="form">
+                <div class="edit-btn-image">
+                    <button type="submit" class="btn btn-default btn-sm">Modifier</button>
+                    <button class="btn btn-default btn-xsm pull-right btn-del-img">
+                        <span class="glyphicon glyphicon-trash "></span>
+                    </button>
+                </div>
+                <hr>
                 <div class="form-group">
                     <label name="imageName">Titre de l'image : </label>
                     <input type="text" name="imageName" value="<?= $image->getTitle() ?>"/>
@@ -38,35 +46,23 @@
 				        		</li>
                 			<?php }} ?>
             			<li>
-            				<div class="btn btn-default btn-sm upload-image-new-category">
+            				<div class="btn btn-default btn-xsm upload-image-new-category">
 						    	<a href="#" title="créer une nouvelle catégorie">+</a>
 						    </div>
             			</li>
             		</ul>
 			    </div>
 			    <input type="hidden" name="id" value=<?= $id ?>>
-                <div class="col-md-offset-4">
-                    <div class= "upload-image-cancel">
-                		<a href="<?= "index.php?section=admin_index "?>">Annuler</a>
-                	</div>
-                	<div class="upload-image-valid">
-                    	<button type="submit" class="btn btn-default">Modifier</button>
-                    </div>
-            	</div>
+                
             </form>
             <div class="new-category">
-		    	<form class="new-category-align" method="post" action="#" role="form">
-					<div class="new-category-valid">
-						<label name="categoryName">Nom de catégorie : </label>
-						<input id="categoryName" type="text" name="categoryName" />
-					</div>
-					<div class="new-category-valid">
-				    	<div class="new-category-valid">
-				        	<button id="categorySubmit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
-				        </div>
-					</div>
-				</form>
-		    </div>
+                <form class="new-category-align form-inline" method="post" action="#" role="form">
+                    <div class="form-group">
+                        <input class="categoryName" type="text" name="categoryName" placeholder="Nouvelle catégorie"/>
+                    </div>
+                    <button type="submit" class="btn-sm btn-default categorySubmit">Créer</button>
+                </form>
+            </div>
     	</div>
   	</div>
  </div>

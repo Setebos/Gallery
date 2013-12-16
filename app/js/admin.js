@@ -205,11 +205,13 @@ $(document).ready(function() {
 	/***************  NOUVELLE IMAGE  *****************/
 
 	$(document).on("click", ".upload-image-new-category", function() {
-		var display = $(".new-category").css("display");
+		var newCatBlock = $(".new-category");
+		var display = newCatBlock.css("display");
 		if (display == "none") {
-			$(".new-category").css("display", "block");
+			newCatBlock.css("display", "block");
+			newCatBlock.find('input').focus();
 		} else {
-			$(".new-category").css("display", "none");
+			newCatBlock.css("display", "none");
 		};
 		
 	});
@@ -217,17 +219,19 @@ $(document).ready(function() {
 
 	/***************  NOUVELLE CATEGORIE  *****************/
 
-	$(document).on("click", "#categorySubmit", function(event) {
+/* dans page nouvelle image et dans modal edit image */
+	$(document).on("click", ".categorySubmit", function(event) {
 		event.preventDefault();
-		var category = $("#categoryName").val();
+		var category = $(this).parent().find('.categoryName');
 		$.ajax({
 			type: "POST",
 			url: "index.php?section=create_category",
-			data: {name: category},
+			data: {name: category.val()},
 			dataType: "html",
 			success: function(data) {
 				$(".new-category").css("display", "none");
 				$(".list-categories").html(data);
+				category.val("");
 			},
 		})
 	});
@@ -251,7 +255,6 @@ $(document).ready(function() {
 
 /***************  SUPRESSION CATEGORIE  *****************/
 $(".picture-header-option-part").on("click", ".span-del-cat", function() {
-		console.log("click del cat");
 		var idLong = $(this).attr('id');
 		var idCourt = idLong.substring(7);
 	 	$("#dial-del-cat").css("display", "block");
