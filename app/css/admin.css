@@ -377,6 +377,23 @@ margin-left: 0px;
     margin: 15px;
 }
 
+.upload-image-align .edit-btn-image{
+    display: inline;
+    margin-bottom: 10px;
+}
+.upload-image-align .btn-del-img{
+    background-color: #db2d27;
+    border-color: #db2d27;
+}
+
+.upload-image-align .btn-del-img:hover{
+    background-color: #b5140e;
+    border-color: #db2d27;
+}
+
+
+
+
 .upload-image-align label {
     width: 200px;
     display: inline-block;
@@ -425,8 +442,8 @@ margin-left: 0px;
 .new-category-align label {
     width: 200px;
     display: inline-block;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /***********        Formulaires        ***********/

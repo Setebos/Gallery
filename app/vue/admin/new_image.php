@@ -60,23 +60,17 @@
                         			</li>
                         		</ul>
 						    </div>
-						    
 	                    </form>
-
 	                    <div class="new-category">
-					    	<form class="new-category-align" method="post" action="#" role="form">
-								<div class="new-category-valid">
-									<label name="categoryName">Nom de catégorie : </label>
-									<input id="categoryName" type="text" name="categoryName" />
-								</div>
-								<div class="new-category-valid">
-							    	<div class="new-category-valid">
-							        	<button id="categorySubmit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
-							        	<span id="validateCategoryName"></span>
-							        </div>
-								</div>
-							</form>
-					    </div>
+			                <form class="new-category-align form-inline" method="post" action="#" role="form">
+			                    <div class="form-group">
+			                        <input class="categoryName" type="text" name="categoryName" placeholder="Nouvelle catégorie"/>
+			                    </div>
+			                    <button type="submit" class="btn-sm btn-default categorySubmit">Créer</button>
+			                    <span id="validateCategoryName"></span>
+			                </form>
+			            </div>
+
                 	</div>
 			  	</div>
 			 </div>

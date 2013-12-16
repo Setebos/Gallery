@@ -13,7 +13,6 @@ if(isset($_GET["id"])) {
 	$id = $_GET['id'];
 }
 
-
 $managerGallery = new GalleryManager($db);
 $managerImage = new ImageManager($db);
 
@@ -28,7 +27,6 @@ foreach ($listGalleries as $gallery) {
     $id = $gallery->getId();
     $listFirstImages[$id] = $managerImage->getFirstImageByGallery($id);
 }
-
 
 
 ?>
