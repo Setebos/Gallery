@@ -6,14 +6,18 @@ require_once("ressources/templates/header.php");
   <section class="categories">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <div><p class="intertitre">Catégories</p></div>
-        <ul class="list-inline">
-          <?php foreach ($listCategories as $category) {?>
-          <li>
-            <a id="<?= "cat" . $category->getId() ?>" class="cat-name cat-active"><?= $category->getName() ?></a>
-          </li>
-          <?php } ?>
-        </ul>
+          <ul class="list-inline">
+            <li>
+              <a  id="all-cat" class="cat-name cat-active">Toutes catégories</a>
+            </li>
+          </ul> 
+          <ul class="list-inline cat-bdd">
+            <?php foreach ($listCategories as $category) {?>
+            <li>
+              <a href="#" id="<?= "cat" . $category->getId() ?>" class="cat-name"><?= $category->getName() ?></a>
+            </li>
+            <?php } ?>
+          </ul>
       </div>
     </div>
   </section >
