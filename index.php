@@ -29,6 +29,11 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'logout_controller')
   include_once("app/controleur/logout_controller.php");
 }
 
+if  (isset($_GET['section']) AND $_GET['section'] == 'autocomplete')
+{                
+  include_once("app/controleur/autocomplete.php");
+}
+
 
 // ADMIN //////////////////////////////////////////////////////////////////////////////////////
 

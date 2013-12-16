@@ -155,16 +155,15 @@ class ImageManager {
 	public function getImagesTerms($term){
 		$listTerms = array();
 
-		var_dump($listTerms);
-
-		$q = $this->_db->query('SELECT title FROM image WHERE title LIKE "'.$term.'%"  ');
+		$q = $this->_db->query('SELECT * FROM image WHERE title LIKE "%'.$term.'%"  ');
 
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-			var_dump($donnees);
-			array_push($listTerms, $donnees);
+			// $donnees_array['id'] = $donnees['id'];
+			$donnees_array['value'] = $donnees['title'];
+			array_push($listTerms, $donnees_array);
 		}
 
-		return $$listTerms;
+		return $listTerms;
 	}
 
 	public function setDb(PDO $db) {
