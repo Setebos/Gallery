@@ -12,7 +12,7 @@
 			  	</div>
 			  	<div class="upload-image-form-body">
 			  		<div class="well">
-	                    <form class="upload-image-align" enctype="multipart/form-data" method="post" action="<?= "index.php?section=upload_image "?>" role="form">
+	                    <form id="newImageForm" class="upload-image-align" enctype="multipart/form-data" method="post" action="<?= "index.php?section=upload_image "?>" role="form">
 	                        <div class="pull-right">
 		                        <div class= "upload-image-cancel">
 	                        		<a href="<?= "index.php?section=admin_index "?>">Annuler</a>
@@ -24,7 +24,8 @@
 
 	                        <div class="form-group">
 	                            <label name="imageName">Titre de l'image : </label>
-	                            <input type="text" name="imageName" />
+	                            <input id="imageName" type="text" name="imageName" />
+	                            <span class="validateImageName form-error"></span>
 	                        </div>
 	                        <div class="form-group">
 	                            <label name="imageGallery">Galerie : </label>
@@ -40,7 +41,8 @@
 	                        </div>
 	                        <div class="form-group">
 					        	<label name="imageUpload">Sélectionner une image : </label>
-						    	<input type="file" name="imageUpload" />
+						    	<input id="imageUpload" type="file" name="imageUpload" />
+						    	<span class="validateImageUpload form-error"></span>
 						    </div>
 						    <div class="form-group list-categories">
 					        	<label name="imageCategories">Choisissez des catégories : </label>
@@ -70,6 +72,7 @@
 								<div class="new-category-valid">
 							    	<div class="new-category-valid">
 							        	<button id="categorySubmit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
+							        	<span id="validateCategoryName"></span>
 							        </div>
 								</div>
 							</form>

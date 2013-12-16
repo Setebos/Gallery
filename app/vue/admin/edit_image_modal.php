@@ -62,7 +62,8 @@
 					</div>
 					<div class="new-category-valid">
 				    	<div class="new-category-valid">
-				        	<button id="categorySubmit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
+				        	<button id="new-cat-submit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
+                            <span id="validateCategoryName"></span>
 				        </div>
 					</div>
 				</form>

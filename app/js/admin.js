@@ -385,6 +385,39 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 				}
 			}
 		})
-	})
+	});
+
+	$('#newImageForm').submit(function(event) {
+		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
+		var acceptedFiles = new RegExp(/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$/);
+		var title = $('#imageName').val();
+		var image = $('#imageUpload').val();
+		if(title == "") {
+			$('.validateImageName').html("L'image doit avoir un titre");
+		} else if(!title.match(accepted)) {
+			$('.validateImageName').html("Utilisez uniquement des caractères alphanumériques");
+		} else {
+			$('.validateImageName').html("");
+		}
+		if(image == "") {
+			$('.validateImageUpload').html("Choisissez une image");
+		} else if(!image.match(acceptedFiles)) {
+			$('.validateImageUpload').html("Format de fichier incorrect");
+		} else {
+			$('.validateImageUpload').html("");
+		}
+
+		if($('.validateImageUpload').html() != "" || $('.validateImageName').html() != "") {
+			return false;
+		}
+	)};
+
+	$("#newGalleryForm").submit(function(event) {
+		event.preventDefault();
+		var galleryName = $('#galleryName').val();
+		if(galleryName == "") {
+			$('.validateGalleryName').html("La galerie doit avoir un nom");
+		}
+	});
 
 }); 

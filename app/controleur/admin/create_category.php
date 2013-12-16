@@ -4,7 +4,7 @@ include_once("app/modele/CategoryManager.php");
 include_once("app/modele/Category.php");
 
 if(isset($_POST["name"])) {
-	$name = $_POST['name'];
+	$name = htmlspecialchars($_POST['name']);
 }
 
 $manager = new CategoryManager($db);
@@ -19,7 +19,7 @@ foreach ($categories as $category) {
 	}
 }
 
-if($existe == false) {
+if($existe == false) { // Le nom de catégorie doit être unique
 	$newCategory = new Category(array(
 		'id' => null,
 		'name' => $name

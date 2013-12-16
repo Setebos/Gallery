@@ -3,8 +3,12 @@
 include_once("app/modele/GalleryManager.php");
 include_once("app/modele/Gallery.php");
 
-$name = $_POST['galleryName'];
-$description = $_POST['galleryDescription'];
+$name = htmlspecialchars($_POST['galleryName']);
+if(isset($_POST['galleryDescription'])) {
+	$description = htmlspecialchars($_POST['galleryDescription']);
+} else {
+	$description = null;
+}
 
 $manager = new GalleryManager($db);
 
@@ -12,7 +16,7 @@ $galleryNames = $manager->getGalleryNames();
 
 $existe = false;
 
-foreach ($galleryNames as $galleryName) {
+foreach ($galleryNames as $galleryName) { //Le nom de galerie doit être unique
 	if($name == $galleryName['name']) {
 		$existe = true;
 	}

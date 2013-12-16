@@ -62,7 +62,7 @@ function checkGalleryName($galleryName, $listGalleries, $editGallery) {
 			'ok' => false, 
 	    	'msg' => "Veuillez entrer un nom de galerie"
     	);
-	} elseif (!preg_match('/^[a-zA-Z0-9 ]+$/', $galleryName)) {
+	} elseif (!preg_match('/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/', $galleryName)) {
 		$response = array(
       		'ok' => false, 
       		'msg' => "Le nom de la galerie ne doit contenir que des caractères alphanumériques"
@@ -90,7 +90,7 @@ function checkCategoryName($categoryName, $listCategories, $editCategory) {
 			'ok' => false, 
 	    	'msg' => "Veuillez entrer un nom de catégorie"
     	);
-	} elseif (!preg_match('/^[a-zA-Z0-9 ]+$/', $categoryName)) {
+	} elseif (!preg_match('/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/', $categoryName)) {
 		$response = array(
       		'ok' => false, 
       		'msg' => "Le nom de la catégorie ne doit contenir que des caractères alphanumériques"
