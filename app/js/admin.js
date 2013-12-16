@@ -166,17 +166,16 @@ $(document).ready(function() {
 		var idLong = $(this).children("img").attr('id');
 		var idCourt = idLong.substring(6);
 		var lien = "index.php?section=edit_image&id=" + idCourt;
-		console.log(lien);
 		show_modal( lien, 'modal_info_pic');
-		if(! $(this).hasClass("picture-selected")) {
-			$(".picture-div").removeClass("picture-selected");
-			$(this).addClass("picture-selected");
-			$(".picture-options").css("display", "block");
-			$(".edit-picture-button").children("a").attr("href", lien);
-		} else {
-			$(this).removeClass("picture-selected");
-			$(".picture-options").css("display", "none");
-		}
+		// if(! $(this).hasClass("picture-selected")) {
+		// 	$(".picture-div").removeClass("picture-selected");
+		// 	$(this).addClass("picture-selected");
+		// 	$(".picture-options").css("display", "block");
+		// 	$(".edit-picture-button").children("a").attr("href", lien);
+		// } else {
+		// 	$(this).removeClass("picture-selected");
+		// 	$(".picture-options").css("display", "none");
+		// }
 	}); 
 
 	var show_modal = function(path, element, params) {
@@ -285,6 +284,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 
 	/***************  VALIDATION FORMULAIRE  *****************/
 
+	// Formulaire de création de galerie
 	$("#galleryName").keyup(function() {
 		var validateGalleryName = $('#validateGalleryName');
 		var t = this; 
@@ -295,14 +295,12 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
-		  		console.log(t.value);
 		    	$.ajax({
 		      		url: 'index.php?section=check_form',
 		      		data: {action: "checkGallery", galleryName: t.value},
 		      		dataType: 'json',
 		      		type: 'post',
 		      		success: function(data) {
-		      			console.log("succes");
 		        		validateGalleryName.html(data.msg);
 		      		}
 		    	});
@@ -312,6 +310,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		}
 	});
 
+	//  Formulaire d'édition de galerie (différence : le nom initial de la galerie doit être considéré comme valide malgré sa présence dans la bdd)
 	$("#editGallery").keyup(function() {
 		var validateGalleryName = $('#validateGalleryName');
 		var t = this; 
@@ -323,7 +322,6 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
-		  		console.log(t.value);
 		    	$.ajax({
 		      		url: 'index.php?section=check_form',
 		      		data: {action: "checkGallery", galleryName: t.value, editGallery: editGallery},
@@ -339,7 +337,8 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		}
 	});
 
-	$(document).on("keyup", "#categoryName", function() {
+	// Formulaire de création de catégorie
+	$(document).on("input", "#categoryName", function() {
 		var validateCategoryName = $('#validateCategoryName');
 		var t = this; 
 		if (this.value != this.lastValue) {
@@ -349,14 +348,12 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	validateCategoryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
-		  		console.log(t.value);
 		    	$.ajax({
 		      		url: 'index.php?section=check_form',
 		      		data: {action: "checkCategory", categoryName: t.value},
 		      		dataType: 'json',
 		      		type: 'post',
 		      		success: function(data) {
-		      			console.log("succes");
 		        		validateCategoryName.html(data.msg);
 		      		}
 		    	});
@@ -365,5 +362,29 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	this.lastValue = this.value;
 		}
 	});
+
+	// Formulaire de connexion
+	$("#loginForm").submit(function(event) {
+		event.preventDefault();
+		var login = $("#inputLogin").val();
+		var password = $("#inputPassword").val();
+		console.log(login);
+
+		$.ajax({
+			type: 'post',
+			url: 'index.php?section=login_controller',
+			data: {login: login, password: password},
+			dataType: 'json',
+			success: function(data) {
+				if(data.valid == false) {
+					$("#loginError").css("display", "inline");
+					$(".form-group").addClass("has-error");
+				}
+				else {
+					window.location.href = data.redirect;
+				}
+			}
+		})
+	})
 
 }); 
