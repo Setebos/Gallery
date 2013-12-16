@@ -295,6 +295,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	if (this.timer) {
 		  		clearTimeout(this.timer);	
 		  	} 
+		  	validateGalleryName.removeClass("form-error");
 		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
@@ -322,6 +323,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	if (this.timer) {
 		  		clearTimeout(this.timer);	
 		  	} 
+		  	validateGalleryName.removeClass("form-error");
 		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
@@ -416,10 +418,23 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 	});
 
 	$("#newGalleryForm").submit(function(event) {
-		event.preventDefault();
+		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
 		var galleryName = $('#galleryName').val();
+		var ok = true;
 		if(galleryName == "") {
-			$('.validateGalleryName').html("La galerie doit avoir un nom");
+			$('#validateGalleryName').addClass("form-error");
+			$('#validateGalleryName').html("La galerie doit avoir un nom");
+			ok = false;
+		} else if (!galleryName.match(accepted)) {
+			$('#validateGalleryName').addClass("form-error");
+			$('#validateGalleryName').html("Utilisez uniquement des caractères alphanumériques");
+			ok = false;
+		} else {
+			$('#validateGalleryName').html("")
+		}
+
+		if(!ok) {
+			return false;
 		}
 	});
 

@@ -22,7 +22,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
         $description = null;
     }
     if(isset($_POST['imageCategories'])) {
-        $imageCategories = htmlspecialchars($_POST['imageCategories']);
+        $imageCategories = $_POST['imageCategories'];
     }
     
     $validExtensions = array('.jpg', '.jpeg', '.gif', '.png');
