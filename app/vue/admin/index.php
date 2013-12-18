@@ -80,7 +80,7 @@
 			 </div>
 			 <div class="col-md-8 picture-part">
 			  	<div class="picture-header">
-			  		<div class="btn-admin pull-right"  title="Ajouter une image à la galerie">
+			  		<div class="btn-admin pull-left"  title="Ajouter une image à la galerie">
 			  			<a href="<?= "index.php?section=new_image "?>">+</a>
 			  		</div>
 			  		<ul>

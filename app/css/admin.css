@@ -33,6 +33,10 @@ a:hover{
     padding: 0;
 }
 
+ .gallery-header h3{
+    margin: 0;
+}
+
 .gallery-body {
     max-height: 90%;
 }
@@ -134,6 +138,10 @@ a:hover{
     height: 100%;
 /*    min-height: 45%;*/
     padding: 0;
+}
+
+.picture-header h3{
+    margin: 0 0 0 50px;
 }
 
 .picture-header, .gallery-header{
@@ -278,10 +286,9 @@ margin-left: 0px;
 }
 
 .picture-header h3, .gallery-header h3{
-    padding: 15px 15px 13px 15px;
-    margin: 0;
     font-size: 22px;
     font-weight: bold;
+    padding: 15px 15px 13px 15px;
 }
 
 .picture-header .btn-admin, .gallery-header .btn-admin{
