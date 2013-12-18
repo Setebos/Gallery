@@ -5,7 +5,7 @@
             <form class="upload-image-align" method="post" action="<?= "index.php?section=update_image"?>" role="form">
                 <div class="edit-btn-image">
                     <button type="submit" class="btn btn-default btn-sm">Modifier</button>
-                    <button id="<?= "del-img-".$id ?>" class="btn btn-default btn-xsm pull-right btn-del-img">
+                    <button id="<?= "del-img-".$id ?>" class="btn btn-default btn-xsm pull-right btn-del-img" data-toggle="clickover" data-placement="left" data-content="<?= $confirmText ?>" title="Supprimer l'image ?">
                         <span class="glyphicon glyphicon-trash "></span>
                     </button>
                 </div>

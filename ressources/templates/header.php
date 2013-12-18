@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="app/css/plugin.css"/>
         
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-        <?php $IE8 = (ereg('MSIE 8',$_SERVER['HTTP_USER_AGENT'])) ? true : false;
+        <?php $IE8 = (preg_match('/msie/',$_SERVER['HTTP_USER_AGENT'])) ? true : false;
             if ($IE8 == 1) {  ?>
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
            <?php  } else { ?>

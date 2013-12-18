@@ -7,7 +7,12 @@
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
         <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-        <script type="text/javascript" src="app/js/jquery_min.js"></script>
+        <?php $IE8 = (preg_match('/msie/',$_SERVER['HTTP_USER_AGENT'])) ? true : false;
+            if ($IE8 == 1) {  ?>
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+           <?php  } else { ?>
+                <script type="text/javascript" src="app/js/jquery_2.0.3.min.js"></script>
+        <?php } ?>
         <script type="text/javascript" src="app/js/jquery-ui.min.js"></script>
         <!--   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
         <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
