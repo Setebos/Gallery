@@ -49,14 +49,16 @@ if ( typeof Object.create !== 'function' ) {
               '<button id="autoplay-btn" type="button" class="btn btn-default autoplay-btn">' +
                 'Lancer le diaporama' +
               '</button>' + 
-              '<div class="btn-group btn-dir">' +
+              '<div class="btn-nav-group btn-dir">' +
                 '<button data-dir="prev" type="button" class="btn btn-default">' +
-                    '<span class="glyphicon glyphicon-chevron-left"></span>' +
+                    '<span class="icon gal-nav-icon" aria-hidden="true" data-icon="&#59229;"></span>' +
                 '</button>' +
                 '<button data-dir ="next" type="button" class="btn btn-default">' +
-                    '<span class="glyphicon glyphicon-chevron-right"></span>'   +
+                    '<span class="icon gal-nav-icon" aria-hidden="true" data-icon="&#59230;"></span>' +
                 '</button>'+
-              '</div>' ;
+              '</div>';
+
+
 
             // mise en forme dynamique des éléments de la gallery suivant les options du plugin
             self.navSection.css({
