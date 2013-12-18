@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Test Gallery js </title>
-        <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
+        <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/>       
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <link rel="stylesheet" type="text/css" href="app/css/plugin.css"/>
         

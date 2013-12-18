@@ -8,8 +8,51 @@
 			  		<div class="btn-admin pull-right" title="Ajouter une galerie">
 			  			<a href="<?= "index.php?section=new_gallery "?>">+</a>
 			  		</div>
+			  		<ul>
+			  			<li>
+			  				<a href="#" id="display-options"><p>Options d'affichage</p></a>
+			  			</li>
+			  		</ul>
 			  		<h3>Galeries</h3>
 			 	</div>
+			 	<div class="gallery-header-option-part">
+				  	<div class="display-gal-opt">
+				  		<form role="form">
+					  		<h4> Options d'affichage de la galerie</h4>
+					  		<div class="row well">
+					  			<div class="col-md-5">
+					  				<div class="form-group">
+					  					<label >Afficher toute la galerie</label>
+										    	<label class="checkbox-inline">
+										      	<input type="checkbox"> Oui
+										    	</label>
+										    	<label class="checkbox-inline">
+										      	<input type="checkbox"> Non
+										    	</label>
+									</div>
+									<div class="form-group">
+									    <label for="exampleInputEmail1">Largeur du diaporama (en pixel)</label>
+									    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="750">
+									</div>
+					  			</div>
+						  		<div class="col-md-5  ">
+						  			<div class="form-group">
+					  					<label >Nombre d'images affichées par ligne</label>
+									    	<input class="categoryName"  class="form-control" placeholder="3">
+									</div>
+									<div class="form-group">
+									    <label for="exampleInputEmail1">Durée d'affichage des images dans le diaporama</label>
+									    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="5000	">
+									</div>
+
+									<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
+									<br/><span id="validateGalOptions"></span>
+									
+								</div>
+							</div>
+						</form>
+				  	</div>	
+				</div>
 			 	<div class="gallery-body">
 			 		<?php foreach ($listGalleries as $gallery) {?>
 	                    <div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
@@ -51,7 +94,7 @@
 				  	<div class="new-cat">
 				  		<div class="row">
 				  			<div class="col-md-8">
-				  				<p> Catégories existantes </p>
+				  				<h4> Catégories existantes </h4>
 				  				<ul class="list-inline">
 						          <?php foreach ($listCategories as $category) {?>
 							          <li class="cat-label">
@@ -77,30 +120,20 @@
 				  	</div>	
 				</div>
 			  	<div class="picture-body">
-                	<div class="conteneur-images">
-                    	<h3>Aucune galerie sélectionnée</h3>
-                    	<ul class="list-inline sortable">
-	                    	<?php foreach ($listImages as $image) {?>
-		                    	<li class="picture-list">
-	                        		<div class="picture-div" data-toggle="modal" data-target="#myModal">
-	                        			<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>" title="<?= $image->getTitle() ?>">
-	                    			</div>
-	                    		</li>
-	                  		<?php } ?>
-                    	</ul>
-            		</div>
-                	<!-- <div class="picture-options">
-                		<div class="btn btn-default edit-picture-button">
-                		 	<a href="<?= "index.php?section=edit_image "?>">Modifier l'image</a>
-                		</div>
-                		<br/>
-                		<div class="btn btn-default">
-                		 	<a href="<?= "index.php?section=delete_image "?>">Supprimer l'image</a>
-                		</div>
-                	</div>
-			 	</div> -->
-			 </div>
-		</div>
+		                	<div class="conteneur-images">
+		                    	<h3>Aucune galerie sélectionnée</h3>
+		                    	<ul class="list-inline sortable">
+			                    	<?php foreach ($listImages as $image) {?>
+				                    	<li class="picture-list">
+			                        		<div class="picture-div" data-toggle="modal" data-target="#myModal">
+			                        			<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>" title="<?= $image->getTitle() ?>">
+			                    			</div>
+			                    		</li>
+			                  		<?php } ?>
+		                    	</ul>
+		            		</div>
+					 </div>
+				</div>
 		<!-- 		Alert suppression galerie			  -->
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
 			<p>
