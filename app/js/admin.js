@@ -296,6 +296,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  		clearTimeout(this.timer);	
 		  	} 
 		  	validateGalleryName.removeClass("form-error");
+		  	validateGalleryName.removeClass("form-ok");
 		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
@@ -305,6 +306,11 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		      		dataType: 'json',
 		      		type: 'post',
 		      		success: function(data) {
+		      			if(data.ok == true) {
+		        			validateGalleryName.addClass("form-ok");
+		        		} else if (data.ok == false) {
+		        			validateGalleryName.addClass("form-error");
+		        		}
 		        		validateGalleryName.html(data.msg);
 		      		}
 		    	});
@@ -324,6 +330,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  		clearTimeout(this.timer);	
 		  	} 
 		  	validateGalleryName.removeClass("form-error");
+		  	validateGalleryName.removeClass("form-ok");
 		  	validateGalleryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
@@ -333,6 +340,11 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		      		dataType: 'json',
 		      		type: 'post',
 		      		success: function(data) {
+		      			if(data.ok == true) {
+		        			validateGalleryName.addClass("form-ok");
+		        		} else if (data.ok == false) {
+		        			validateGalleryName.addClass("form-error");
+		        		}
 		        		validateGalleryName.html(data.msg);
 		      		}
 		    	});
@@ -350,6 +362,8 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		  	if (this.timer) {
 		  		clearTimeout(this.timer);	
 		  	} 
+		  	validateCategoryName.removeClass("form-error");
+		  	validateCategoryName.removeClass("form-ok");
 		  	validateCategoryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
 		  
 		  	this.timer = setTimeout(function () {
@@ -360,6 +374,11 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		      		type: 'post',
 		      		success: function(data) {
 		        		validateCategoryName.html(data.msg);
+		        		if(data.ok == true) {
+		        			validateCategoryName.addClass("form-ok");
+		        		} else if (data.ok == false) {
+		        			validateCategoryName.addClass("form-error");
+		        		}
 		      		}
 		    	});
 		  	}, 200);
