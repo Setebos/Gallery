@@ -66,7 +66,6 @@ if ($_FILES['imageUpload']['error'] > 0) {
             $resize = new ResizeImage($destination);
             
             $resize->resizeTo(120, 120, 'precrop');
-            var_dump($resize);
 
             $temp = 'app/img/temp-' . $title . $fileExtension;
 

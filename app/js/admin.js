@@ -86,8 +86,8 @@ $(document).ready(function() {
 	$(document).on("click", ".gal-suppr-btn", function() {
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
-	 	$("#dialog-confirm").css("display", "block")
-		$( "#dialog-confirm" ).dialog({
+	 	$("#dialog-confirm").css("display", "block");
+		$("#dialog-confirm").dialog({
 			resizable: false,
 			height:300,
 			width: 300,
@@ -117,7 +117,7 @@ $(document).ready(function() {
 		console.log($(this).parent());
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
-	 	$("#dialog-confirm").css("display", "block")
+	 	$("#dialog-confirm").css("display", "block");
 		$( "#dialog-confirm" ).dialog({
 			resizable: false,
 			height:300,
@@ -138,7 +138,7 @@ $(document).ready(function() {
 					})
 				},
 				"Annuler": function() {
-					$( this ).dialog( "close" );
+					// $( this ).dialog( "close" );
 				}
 			}
 		});
@@ -274,17 +274,20 @@ $("#modal_info_pic").on("click", ".btn-del-img", function(event) {
 })
 
 $("#modal_info_pic").on("click", ".del-img-confirm", function(event) {
-	var idLong = $(this).attr('id');
-	var idCourt = idLong.substring(7);
+	event.preventDefault();
+	var idLong = $(".btn-del-img").attr('id');
+	var idCourt = idLong.substring(8);
 	$.ajax({
 		type: "POST",
 		url: "index.php?section=delete_image",
 		data: { id: idCourt },
 		dataType: "html",
 		success: function(data) {
-
+			$(".conteneur-images").html(data);
+			$("#modal_info_pic").modal('hide');
 		},
 		error: function() {
+			console.log(data);
 		}
 	})
 })
