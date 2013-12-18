@@ -15,13 +15,13 @@
 			  	</div>
 			  	<div class="new-gallery-form-body">
 			  		<div class="well">
-	                    <form class="new-gallery-align" method="post" action="<?= "index.php?section=update_gallery "?>" role="form">
+	                    <form id="editGalleryForm" class="new-gallery-align" method="post" action="<?= "index.php?section=update_gallery "?>" role="form">
 	                        <div class="form-group">
 	                            <label name="galleryName">Nom : </label>
 	                            <input id="editGallery" class="<?= $gallery->getName() ?>" type="text" name="galleryName" value="<?= $gallery->getName() ?>"/>
 	                            <span id="validateGalleryName"></span>
 	                        </div>
-	                        <div ng-class="expression"ss="form-group">
+	                        <div class="form-group">
 	                            <label name="galleryDescription">Description : </label>
 	                            <textarea cols="45" rows="4" name="galleryDescription"><?= $gallery->getDescription() ?></textarea>
 	                        </div>
@@ -34,6 +34,7 @@
 		                        	<button type="submit" class="btn btn-default">Modifier</button>
 		                        </div>
 	                    	</div>
+	                    	<input type="hidden" name="originalName" value="<?= $gallery->getName() ?>">
 	                    </form>
                 	</div>
 			  	</div>
