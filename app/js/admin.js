@@ -3,6 +3,21 @@ $(document).ready(function() {
 
 	/***************  INDEX  *****************/
 
+/** Gestion partie galleries options **/
+	$(".display-gal-opt").each(function() {
+	  $.data(this, "realHeight", $(this).height());
+	}).css({ display: "none" });
+
+	$(document).on("click", "#display-options", function(){
+		var div = $(this).parents(".display-gal-opt");
+		$(".display-gal-opt").toggle(function() {
+		  div.animate({ height: div.data("realHeight") }, 600);
+		}, function() {
+		  div.animate({ height: 0 }, 600);
+		});
+	});
+
+
 /** Gestion partie filtre par catégorie **/
 	$(".cat-filters").each(function() {
 	  $.data(this, "realHeight", $(this).height());

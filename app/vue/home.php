@@ -46,12 +46,8 @@ require_once("ressources/templates/header.php");
 
 <script type="text/javascript">
 
-// var ajaxFired= false
 
 $(document).ready(function(){
-
-        
-
 
   $("#diapo").slideshowPlugin({
     'show_entire_gallery' : false,
@@ -59,7 +55,6 @@ $(document).ready(function(){
     'nb_images_per_line' : 3, 
     'displayDuration' : 2000
   });
-
 
 
 })
