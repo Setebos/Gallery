@@ -14,25 +14,8 @@ $(document).ready(function() {
 		  div.animate({ height: div.data("realHeight") }, 600);
 		}, function() {
 		  div.animate({ height: 0 }, 600);
-		});
+		});	
 	});
-
-
-/** Gestion partie filtre par catégorie **/
-	$(".cat-filters").each(function() {
-	  $.data(this, "realHeight", $(this).height());
-	}).css({ display: "none" });
-
-	$(document).on("click", "#filter-cat-btn", function(){
-		console.log("click filter cat");
-		var div = $(this).parents(".cat-filters");
-		$(".cat-filters").toggle(function() {
-		  div.animate({ height: div.data("realHeight") }, 600);
-		}, function() {
-		  div.animate({ height: 0 }, 600);
-		});
-	});
-
 
 /** Gestion partie nouvelle catégorie **/
 	$(".new-cat").each(function() {
@@ -302,6 +285,30 @@ $("#modal_info_pic").on("click", ".btn-del-img", function(event) {
 	// 	}
 	// });
 })
+
+/***************  MODIFICATION OPTIONS GALERIES *****************/
+
+$(document).on("click", ".validateGalOptions", function(event) {
+		event.preventDefault($('#diaporamaWidth').val());
+		console.log()
+		$.ajax({
+			type: "POST",
+			url: "index.php?section=update_option",
+			data: {
+				diaporama_width: $('#diaporamaWidth').val(),
+				nb_images_per_line: $('#nbImagesPerLine').val(),
+				display_duration: $('#displayDuration').val()
+				},
+			dataType: "html",
+			success: function(data) {
+				console.log("succès !");
+				// $("#display-gal-opt-msg").html(data);
+			},
+			error: function(){
+				console.log("errooooor");
+			}
+		})
+	});
 
 
 /***************  SUPRESSION CATEGORIE  *****************/

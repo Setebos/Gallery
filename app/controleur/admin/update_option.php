@@ -32,7 +32,7 @@ $newOption = new Option(array(
     $option = $managerOption->getOption($id);
     $option = $managerOption->updateOption($newOption);
 
-    header('Location: index.php?section=admin_index');  
+    // header('Location: index.php?section=admin_index');  
 
 
 

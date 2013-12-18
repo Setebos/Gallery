@@ -17,39 +17,37 @@
 			 	</div>
 			 	<div class="gallery-header-option-part">
 				  	<div class="display-gal-opt">
-				  		<form role="form">
+				  		<form role="form" id="#display-gal-option">
 					  		<h4> Options d'affichage de la galerie</h4>
 					  		<div class="well">
+					  			<span id="display-gal-opt-msg"></span>
 				  				<div class="form-group">
 				  					<label >Afficher toute la galerie : </label>
 				  					<?PHP
 										$displayTrue = 'unchecked';
 										$displayFalse = 'unchecked';
-
-										$selected_radio = $option->getShowEntireGallery();
-										$selected_radio == 0 ? $displayFalse = 'checked' : $displayTrue = 'checked';
-
-										?>
-								      	<label  class="radio-inline">
-											<input type="radio" name="displayGallery" id="displayTrue" value="displayTrue" <?PHP print $displayTrue; ?>>
-											Oui
-										</label>
-								      	<label  class="radio-inline">
-											<input type="radio" name="displayGallery" id="displayFalse" value="displayFalse" <?PHP print $displayFalse; ?>>
-											Non
-										</label>
+										$option->getShowEntireGallery() == 0 ? $displayFalse = 'checked' : $displayTrue = 'checked';
+									?>
+							      	<label  class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayTrue" value="displayTrue" <?PHP print $displayTrue; ?>>
+										Oui
+									</label>
+							      	<label  class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayFalse" value="displayFalse" <?PHP print $displayFalse; ?>>
+										Non
+									</label>
 								</div>
 								<div class="form-group">
 								    <label name="diaporamaWidth">Largeur du diaporama (en pixel) : </label>
-								    <input type="text" class="form-control" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
+								    <input type="text" class="form-control" id="diaporamaWidth" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
 								</div>
 					  			<div class="form-group">
 				  					<label name="nbImagesPerLine">Nombre d'images affichées par ligne : </label>
-								    	<input type="text"  class="form-control" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
+								    	<input type="text"  class="form-control" id="nbImagesPerLine" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
 								</div>
 								<div class="form-group">
 								    <label name="displayDuration">Durée d'affichage des images dans le diaporama : 	</label>
-								    <input type="text" class="form-control" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
+								    <input type="text" class="form-control" id="displayDuration" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
 								</div>
 								<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
 								<br/><span id="validateGalOptions"></span>

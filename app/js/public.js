@@ -30,7 +30,7 @@
     		  type: "POST",
     		  url: "index.php?section=home",
     		  data: {catActiveIds: catActiveIds, gal: gal},
-          dataType: "html",
+            dataType: "html",
     		  success: function(data, textStatus, XHR){
     		      $("body").html(data);              
     		  },
