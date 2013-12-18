@@ -279,13 +279,15 @@ $("#modal_info_pic").on("click", ".del-img-confirm", function(event) {
 
 /***************  MODIFICATION OPTIONS GALERIES *****************/
 
-$(document).on("click", ".validateGalOptions", function(event) {
-		event.preventDefault($('#diaporamaWidth').val());
-		console.log()
+$(document).on("click", "#gal-options-submit", function(event) {
+		event.preventDefault();
+		// console.log($('input[name=displayGallery]:checked', '#display-gal-option').val())
+		
 		$.ajax({
 			type: "POST",
 			url: "index.php?section=update_option",
 			data: {
+				show_entire_gallery: 0,
 				diaporama_width: $('#diaporamaWidth').val(),
 				nb_images_per_line: $('#nbImagesPerLine').val(),
 				display_duration: $('#displayDuration').val()
@@ -293,10 +295,11 @@ $(document).on("click", ".validateGalOptions", function(event) {
 			dataType: "html",
 			success: function(data) {
 				console.log("succès !");
-				// $("#display-gal-opt-msg").html(data);
+				 $("#display-gal-opt-msg").html("Vos options ont bien été mises à jour");
 			},
 			error: function(){
 				console.log("errooooor");
+				$("#display-gal-opt-msg").html("Désolée, problème !");
 			}
 		})
 	});
