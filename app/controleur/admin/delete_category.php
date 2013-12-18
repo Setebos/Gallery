@@ -3,16 +3,11 @@
 include_once("app/modele/CategoryManager.php");
 include_once("app/modele/Category.php");
 
-
-// var_dump($_POST["id"]);
-
 if(isset($_POST["id"])) {
     $id = $_POST['id'];
 }
 
 $categoryManager = new CategoryManager($db);
-// $category = $categoryManager->getCategory($id);
-// var_dump($category);
 
 $categoryManager->deleteCategory($id);
 

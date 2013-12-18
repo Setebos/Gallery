@@ -7,6 +7,13 @@ include_once("app/modele/ImageManager.php");
 include_once("app/modele/Image.php");
 include_once("app/modele/Category.php");
 include_once("app/modele/CategoryManager.php");
+include_once("app/modele/OptionManager.php");
+include_once("app/modele/Option.php");
+
+$managerOption = new OptionManager($db);
+$option = $managerOption->getOption(1);
+
+var_dump($option->getShowEntireGallery);
 
 // recup de toutes les galeries
 $managerGallery = new GalleryManager($db);
