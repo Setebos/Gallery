@@ -103,8 +103,9 @@ a:hover{
     background-color: #ff5d55;
 }
 
-#dialog-confirm,  #dial-del-cat{
+#dialog-confirm,  #dial-del-cat, #dial-del-img{
     display: none;
+    z-index: 1100;
 }
 
 .gallery-title {

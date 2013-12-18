@@ -67,11 +67,12 @@ require_once("ressources/templates/admin/header.php");
 					    	<form class="new-category-align" method="post" action="#" role="form">
 								<div class="new-category-valid">
 									<label name="categoryName">Nom de catégorie : </label>
-									<input id="categoryName" type="text" name="categoryName" />
+									<input class="categoryName" type="text" name="categoryName" />
 								</div>
 								<div class="new-category-valid">
 							    	<div class="new-category-valid">
 							        	<button id="categorySubmit" type="submit" class="btn-small btn-default">Créer Catégorie</button>
+							        	<span id="validateCategoryName"></span>
 							        </div>
 								</div>
 							</form>

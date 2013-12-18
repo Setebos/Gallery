@@ -21,6 +21,8 @@ $gallery = $galleryManager->getGallery($gallery);
 $galleryName = $gallery->getName();
 $categories = $categoryManager->getCategoriesByImage($id);
 
+// $test = "Confirmez-vous la suppression de l'image ? test";
+
 
 include_once('app/vue/admin/edit_image_modal.php');
 // include_once('app/vue/admin/edit_image.php');

@@ -5,7 +5,7 @@
             <form class="upload-image-align" method="post" action="<?= "index.php?section=update_image"?>" role="form">
                 <div class="edit-btn-image">
                     <button type="submit" class="btn btn-default btn-sm">Modifier</button>
-                    <button class="btn btn-default btn-xsm pull-right btn-del-img">
+                    <button id="<?= "del-img-".$id ?>" class="btn btn-default btn-xsm pull-right btn-del-img">
                         <span class="glyphicon glyphicon-trash "></span>
                     </button>
                 </div>
@@ -61,10 +61,19 @@
                         <input class="categoryName" type="text" name="categoryName" placeholder="Nouvelle catégorie"/>
                     </div>
                     <button type="submit" class="btn-sm btn-default categorySubmit">Créer</button>
-                    <span id="validateCategoryName"></span>
+                    <span class="validateCategoryName"></span>
                 </form>
             </div>
 
     	</div>
   	</div>
  </div>
+ <div id="dial-del-img" title="Supprimer l'image ?">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        Confirmez-vous la suppression de l'image ?
+    </p>
+</div>
+<script type="text/javascript">
+    $(".btn-del-img").popover();
+</script>

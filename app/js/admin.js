@@ -252,6 +252,42 @@ $(document).ready(function() {
 		})
 	});
 
+	/***************  SUPPRESSION IMAGE  *****************/
+
+$("#modal_info_pic").on("click", ".btn-del-img", function(event) {
+	event.preventDefault();
+	confirm(test);
+	// console.log("coucou");
+	// var idLong = $(this).attr('id');
+	// var idCourt = idLong.substring(7);
+	// $("#dial-del-img").css("display", "block")
+	// $("#dial-del-img").dialog({
+	// 	resizable: false,
+	// 	height:300,
+	// 	width: 300,
+	// 	modal: true,
+	// 	buttons: {
+	// 		"Confirmer": function() {
+	// 			$( this ).dialog( "close" );
+	// 			$("#modal_info_pic").hide();
+	// 			$.ajax({
+	// 				type: "POST",
+	// 				url: "index.php?section=delete_image",
+	// 				data: { id: idCourt },
+	// 				dataType: "html",
+	// 				success: function(data) {
+	// 					$(".gallery-body").html(data);
+	// 					$(".conteneur-images").html("Aucune galerie sélectionnée");
+	// 				}
+	// 			})
+	// 		},
+	// 		"Annuler": function() {
+	// 			$( this ).dialog( "close" );
+	// 		}
+	// 	}
+	// });
+})
+
 
 /***************  SUPRESSION CATEGORIE  *****************/
 $(".picture-header-option-part").on("click", ".span-del-cat", function() {
@@ -356,7 +392,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 
 	// Formulaire de création de catégorie
 	$(document).on("input", ".categoryName", function() {
-		var validateCategoryName = $('#validateCategoryName');
+		var validateCategoryName = $('.validateCategoryName');
 		var t = this; 
 		if (this.value != this.lastValue) {
 		  	if (this.timer) {
