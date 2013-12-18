@@ -69,8 +69,8 @@ $(document).ready(function() {
 	$(document).on("click", ".gal-suppr-btn", function() {
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
-	 	$("#dialog-confirm").css("display", "block")
-		$( "#dialog-confirm" ).dialog({
+	 	$("#dialog-confirm").css("display", "block");
+		$("#dialog-confirm").dialog({
 			resizable: false,
 			height:300,
 			width: 300,
@@ -100,7 +100,7 @@ $(document).ready(function() {
 		console.log($(this).parent());
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
-	 	$("#dialog-confirm").css("display", "block")
+	 	$("#dialog-confirm").css("display", "block");
 		$( "#dialog-confirm" ).dialog({
 			resizable: false,
 			height:300,
@@ -121,7 +121,7 @@ $(document).ready(function() {
 					})
 				},
 				"Annuler": function() {
-					$( this ).dialog( "close" );
+					// $( this ).dialog( "close" );
 				}
 			}
 		});
@@ -254,37 +254,28 @@ $(document).ready(function() {
 
 $("#modal_info_pic").on("click", ".btn-del-img", function(event) {
 	event.preventDefault();
-	confirm(test);
-	// console.log("coucou");
-	// var idLong = $(this).attr('id');
-	// var idCourt = idLong.substring(7);
-	// $("#dial-del-img").css("display", "block")
-	// $("#dial-del-img").dialog({
-	// 	resizable: false,
-	// 	height:300,
-	// 	width: 300,
-	// 	modal: true,
-	// 	buttons: {
-	// 		"Confirmer": function() {
-	// 			$( this ).dialog( "close" );
-	// 			$("#modal_info_pic").hide();
-	// 			$.ajax({
-	// 				type: "POST",
-	// 				url: "index.php?section=delete_image",
-	// 				data: { id: idCourt },
-	// 				dataType: "html",
-	// 				success: function(data) {
-	// 					$(".gallery-body").html(data);
-	// 					$(".conteneur-images").html("Aucune galerie sélectionnée");
-	// 				}
-	// 			})
-	// 		},
-	// 		"Annuler": function() {
-	// 			$( this ).dialog( "close" );
-	// 		}
-	// 	}
-	// });
 })
+
+
+$("#modal_info_pic").on("click", ".del-img-confirm", function(event) {
+	event.preventDefault();
+	var idLong = $(".btn-del-img").attr('id');
+	var idCourt = idLong.substring(8);
+	$.ajax({
+		type: "POST",
+		url: "index.php?section=delete_image",
+		data: { id: idCourt },
+		dataType: "html",
+		success: function(data) {
+			$(".conteneur-images").html(data);
+			$("#modal_info_pic").modal('hide');
+		},
+		error: function() {
+			console.log(data);
+		}
+	})
+})
+
 
 /***************  MODIFICATION OPTIONS GALERIES *****************/
 
@@ -310,38 +301,37 @@ $(document).on("click", ".validateGalOptions", function(event) {
 		})
 	});
 
-
 /***************  SUPRESSION CATEGORIE  *****************/
 $(".picture-header-option-part").on("click", ".span-del-cat", function() {
-		var idLong = $(this).attr('id');
-		var idCourt = idLong.substring(7);
-	 	$("#dial-del-cat").css("display", "block");
-		$( "#dial-del-cat" ).dialog({
-			resizable: false,
-			height:300,
-			width: 300,
-			modal: true,
-			buttons: {
-				"Confirmer": function() {
-					$( this ).dialog( "close" );
-					$.ajax({
-						type: "POST",
-						url: "index.php?section=delete_category",
-						data: { id: idCourt },
-						dataType: "html",
-						success: function(data) {
-							$(".picture-header-option-part").html(data);
-						},
-						error: function(){
-						}
-					})
-				},
-				"Annuler": function() {
-					$( this ).dialog( "close" );
-				}
+	var idLong = $(this).attr('id');
+	var idCourt = idLong.substring(7);
+ 	$("#dial-del-cat").css("display", "block");
+	$( "#dial-del-cat" ).dialog({
+		resizable: false,
+		height:300,
+		width: 300,
+		modal: true,
+		buttons: {
+			"Confirmer": function() {
+				$( this ).dialog( "close" );
+				$.ajax({
+					type: "POST",
+					url: "index.php?section=delete_category",
+					data: { id: idCourt },
+					dataType: "html",
+					success: function(data) {
+						$(".picture-header-option-part").html(data);
+					},
+					error: function(){
+					}
+				})
+			},
+			"Annuler": function() {
+				$( this ).dialog( "close" );
 			}
-		});
+		}
 	});
+});
 
 	/***************  VALIDATION FORMULAIRE  *****************/
 

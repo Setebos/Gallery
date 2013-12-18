@@ -22,7 +22,8 @@ $galleryName = $gallery->getName();
 $categories = $categoryManager->getCategoriesByImage($id);
 
 $confirmText = 'Confirmez-vous la suppression de l\'image ?<br>';
-$confirmText .= 'test';
+$confirmText .= '<div class=\'pull-right\'><a class=\'del-img-dialog\' href='.'index.php?section=admin_index'.'>Annuler</a>';
+$confirmText .= '<button class=\'btn btn-danger btn-sm del-img-dialog del-img-confirm\'><span>Confirmer</span></button></div>';
 
 
 include_once('app/vue/admin/edit_image_modal.php');

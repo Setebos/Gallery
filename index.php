@@ -2,9 +2,9 @@
 // var_dump($_SESSION);
 include('app/modele/connect_db.php');
 
-  if (isset($_POST['id'])) {
-    var_dump($_POST['id']);
-  }
+  // if (isset($_POST['id'])) {
+  //   var_dump($_POST['id']);
+  // }
 
 // PUBLIC //////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,9 +118,15 @@ if  (isset($_GET['section']) AND $_GET['section'] == 'update_image')
   include_once("app/controleur/admin/update_image.php");
 }
 
+
 if  (isset($_GET['section']) AND $_GET['section'] == 'update_option')
 {                
   include_once("app/controleur/admin/update_option.php");
+}
+
+if  (isset($_GET['section']) AND $_GET['section'] == 'delete_image')
+{                
+  include_once("app/controleur/admin/delete_image.php");
 }
 
 if  (isset($_GET['section']) AND $_GET['section'] == 'check_form')

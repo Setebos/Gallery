@@ -176,6 +176,12 @@ a:hover{
     height: auto;
 }
 
+.del-img-dialog {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
 /***********        Cat management in picture header        ***********/
 
 .new-cat .row {
