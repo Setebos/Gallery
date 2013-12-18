@@ -156,9 +156,114 @@ body:after {
 
 /***********        Index - liste des photos        ***********/
 
+.btn-nav-group {
+position: relative;
+display: inline-block;
+vertical-align: middle;
+}
 
+.btn-nav-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+}
+
+.btn-nav-group>.btn:last-child:not(:first-child), .btn-nav-group>.dropdown-toggle:not(:first-child) {
+border-bottom-left-radius: 0;
+border-top-left-radius: 0;
+}
+
+.btn-nav-group>.btn:first-child {
+margin-left: 0;
+}
+
+.btn-nav-group .btn+.btn, .btn-nav-group .btn+.btn-nav-group, .btn-nav-group .btn-nav-group+.btn, .btn-nav-group .btn-nav-group+.btn-nav-group {
+margin-left: -1px;
+}
+
+.btn-nav-group>.btn:hover, .btn-nav-group>.btn:focus, .btn-nav-group>.btn:active, .btn-nav-group>.btn.active {
+z-index: 2;
+}
+
+.btn-nav-group>.btn {
+position: relative;
+float: left;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+color: #333;
+background-color: #ebebeb;
+border-color: #adadad;
+}
+
+.btn {
+display: inline-block;
+padding: 6px 12px;
+/*margin-bottom: 0;*/
+margin: 0
+font-size: 14px;
+font-weight: normal;
+line-height: 1.428571429;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+border-radius: 4px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+
+
+.icon{
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Entypo';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 /* navigation */
+
+ @font-face {
+    font-family: 'entypo';
+    src: url('../type/entypo.eot');
+    src: url('../type/entypo.eot?#iefix') format('embedded-opentype'),
+         url('../type/entypo.woff') format('woff'),
+         url('../type/entypo.ttf') format('truetype'),
+         url('../type/entypo.svg#entypo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.icon{
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Entypo';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+[data-icon]:before {
+  font-family: 'Entypo'; /* BYO icon font, mapped smartly */
+  content: attr(data-icon);
+  speak: none; /* Not to be trusted, but hey. */
+}
+
 #diapo-nav{
     display: table;
 }
@@ -167,7 +272,7 @@ body:after {
     float: left;
 }
 
-#diapo-nav .btn-group{
+#diapo-nav .btn-nav-group{
     float: right;
 }
 
@@ -180,8 +285,9 @@ body:after {
 }
 
 #diapo-nav span{
-    font-size: 25px;
+    font-size: 70px;
     width: 30px;  
+    line-height: 0.1;
 }
 
 

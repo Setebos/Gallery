@@ -7,6 +7,13 @@
         var catActiveIds = [];
         var id = "";
 
+        if($cat.attr('id') == "all-cat"){
+          console.log("all cat");
+          $(".cat-bdd").find(".cat-active").each(function(){
+              $(this).removeClass('cat-active');
+          })
+        }
+
         $(".cat-bdd").find(".cat-active").each(function(){
           id = $(this).attr('id').substring(3);
           catActiveIds.push(id);

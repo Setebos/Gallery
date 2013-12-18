@@ -53,7 +53,7 @@ class ImageManager {
 	public function getListImages() {
 		$listImages = array();
 
-		$q = $this->_db->query('SELECT * FROM image');
+		$q = $this->_db->query('SELECT * FROM image  ORDER BY position');
 
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
 			$listImages[] = new Image($donnees);
@@ -165,14 +165,13 @@ class ImageManager {
 		return $listImages;
 	}
 
-	// retourne les termes possibles pour l'autocompletion, parmi le titre
+	// retourne les termes possibles pour l'autocompletion, parmi les titres d'image
 	public function getImagesTerms($term){
 		$listTerms = array();
 
 		$q = $this->_db->query('SELECT * FROM image WHERE title LIKE "%'.$term.'%"  ');
 
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-			// $donnees_array['id'] = $donnees['id'];
 			$donnees_array['value'] = $donnees['title'];
 			array_push($listTerms, $donnees_array);
 		}
