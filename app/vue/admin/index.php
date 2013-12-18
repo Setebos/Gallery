@@ -113,7 +113,7 @@
 								    <input class="categoryName"  class="form-control" placeholder="Nom de la catégorie">
 								  </div>
 								  <button id="new-cat-submit" type="submit" class="btn btn-default btn-sm">+</button>
-								  <br/><span id="validateCategoryName"></span>
+								  <br/><span class="validateCategoryName"></span>
 								</form>
 							</div>
 						</div>
