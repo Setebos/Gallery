@@ -19,6 +19,10 @@ class OptionManager {
         return new Option($donnees);
     }
 
+    public function getOption_json($id) {
+            return json_encode($this->getOption($id));
+    }
+
      public function updateOption(Option $option) {
         $q = $this->_db->prepare('UPDATE gallery_options SET show_entire_gallery = :show_entire_gallery, diaporama_width = :diaporama_width, nb_images_per_line = :nb_images_per_line, display_duration = :display_duration WHERE id = :id');
 

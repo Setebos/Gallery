@@ -1,6 +1,6 @@
 <?php
 
-class Option{
+class Option  implements JsonSerializable{
 
     private $_id;
     private $_show_entire_gallery;
@@ -70,6 +70,17 @@ class Option{
           $this->$method($value);
         }
       }
+    }
+
+    public function jsonSerialize() {
+        $data = array(
+            'id' => $this->getId(), 
+            'show_entire_gallery' => $this->getShowEntireGallery(),
+            'diaporama_width' => $this->getDiaporamaWidth(),
+            'nb_images_per_line' => $this->getNbImagesPerLine(),
+            'display_duration' => $this->getDisplayDuration()
+            );
+        return $data;
     }
 
 }

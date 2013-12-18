@@ -11,6 +11,8 @@
   include_once("app/modele/CategoryManager.php");
   include_once("app/modele/Image.php");
   include_once("app/modele/ImageManager.php");
+  include_once("app/modele/OptionManager.php");
+  include_once("app/modele/Option.php");
 
   // recup de toutes les galeries
   $galleryManager = new GalleryManager($db);
@@ -24,6 +26,9 @@
   $imageManager = new ImageManager($db);
 
   $current_gal = $listGalleries[0]->getId();
+
+  $optionManager = new OptionManager($db);
+  $options_json = $optionManager->getOption_json(1);
 
   if  (isset($_GET['section']) AND $_GET['section'] == 'login') {                    
       include_once("app/vue/login.php");
