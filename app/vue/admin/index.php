@@ -19,36 +19,40 @@
 				  	<div class="display-gal-opt">
 				  		<form role="form">
 					  		<h4> Options d'affichage de la galerie</h4>
-					  		<div class="row well">
-					  			<div class="col-md-5">
-					  				<div class="form-group">
-					  					<label >Afficher toute la galerie</label>
-										    	<label class="checkbox-inline">
-										      	<input type="checkbox"> Oui
-										    	</label>
-										    	<label class="checkbox-inline">
-										      	<input type="checkbox"> Non
-										    	</label>
-									</div>
-									<div class="form-group">
-									    <label for="exampleInputEmail1">Largeur du diaporama (en pixel)</label>
-									    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="750">
-									</div>
-					  			</div>
-						  		<div class="col-md-5  ">
-						  			<div class="form-group">
-					  					<label >Nombre d'images affichées par ligne</label>
-									    	<input class="categoryName"  class="form-control" placeholder="3">
-									</div>
-									<div class="form-group">
-									    <label for="exampleInputEmail1">Durée d'affichage des images dans le diaporama</label>
-									    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="5000	">
-									</div>
+					  		<div class="well">
+				  				<div class="form-group">
+				  					<label >Afficher toute la galerie : </label>
+				  					<?PHP
+										$displayTrue = 'unchecked';
+										$displayFalse = 'unchecked';
 
-									<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
-									<br/><span id="validateGalOptions"></span>
-									
+										$selected_radio = $option->getShowEntireGallery();
+										$selected_radio == 0 ? $displayFalse = 'checked' : $displayTrue = 'checked';
+
+										?>
+								      	<label  class="radio-inline">
+											<input type="radio" name="displayGallery" id="displayTrue" value="displayTrue" <?PHP print $displayTrue; ?>>
+											Oui
+										</label>
+								      	<label  class="radio-inline">
+											<input type="radio" name="displayGallery" id="displayFalse" value="displayFalse" <?PHP print $displayFalse; ?>>
+											Non
+										</label>
 								</div>
+								<div class="form-group">
+								    <label name="diaporamaWidth">Largeur du diaporama (en pixel) : </label>
+								    <input type="text" class="form-control" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
+								</div>
+					  			<div class="form-group">
+				  					<label name="nbImagesPerLine">Nombre d'images affichées par ligne : </label>
+								    	<input type="text"  class="form-control" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
+								</div>
+								<div class="form-group">
+								    <label name="displayDuration">Durée d'affichage des images dans le diaporama : 	</label>
+								    <input type="text" class="form-control" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
+								</div>
+								<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
+								<br/><span id="validateGalOptions"></span>
 							</div>
 						</form>
 				  	</div>	
