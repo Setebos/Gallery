@@ -30,10 +30,9 @@
     		  type: "POST",
     		  url: "index.php?section=home",
     		  data: {catActiveIds: catActiveIds, gal: gal},
-            dataType: "html",
+              dataType: "html",
     		  success: function(data, textStatus, XHR){
-    		      $("body").html(data);  
-              // location.reload( true );            
+    		      $("body").html(data);             
     		  },
     		  error: function (XHR, textStatus, errorThrown){
               console.log('quel echec');
