@@ -37,13 +37,14 @@ require_once("ressources/templates/header.php");
         <li>
           <?php  
               $categories = $categoryManager->getCategoriesByImage($image->getId());
-              $cat_array= array();
+              $cat_string="";
               foreach ($categories as $category) {
-                array_push($cat_array, $category->getName());
+                $cat_string.=";".$category->getName();
+                // array_push($cat_array, $category->getName());
               }
           ?>
           <img src="<?= $image->getLocationMiniature(); ?>" 
-          title="<?= $image->getTitle(); ?>" data-desc="<?= $image->getDescription(); ?>" data-cat="<?= json_encode($cat_array); ?>">
+          title="<?= $image->getTitle(); ?>" data-desc="<?= $image->getDescription(); ?>" data-cat="<?= $cat_string ?>">
 
         </li>
         <?php }} ?>

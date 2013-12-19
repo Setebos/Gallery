@@ -210,7 +210,7 @@ if ( typeof Object.create !== 'function' ) {
                // gestion de la navigation
                self.setNav();
              },
-             setup: function(){
+       setup: function(){
               var self = this;
 
                     var lightbox =
@@ -228,6 +228,7 @@ if ( typeof Object.create !== 'function' ) {
                                 '<div class="lb-details">' +
                                     '<div class="lb-title"><h3></h3></div>' +
                                     '<div class="lb-desc"><p></p></div>'+
+                                    '<div class="lb-cat"><p></p></div>'+
                                 '</div>'+
                                 '<div class="lb-close-container">' +
                                     '<a class="lb-close"></a>' +
@@ -256,11 +257,16 @@ if ( typeof Object.create !== 'function' ) {
                         $('.lb-container').width($(preloadImg).width() + 20);
                         $('.lb-nav').height($(preloadImg).outerHeight());
                         if (self.autoplay == true){
-                            console.log("cacher nav");
                             $('.lb-nav').hide();  
                           } 
                         $(".lb-title h3").html(currentImg.title);
                         $(".lb-desc p").html(currentImg.desc);   
+                        var listSpanCat="";
+                        $.each(currentImg.cat, function(index, cat){
+                           listSpanCat+="<span>"+cat+"</span>";
+                        })
+                        $(".lb-cat p").html(listSpanCat);
+                        self.album[0].cat
                         $(this).fadeIn();
                     }
                     preloadImg.src = currentImg.src;      
@@ -307,10 +313,12 @@ if ( typeof Object.create !== 'function' ) {
                     self.gallery.items.each(function(index){
                       var img = $(this).children('img');
                       var source = img.attr('src').split('-miniature');
+                      // console.log(img.data('cat').substring(1).split(";"));
                       self.album.push({
                         src: ""+source[0]+""+source[1]+"",
                         title: img.attr('title'),
-                        desc: img.data('desc')
+                        desc: img.data('desc'),
+                        cat: img.data('cat').substring(1).split(";")
                       });
                       if( img.attr('src') == current_img.attr('src')) {
                         self.currentImageIndex = index;
@@ -345,6 +353,11 @@ if ( typeof Object.create !== 'function' ) {
                         $('.lb-nav').height($(preloadImg).outerHeight());
                         $(".lb-title h3").html(currentImg.title);
                         $(".lb-desc p").html(currentImg.desc);
+                        var listSpanCat="";
+                        $.each(currentImg.cat, function(index, cat){
+                           listSpanCat+="<span>"+cat+"</span>";
+                        })
+                        $(".lb-cat p").html(listSpanCat);
                       }
                       preloadImg.src = currentImg.src;                  
                     });

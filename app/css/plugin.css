@@ -127,6 +127,18 @@ body:after {
     margin: 0;
 }
 
+.lb-desc{
+  margin-bottom: 10px;
+}
+
+.lb-cat span{
+    margin: 5px 5px;  
+    background-color: #ff5d55;
+    color: #fff;
+    border-radius: 10px;
+    padding: 3px 7px;
+}
+
 .lb-close-container{
     min-height: 30px;
 }
