@@ -8,7 +8,6 @@
         var id = "";
 
         if($cat.attr('id') == "all-cat"){
-          console.log("all cat");
           $(".cat-bdd").find(".cat-active").each(function(){
               $(this).removeClass('cat-active');
           })
@@ -30,9 +29,10 @@
     		  type: "POST",
     		  url: "index.php?section=home",
     		  data: {catActiveIds: catActiveIds, gal: gal},
-            dataType: "html",
+            dataType: "json",
     		  success: function(data, textStatus, XHR){
-    		      $("body").html(data);              
+                // console.log(data);
+                filter_img_by_category(data);          
     		  },
     		  error: function (XHR, textStatus, errorThrown){
               console.log('quel echec');
@@ -54,6 +54,52 @@
           }
         });
       });
+
+      var filter_img_by_category = function(imgs_src) {
+          var imgLiEtalon = $("#diapo li:first");
+          var realWidth =  imgLiEtalon.width();
+          $.data(imgLiEtalon, "realWidth", imgLiEtalon.width());
+          // console.log(imgLiEtalon.width());
+          $("#diapo").find('img').each(function(){
+                var src = $(this).attr('src');
+                var imgLi = $(this).parent();
+
+                if( $.inArray(src, imgs_src) == -1 && !imgLi.hasClass('filtered')) {
+                    imgLi.addClass('filtered');
+                    // $.data(imgLi, "realWidth", imgLi.width());
+                    // console.log(imgLi.data("realWidth"));
+                    console.log($.data(imgLiEtalon, "realWidth", imgLiEtalon.width()));
+                    imgLi.animate({
+                          'width': 0,
+                          'opacity': 0
+                      }, 750);
+                 };
+                 if( $.inArray(src, imgs_src) != -1 && imgLi.hasClass('filtered')) {
+                    imgLi.removeClass('filtered');
+                    console.log($.data(imgLiEtalon, "realWidth", imgLiEtalon.width()));
+                    imgLi.animate({
+                          'width': realWidth,
+                          'opacity': 1
+                      }, 750);
+                 };
+
+
+          })
+      }
+
+
+      $(".display-gal-opt").each(function() {
+          $.data(this, "realHeight", $(this).height());
+        }).css({ display: "none" });
+
+        $(document).on("click", "#display-options", function(){
+          var div = $(this).parents(".display-gal-opt");
+          $(".display-gal-opt").toggle(function() {
+            div.animate({ height: div.data("realHeight") }, 600);
+          }, function() {
+            div.animate({ height: 0 }, 600);
+          }); 
+        });
 
 
   // AUTOCOMPLETE ////////////////////////////////////////////////////////////////////////////////////////
