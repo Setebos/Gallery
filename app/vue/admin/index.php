@@ -23,19 +23,29 @@
 					  			<span id="display-gal-opt-msg"></span>
 				  				<div class="form-group">
 				  					<label >Afficher toute la galerie : </label>
-				  					<?PHP
-										$displayTrue = 'unchecked';
-										$displayFalse = 'unchecked';
-										$option->getShowEntireGallery() == 0 ? $displayFalse = 'checked' : $displayTrue = 'checked';
-									?>
+						      		<?php if($option->getShowEntireGallery() == 0) { ?>
+
+						      		<label  class="radio-inline">
+											<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1">
+											Oui
+										</label>
 							      	<label  class="radio-inline">
-										<input type="radio" name="displayGallery" id="displayTrue" value="displayTrue" <?PHP print $displayTrue; ?>>
-										Oui
-									</label>
+											<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0" checked>
+											Non
+										</label>
+
+										<?php } else { ?>
+
+										<label  class="radio-inline">
+											<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1" checked>
+											Oui
+										</label>
 							      	<label  class="radio-inline">
-										<input type="radio" name="displayGallery" id="displayFalse" value="displayFalse" <?PHP print $displayFalse; ?>>
-										Non
-									</label>
+											<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0">
+											Non
+										</label>
+
+										<?php } ?>
 								</div>
 								<div class="form-group">
 								    <label name="diaporamaWidth">Largeur du diaporama (en pixel) : </label>
@@ -56,28 +66,33 @@
 				  	</div>	
 				</div>
 			 	<div class="gallery-body">
-			 		<?php foreach ($listGalleries as $gallery) {?>
-	                    <div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
-	                    		<div class="gal-vign-picture">
-	                    			 <?php if ($listFirstImages[$gallery->getId()] != null) {?>
-		                        		<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
-		                        	<?php } else { ?>
-		                        	<img src="http://placehold.it/120&text=pic">
-		                        	<?php } ?>
-		                      	</div>
-		                       	<div class="gal-vign-detail">
-		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
-		                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
+			 		<?php if($vide == false) {
+			 		foreach ($listGalleries as $gallery) {
+			 			if($gallery->getName() == $gallerySelect) { ?>
+			 				<div class="gal-vign-container gallery-active"  id="<?= "gallery" . $gallery->getId() ?>">
+			 			<?php } else { ?>
+		 					<div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
+		 				<?php } ?>
+                 		<div class="gal-vign-picture">
+                 			 <?php if ($listFirstImages[$gallery->getId()] != null) {?>
+                        		<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
+                        	<?php } else { ?>
+                        	<img src="http://placehold.it/120&text=pic">
+                        	<?php } ?>
+                      	</div>
+                       	<div class="gal-vign-detail">
+                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
+                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
 										<span class="glyphicon glyphicon-trash"></span>
 									</button>
-		                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
-			                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</button>
-							</a>		
-		                       </div>
-	                    </div>
-                  	<?php } ?>
+                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
+	                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+									</a>		
+                        </div>
+                     </div>
+            	<?php }} ?>
 		 		</div>
 			 </div>
 			 <div class="col-md-8 picture-part">
@@ -122,20 +137,24 @@
 				  	</div>	
 				</div>
 			  	<div class="picture-body">
-		                	<div class="conteneur-images">
-		                    	<h3>Aucune galerie sélectionnée</h3>
-		                    	<ul class="list-inline sortable">
-			                    	<?php foreach ($listImages as $image) {?>
-				                    	<li class="picture-list">
-			                        		<div class="picture-div" data-toggle="modal" data-target="#myModal">
-			                        			<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>" title="<?= $image->getTitle() ?>">
-			                    			</div>
-			                    		</li>
-			                  		<?php } ?>
-		                    	</ul>
-		            		</div>
-					 </div>
-				</div>
+             	<div class="conteneur-images">
+             		<?php if($vide == false) { ?>
+                 	<h3 class="gallery-title"><?= $gallerySelect ?></h3>
+						<p>Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images</p>
+						<ul class="list-inline sortable">
+							<?php foreach ($listImages as $image) {?>
+								<li id="<?= "item-".$image->getId() ?>" class="picture-list">
+									<span class="roll"></span>
+									<div class="picture-div">
+										<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
+									</div>
+								</li>
+							<?php } ?>
+						</ul>
+						<?php } ?>
+         		</div>
+				 </div>
+			</div>
 		<!-- 		Alert suppression galerie			  -->
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
 			<p>

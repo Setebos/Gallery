@@ -11,13 +11,13 @@ if(isset($_POST["show_entire_gallery"])) {
     $show_entire_gallery = htmlspecialchars($_POST["show_entire_gallery"]);
 }
 if(isset($_POST["diaporama_width"])) {
-    $diaporama_width = $_POST["diaporama_width"];
+    $diaporama_width = htmlspecialchars($_POST["diaporama_width"]);
 }
 if(isset($_POST["nb_images_per_line"])) {
-    $nb_images_per_line = $_POST["nb_images_per_line"];
+    $nb_images_per_line = htmlspecialchars($_POST["nb_images_per_line"]);
 }
 if(isset($_POST["display_duration"])) {
-    $display_duration = $_POST["display_duration"];
+    $display_duration = htmlspecialchars($_POST["display_duration"]);
 }
 
 $managerOption = new OptionManager($db);
