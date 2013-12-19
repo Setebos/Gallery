@@ -428,8 +428,43 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 	});
 
 	// Formulaire de création de catégorie
-	$(document).on("input", ".categoryName", function() {
-		var validateCategoryName = $('.validateCategoryName');
+	$(document).on("input", ".categoryName", function(event) {
+		if(! $(event.target).is(".categoryNameModal")) {
+			var validateCategoryName = $('.validateCategoryName');
+			var t = this; 
+			if (this.value != this.lastValue) {
+			  	if (this.timer) {
+			  		clearTimeout(this.timer);	
+			  	} 
+			  	validateCategoryName.removeClass("form-error");
+			  	validateCategoryName.removeClass("form-ok");
+			  	validateCategoryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
+			  
+			  	this.timer = setTimeout(function () {
+			    	$.ajax({
+			      		url: 'index.php?section=check_form',
+			      		data: {action: "checkCategory", categoryName: t.value},
+			      		dataType: 'json',
+			      		type: 'post',
+			      		success: function(data) {
+			        		validateCategoryName.html(data.msg);
+			        		if(data.ok == true) {
+			        			validateCategoryName.addClass("form-ok");
+			        		} else if (data.ok == false) {
+			        			validateCategoryName.addClass("form-error");
+			        		}
+			      		}
+			    	});
+			  	}, 200);
+			  
+			  	this.lastValue = this.value;
+			}
+		}
+	});
+
+	// Formulaire de création de catégorie dans le modal
+	$(document).on("input", ".categoryNameModal", function() {
+		var validateCategoryName = $('.validateCategoryNameModal');
 		var t = this; 
 		if (this.value != this.lastValue) {
 		  	if (this.timer) {
@@ -484,6 +519,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		})
 	});
 
+	// Validation de nouvelle image
 	$('#newImageForm').submit(function(event) {
 		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
 		var acceptedFiles = new RegExp(/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$/);
@@ -509,6 +545,24 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		}
 	});
 
+	// Validation d'édition d'image
+	$("#modal_info_pic").on("click", ".editImageSubmit", function(event) {
+		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
+		var title = $('#imageName').val();
+		if(title == "") {
+			$('.validateImageName').html("L'image doit avoir un titre");
+		} else if(!title.match(accepted)) {
+			$('.validateImageName').html("Utilisez uniquement des caractères alphanumériques");
+		} else {
+			$('.validateImageName').html("");
+		}
+
+		if($('.validateImageName').html() != "") {
+			return false;
+		}
+	});
+
+	// Validation de création et édition de galerie
 	$("#newGalleryForm, #editGalleryForm").submit(function(event) {
 		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
 		var galleryName = $('#galleryName').val();
