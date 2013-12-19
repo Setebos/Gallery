@@ -5,9 +5,11 @@
 		    <div class="row height-full">
 			  <div class="col-md-3 gallery-part">
 			  	<div class="gallery-header">
-			  		<div class="btn-admin pull-right" title="Ajouter une galerie">
-			  			<a href="<?= "index.php?section=new_gallery "?>">+</a>
-			  		</div>
+			  		<a href="<?= "index.php?section=new_gallery "?>">
+			  			<div class="btn-admin pull-right" title="Ajouter une galerie">
+			  			+
+			  			</div>
+			  		</a>
 			  		<ul>
 			  			<li>
 			  				<a href="#" id="display-options"><p>Options d'affichage</p></a>
@@ -90,13 +92,13 @@
                        	<div class="gal-vign-detail">
                         	<a href="#"><p><?= $gallery->getName() ?></p></a>
                         	<button class="btn btn-default btn-xsm gal-suppr-btn">
-										<span class="glyphicon glyphicon-trash"></span>
-									</button>
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
                         	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
 	                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
-											<span class="glyphicon glyphicon-pencil"></span>
-										</button>
-									</a>		
+						<span class="glyphicon glyphicon-pencil"></span>
+					</button>
+				</a>		
                         </div>
                      </div>
             	<?php }} ?>
@@ -104,9 +106,9 @@
 			 </div>
 			 <div class="col-md-8 picture-part">
 			  	<div class="picture-header">
-			  		<div class="btn-admin pull-left"  title="Ajouter une image à la galerie">
-			  			<a href="<?= "index.php?section=new_image "?>">+</a>
-			  		</div>
+			  		<a href="<?= "index.php?section=new_image "?>">
+			  			<div class="btn-admin pull-left"  title="Ajouter une image à la galerie">+ </div>
+			  		</a>
 			  		<ul>
 			  			<li>
 			  				<a href="#" id="new-cat-btn"><p>Editer les catégories</p></a>

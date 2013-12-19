@@ -20,8 +20,6 @@ a:hover{
     background-color: #e7e7e7;
     overflow: auto;
     height: 100%;
-/*    min-height: 40%;
-    max-height: 50%;*/
     padding: 0;
 }
 
@@ -35,6 +33,10 @@ a:hover{
 
  .gallery-header h3{
     margin: 0;
+}
+
+ .gallery-header h4{
+    margin-left: 10px;
 }
 
 .gallery-body {
@@ -61,7 +63,6 @@ a:hover{
 }
 
 .gallery-active {
-    /*background-color: #fff;*/
     background-color: #ff5d55;
     -webkit-box-shadow: #666 2px 3px 5px;
     -moz-box-shadow: #666 2px 3px 5px;
@@ -97,8 +98,6 @@ border-color: #db2d27;
 }
 
 .gal-suppr-btn, .gallery-edit-button{
- /*   display: none;
-    z-index: 0;*/
     float: right;
     cursor: pointer;
     margin: 3px 3px 0 0;
@@ -165,8 +164,6 @@ border-color: #db2d27;
 }
 
 
-
-
 /***********        Index - picture part        ***********/
 
 .picture-part{
@@ -174,7 +171,6 @@ border-color: #db2d27;
     margin: 20px 35px 20px 20px;
     overflow: auto;
     height: 100%;
-/*    min-height: 45%;*/
     padding: 0;
 }
 
@@ -196,7 +192,6 @@ border-color: #db2d27;
     position: absolute;
     bottom: 0px;
     right: 70px;
-    /*line-height: auto;*/
 }   
 
 
@@ -365,13 +360,11 @@ margin-left: 0px;
 .picture-header .btn-admin, .gallery-header .btn-admin{
     color: #fff;
     background-color: #ff5d55;
-    /*border-color: #db2d27;*/
     display: inline-block;
     padding: 5px 18px;
     margin: 0;
     font-size: 30px;
     font-weight: bold;
-    /*line-height: 1.428571429;*/
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -427,7 +420,6 @@ margin-left: 0px;
 
 .new-gallery-cancel {
     margin-top: 15px;
-    /*padding-top: 50px;*/
     margin-right: 10px;
     display: inline-block;
 }
@@ -458,8 +450,6 @@ margin-left: 0px;
 }
 
 
-
-
 .upload-image-align label {
     width: 200px;
     display: inline-block;
@@ -476,7 +466,6 @@ margin-left: 0px;
 
 .upload-image-cancel {
     margin-top: 15px;
-    /*padding-top: 50px;*/
     margin-right: 10px;
     display: inline-block;
 }
@@ -569,7 +558,6 @@ font-size: 11px;
 line-height: 1.3;
 border-radius: 3px;
 }
-
 
 
 /***********        Surcharges jquery-ui        ***********/

@@ -1,7 +1,9 @@
 		<div class="row height-full">
 			<div class="col-md-3 gallery-part-full-height">
 				<div class="gallery-header">
-					<h4><a href="index.php?section=admin_index">< Retour à la liste des galeries</a></h4>
+					<h4><a href="index.php?section=admin_index">
+			  			<span class="glyphicon glyphicon-chevron-left	"></span>   	Retour à la liste des galeries
+			  		</a></h4>
 				</div>
 				<div class="gallery-body-full-height">
 				</div>
