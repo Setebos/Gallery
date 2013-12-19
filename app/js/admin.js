@@ -328,7 +328,8 @@ $(document).on("click", "#gal-options-submit", function(event) {
 	});
 
 /***************  SUPRESSION CATEGORIE  *****************/
-$(".picture-header-option-part").on("click", ".span-del-cat", function() {
+$(document).on("click", ".span-del-cat", function() {
+	console.log("click del cat");
 	var idLong = $(this).attr('id');
 	var idCourt = idLong.substring(7);
  	$("#dial-del-cat").css("display", "block");

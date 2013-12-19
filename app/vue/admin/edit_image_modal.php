@@ -71,7 +71,6 @@
  </div>
  <div id="dial-del-img" title="Supprimer l'image ?">
     <p>
-        <span class="glyphicon glyphicon-warning-sign"></span>
         Confirmez-vous la suppression de l'image ?
     </p>
 </div>

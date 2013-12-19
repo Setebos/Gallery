@@ -8,7 +8,6 @@
         var id = "";
 
         if($cat.attr('id') == "all-cat"){
-          console.log("all cat");
           $(".cat-bdd").find(".cat-active").each(function(){
               $(this).removeClass('cat-active');
           })
@@ -54,6 +53,44 @@
           }
         });
       });
+
+      var filter_img_by_category = function(imgs_src, width) {
+          $("#diapo").find('img').each(function(){
+
+                var src = $(this).attr('src');
+                var imgLi = $(this).parent();
+                if( $.inArray(src, imgs_src) == -1 && !imgLi.hasClass('filtered')) {
+                    imgLi.addClass('filtered');
+                    imgLi.animate({
+                          'width': 'toggle',
+                          'opacity': 0
+                      }, 750);
+                 };
+                 if( $.inArray(src, imgs_src) != -1 && imgLi.hasClass('filtered')) {
+                    imgLi.removeClass('filtered');
+                    imgLi.animate({
+                          'width': 'toggle',
+                          'opacity': 1
+                      }, 750);
+                 };
+
+
+          })
+      }
+
+
+      $(".display-gal-opt").each(function() {
+          $.data(this, "realHeight", $(this).height());
+        }).css({ display: "none" });
+
+        $(document).on("click", "#display-options", function(){
+          var div = $(this).parents(".display-gal-opt");
+          $(".display-gal-opt").toggle(function() {
+            div.animate({ height: div.data("realHeight") }, 600);
+          }, function() {
+            div.animate({ height: 0 }, 600);
+          }); 
+        });
 
 
   // AUTOCOMPLETE ////////////////////////////////////////////////////////////////////////////////////////
