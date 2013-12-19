@@ -1,8 +1,8 @@
 <?php
 
-  session_start();
-  $_SESSION=array();
-  session_destroy(); 
+  // session_start();
+  // $_SESSION=array();
+  // session_destroy(); 
 
   include("ressources/config.php");
   include_once("app/modele/Gallery.php");
