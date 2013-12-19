@@ -237,10 +237,11 @@ $(document).ready(function() {
 	$(document).on("click", ".categorySubmit", function(event) {
 		event.preventDefault();
 		var category = $(this).parent().find('.categoryName');
+		var id = $(this).parent().find('.imageId');
 		$.ajax({
 			type: "POST",
 			url: "index.php?section=create_category",
-			data: {name: category.val()},
+			data: {id: id.val(), name: category.val()},
 			dataType: "html",
 			success: function(data) {
 				$(".new-category").css("display", "none");

@@ -54,7 +54,6 @@
             		</ul>
 			    </div>
 			    <input type="hidden" name="id" value=<?= $id ?>>
-                
             </form>
             <div class="new-category">
                 <form class="new-category-align form-inline" method="post" action="#" role="form">
@@ -63,6 +62,7 @@
                     </div>
                     <button type="submit" class="btn-sm btn-default categorySubmit">Créer</button>
                     <span class="validateCategoryNameModal"></span>
+                    <input type="hidden" class="imageId" name="id" value=<?= $id ?>>
                 </form>
             </div>
 
