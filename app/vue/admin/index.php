@@ -1,4 +1,4 @@
-<?php
+	<?php
       require_once("ressources/templates/admin/header.php");    
 ?>
 
@@ -138,7 +138,7 @@
 						  		<form class="form-inline" role="form">
 						  			<p> Ajouter une catégorie </p>
 								  <div class="form-group">
-								    <input class="categoryName"  class="form-control" placeholder="Nom de la catégorie">
+								    <input type="text" class="categoryName"  class="form-control" placeholder="Nom de la catégorie">
 								  </div>
 								  <button id="new-cat-submit" type="submit" class="btn btn-default btn-sm">+</button>
 								  <br/><span class="validateCategoryName"></span>
@@ -171,15 +171,12 @@
 			</div>
 		<!-- 		Alert suppression galerie			  -->
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
-			<p>
-				<span class="glyphicon glyphicon-warning-sign"></span>
-				Supprimer la galerie détruira toutes les images la composant. Êtes-vous sur de vouloir effectuer cette action ?
-			</p>
+			<p>Supprimer la galerie détruira toutes les images la composant. </p>
+			<p>Êtes-vous sur de vouloir effectuer cette action ?</p>
 		</div>
 		<!-- 		Alert suppression categorie			  -->
 		<div id="dial-del-cat" title="Supprimer la categorie ?">
 			<p>
-				<span class="glyphicon glyphicon-warning-sign"></span>
 				Confirmez-vous la suppression de la catégorie ?
 			</p>
 		</div>

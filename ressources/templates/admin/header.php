@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Test Gallery js - Espace admin </title>
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
-        <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
         <?php $IE8 = (preg_match('/msie/',$_SERVER['HTTP_USER_AGENT'])) ? true : false;
             if ($IE8 == 1) {  ?>
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -14,11 +14,7 @@
                 <script type="text/javascript" src="app/js/jquery_2.0.3.min.js"></script>
             <?php } ?>
         <script type="text/javascript" src="app/js/jquery-ui_1.10.3.min.js"></script>
-        <!--   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
         <script type="text/javascript" src="app/js/bootstrap.min.js"/></script>
-        <script type="text/javascript" src="app/js/respond.js"></script>
-        
         <!--[if IE]>
             <script src="app/js/html5-ie.js"></script>
             <script src="app/js/html5shiv.js"></script>
