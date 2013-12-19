@@ -168,7 +168,6 @@ if ( typeof Object.create !== 'function' ) {
             });
       },
       launchSlideshow: function(item, autoplay){
-        console.log("autoplay ? : "+autoplay);
             var self = this;
             var slide = Object.create(slideshow);
             slide.init(self, item, autoplay);
@@ -239,14 +238,11 @@ if ( typeof Object.create !== 'function' ) {
                         '</div>';
 
                     // fixer taille limite des images en fonction de taille de la fenetre
-                    var maxHeight = $(window).height() * 70/100;
-                    var maxWidth = $(window).width() * 70/100;                        
-                    $('.lb-image').css({
-                        "max-width": ""+maxWidth+"px",
-                        "max-height": ""+maxHeight+"px"
-                    });
+
 
                     self.gallery.$container.append(lightbox);
+
+                    
                     self.$lightbox = $('#lightbox');
                     self.createLightbox();
             },
@@ -303,6 +299,12 @@ if ( typeof Object.create !== 'function' ) {
                         // $(".lb-title h3").html(currentImg.title);
                         // $(".lb-desc p").html(currentImg.desc);
                         $(".lb-img-container").prepend(this);
+                        var maxHeight = $(window).height() * 70/100;
+                        var maxWidth = $(window).width() * 70/100; 
+                         $('.lb-image').css({
+                            "max-width": ""+maxWidth+"px",
+                            "max-height": ""+maxHeight+"px"
+                        });
                         $('.lb-container').width($(preloadImg).width() + 20);
                         $('.lb-nav').height($(preloadImg).outerHeight());
                         $(this).fadeIn();
@@ -310,7 +312,6 @@ if ( typeof Object.create !== 'function' ) {
                     preloadImg.src = currentImg.src;      
                     $(".lb-title h3").html(currentImg.title);
                     $(".lb-desc p").html(currentImg.desc);        
-                    console.log("autoplay in createlb : "+self.autoplay);
                     if (self.autoplay == true){
                           self.autoplayDiaporama();
                     }                 
@@ -336,6 +337,12 @@ if ( typeof Object.create !== 'function' ) {
                         preloadImg.onload = function(){
                             $(preloadImg).addClass('lb-image');
                             $('.lb-image').replaceWith($(preloadImg));
+                            var maxHeight = $(window).height() * 70/100;
+                            var maxWidth = $(window).width() * 70/100; 
+                             $('.lb-image').css({
+                                "max-width": ""+maxWidth+"px",
+                                "max-height": ""+maxHeight+"px"
+                            });
                             $('.lb-container').width($(preloadImg).width() + 20);
                             $('.lb-nav').height($(preloadImg).outerHeight());
                             $(".lb-title h3").html(currentImg.title);
