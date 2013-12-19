@@ -17,7 +17,7 @@ $galleryNames = $manager->getGalleryNames();
 $existe = false;
 
 foreach ($galleryNames as $galleryName) { //Le nom de galerie doit être unique
-	if($name == $galleryName['name']) {
+	if(trim(strtolower($name)) == trim(strtolower($galleryName['name']))) {
 		$existe = true;
 	}
 }

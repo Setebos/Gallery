@@ -1,8 +1,8 @@
 <?php
 
-  session_start();
-  $_SESSION=array();
-  session_destroy(); 
+  // session_start();
+  // $_SESSION=array();
+  // session_destroy(); 
 
   include("ressources/config.php");
   include_once("app/modele/Gallery.php");
@@ -20,7 +20,7 @@
 
   // recup de toutes les categories
   $categoryManager = new CategoryManager($db);
-  $listCategories = $categoryManager->getListCategories();
+  // $listCategories = $categoryManager->getListCategories();
 
   // recup de toutes les images
   $imageManager = new ImageManager($db);
@@ -48,6 +48,9 @@
       } else {
           $listImages = $imageManager->getImagesByGallery($listGalleries[0]->getId());
       }
+
+      // $idGallery = $current_gal->getId();
+      $listCategories = $categoryManager->getCategoriesByGallery($current_gal);
 
       include_once('app/vue/home.php');
   }

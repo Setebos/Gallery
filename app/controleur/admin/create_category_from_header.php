@@ -4,7 +4,7 @@ include_once("app/modele/CategoryManager.php");
 include_once("app/modele/Category.php");
 
 if(isset($_POST["name"])) {
-	$name = $_POST['name'];
+	$name = htmlspecialchars($_POST['name']);
 }
 
 $manager = new CategoryManager($db);
@@ -13,13 +13,15 @@ $categories = $manager->getListCategories();
 
 $existe = false;
 
+// On vérifie dans les catégories existantes si ce nom existe déjà
 foreach ($categories as $category) {
-	if($name == $category->getName()) {
+	if(trim(strtolower($name)) == trim(strtolower($category->getName()))) {
 		$existe = true;
 	}
 }
 
-if($existe == false) {
+
+if($existe == false) { // Le nom de catégorie doit être unique
 	$newCategory = new Category(array(
 		'id' => null,
 		'name' => $name
@@ -28,6 +30,7 @@ if($existe == false) {
 	$manager->createCategory($newCategory);
 }
 
+// Deuxième appel à getListCategories pour prendre en compte la catégorie nouvellement créée
 $listCategories = $manager->getListCategories();
 
 

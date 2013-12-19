@@ -7,18 +7,18 @@ include_once("app/modele/Category.php");
 
 $action = $_POST['action'];
 if(isset($_POST['galleryName'])) {
-	$galleryName = $_POST['galleryName'];
+	$galleryName = trim(strtolower($_POST['galleryName']));
 }
 if(isset($_POST['categoryName'])) {
-	$categoryName = $_POST['categoryName'];
+	$categoryName = trim(strtolower($_POST['categoryName']));
 }
 if(isset($_POST['editGallery'])) {
-	$editGallery = $_POST['editGallery'];
+	$editGallery = trim(strtolower($_POST['editGallery']));
 } else {
 	$editGallery = null;
 }
 if(isset($_POST['editCategory'])) {
-	$editCategory = $_POST['editCategory'];
+	$editCategory = trim(strtolower($_POST['editCategory']));
 } else {
 	$editCategory = null;
 }
@@ -34,7 +34,7 @@ function galleryNameTaken($galleryName, $listGalleries, $editGallery) {
 			return false;
 	} else {
 		foreach ($listGalleries as $gallery) {
-			if ($gallery['name'] == $galleryName) {
+			if (strtolower($gallery['name']) == $galleryName) {
 				return true;
 			}
 		}
@@ -46,7 +46,7 @@ function categoryNameTaken($categoryName, $listCategories, $editCategory) {
 			return false;
 	} else {
 		foreach ($listCategories as $category) {
-			if ($category['name'] == $categoryName) {
+			if (strtolower($category['name']) == $categoryName) {
 				return true;
 			}
 		}	

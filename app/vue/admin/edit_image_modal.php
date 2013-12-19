@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label name="imageDescription">Description : </label>
-                    <textarea cols="60" rows="4" name="imageDescription"><?= $image->getDescription() ?></textarea>
+                    <textarea cols="50" rows="4" name="imageDescription"><?= $image->getDescription() ?></textarea>
                 </div>
 			    <div class="form-group list-categories">
 		        	<label name="imageCategories">Choisissez des catégories : </label>
