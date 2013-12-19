@@ -204,6 +204,12 @@ if ( typeof Object.create !== 'function' ) {
                  $('#lb-area').on('click', function(){
                       self.hideLightbox();  
                   });
+                 $('#lightbox').on('click', function(e){
+                      if($(e.target).closest(".lb-container").length == 0){
+                          self.hideLightbox();    
+                      }
+                  });
+
 
                // gestion de la navigation
                self.setNav();

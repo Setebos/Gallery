@@ -50,7 +50,7 @@ require_once("ressources/templates/header.php");
 
 
 $(document).ready(function(){
-  $('#dvLoading').fadeOut(500);;
+  $('#dvLoading').fadeOut(500);
 
    var options = <?=$options_json?>;
    options.show_entire_gallery == 0 ? options.show_entire_gallery = false : options.show_entire_gallery =true;
@@ -61,14 +61,6 @@ $(document).ready(function(){
     'nb_images_per_line' : options.nb_images_per_line, 
     'displayDuration' : options.displayDuration
   });
-
-  // $("#diapo").slideshowPlugin({
-  //   'show_entire_gallery' : false,
-  //   'diaporama_width' : 1000,
-  //   'nb_images_per_line' : 3, 
-  //   'displayDuration' : 2000
-  // });
-
 
 })
 
