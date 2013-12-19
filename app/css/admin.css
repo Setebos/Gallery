@@ -89,7 +89,11 @@ a:hover{
 }
 
 .gallery-active {
-    background-color: #ff5d55;
+    background-color: #fff;
+    -webkit-box-shadow: #666 2px 3px 5px;
+    -moz-box-shadow: #666 2px 3px 5px;
+    box-shadow: #666 2px 3px 5px;
+    behavior: url(/pie/PIE.htc);
 }
 
 #dialog-confirm,  #dial-del-cat, #dial-del-img{
@@ -114,16 +118,40 @@ a:hover{
 
 /***********        Gallery display options in gallery part        ***********/
 
-.gallery-part  .display-gal-opt{
+.gallery-part .display-gal-opt{
     padding: 10px;
     border-bottom: 1px solid #fff;
     height: auto;
+}
+
+.gallery-part .display-gal-opt .col-md-5{
+    padding: 0;
 }
 
 
 .display-gal-opt .well {
     width: auto;
     margin: 0 10px 0 10px;
+}
+
+.display-gal-opt label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.display-gal-opt .radio-inline {
+    font-size: 13px;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.display-gal-opt .radio-btn{
+    margin-bottom: 0;
+}
+
+.display-gal-opt .radio-btn label:first-child{
+    margin-top: 0;
 }
 
 
@@ -183,8 +211,13 @@ a:hover{
 }
 
 .picture-body .help-block{
-    margin-top: 20px;
+    margin-top: 5px;
     font-style: italic;
+    margin-bottom: 5px;
+}
+
+.picture-body .help-block:first-child{
+    margin-top: 20px;
 }
 
 /***********        Cat management in picture header        ***********/
