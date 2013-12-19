@@ -3,6 +3,7 @@ require_once("ressources/templates/header.php");
 ?>
 
 <container  id="gallery-full">
+  
   <section class="categories">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -23,6 +24,7 @@ require_once("ressources/templates/header.php");
   </section >
 
   <section id="gallery">
+    <div id="dvLoading"></div>
     <?php if (empty($listImages)) {?>
       <p class="text-center"> <em>Aucune image à afficher</em> </p>
     <?php } else { ?>
@@ -48,6 +50,7 @@ require_once("ressources/templates/header.php");
 
 
 $(document).ready(function(){
+  $('#dvLoading').fadeOut(500);;
 
    var options = <?=$options_json?>;
    options.show_entire_gallery == 0 ? options.show_entire_gallery = false : options.show_entire_gallery =true;
