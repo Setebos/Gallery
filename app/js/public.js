@@ -29,9 +29,9 @@
     		  type: "POST",
     		  url: "index.php?section=home",
     		  data: {catActiveIds: catActiveIds, gal: gal},
-            dataType: "json",
+              dataType: "html",
     		  success: function(data, textStatus, XHR){
-                filter_img_by_category(data);          
+    		      $("body").html(data);             
     		  },
     		  error: function (XHR, textStatus, errorThrown){
               console.log('quel echec');

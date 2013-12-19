@@ -7,6 +7,10 @@ body{
 
 /***********        Index - liste des gallery        ***********/
 
+#gallery-full .categories .row-cat{
+    margin: 0;
+}
+
 .gallery-desc a{
 
 }
@@ -99,6 +103,19 @@ footer {
     bottom: 0;
     position: fixed;
 }
+
+
+#dvLoading
+{
+   background:url(../img/ajax-loader.gif) 50% 50% no-repeat #eee;
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   z-index: 9999;
+   left: 0;
+   top: 50px;
+}
+
 
 
 /***********        Surcharges bootstrap        ***********/

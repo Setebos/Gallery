@@ -12,7 +12,7 @@ class OptionManager {
         
         $id = (int) $id;
 
-        $q = $this->_db->query('SELECT show_entire_gallery, diaporama_width, nb_images_per_line, display_duration 
+        $q = $this->_db->query('SELECT id, show_entire_gallery, diaporama_width, nb_images_per_line, display_duration 
             FROM gallery_options WHERE id = '.$id);
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
 

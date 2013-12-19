@@ -1,6 +1,29 @@
 
 $(document).ready(function() {
 
+	$.fn.sorting = function() {
+		$(".conteneur-images").children("ul").sortable({ 
+			opacity: '0.7',
+			containment: "parent",
+			cursor: "move",
+			update: function() {
+				newOrder = $(this).sortable("serialize");
+				$.ajax({
+					url: "index.php?section=reposition_image",
+					type: "POST",
+					data: newOrder,
+				});
+			}
+		});
+		return this;
+	};
+
+	//Initialisation du tri des images
+
+
+	$(document).sorting();
+	
+
 	/***************  INDEX  *****************/
 
 /** Gestion partie galleries options **/
@@ -16,6 +39,8 @@ $(document).ready(function() {
 		  div.animate({ height: 0 }, 600);
 		});	
 	});
+
+
 
 /** Gestion partie nouvelle catégorie **/
 	$(".new-cat").each(function() {
@@ -46,20 +71,9 @@ $(document).ready(function() {
 			data: { id: idCourt },
 			dataType: "html",
 			success: function(data) {
-				$( ".conteneur-images" ).html(data);
-				$(".conteneur-images").children("ul").sortable({ 
-					opacity: '0.7',
-					containment: "parent",
-					cursor: "move",
-					update: function() {
-						newOrder = $(this).sortable("serialize");
-						$.ajax({
-							url: "index.php?section=reposition_image",
-							type: "POST",
-							data: newOrder,
-						});
-					}
-				});
+				$( ".picture-part" ).html(data);
+				$(".new-cat").css({ display: "none" });
+				$(this).sorting();
 			}
 		})
 	});
@@ -96,6 +110,7 @@ $(document).ready(function() {
 		});
 	});
 
+	/* Edition de galerie */
 	$(document).on("click", ".gal-edit-btn", function() {
 		console.log($(this).parent());
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
@@ -127,6 +142,7 @@ $(document).ready(function() {
 		});
 	});
 
+	// Obsolète
 	$(document).on("click", ".gallery-delete-button", function() {
 		var idLong = $(this).attr('id');
 		var idCourt = idLong.substring(14);
@@ -269,9 +285,9 @@ $("#modal_info_pic").on("click", ".del-img-confirm", function(event) {
 		success: function(data) {
 			$(".conteneur-images").html(data);
 			$("#modal_info_pic").modal('hide');
+			$(document).sorting();
 		},
 		error: function() {
-			console.log(data);
 		}
 	})
 })
@@ -281,25 +297,31 @@ $("#modal_info_pic").on("click", ".del-img-confirm", function(event) {
 
 $(document).on("click", "#gal-options-submit", function(event) {
 		event.preventDefault();
-		// console.log($('input[name=displayGallery]:checked', '#display-gal-option').val())
+	  // var div = $(this).parents(".display-gal-opt");
 		
 		$.ajax({
 			type: "POST",
 			url: "index.php?section=update_option",
 			data: {
-				show_entire_gallery: 0,
+				show_entire_gallery: $(".displayGallery:checked").val(),
 				diaporama_width: $('#diaporamaWidth').val(),
 				nb_images_per_line: $('#nbImagesPerLine').val(),
 				display_duration: $('#displayDuration').val()
 				},
 			dataType: "html",
 			success: function(data) {
-				console.log("succès !");
-				 $("#display-gal-opt-msg").html("Vos options ont bien été mises à jour");
+				$("#display-gal-opt-msg").html("<div class='alert alert-success'>Vos options ont bien été mises à jour</div>");
+				setTimeout(function () {
+			    $("#display-gal-opt-msg").html("");
+			    $("#display-options").trigger("click");
+				}, 3000);
+				 // $("#display-gal-opt-msg").html("<div class='alert alert-success'>Vos options ont bien été mises à jour</div>").delay(5000).html("");
+				 // div.delay(2000).animate({ height: 0 }, 600);
+				 // $("#display-gal-opt-msg").html("").delay(5000);
+				// $("#display-options").delay(5000).trigger("click");
 			},
 			error: function(){
-				console.log("errooooor");
-				$("#display-gal-opt-msg").html("Désolée, problème !");
+				$("#display-gal-opt-msg").html("<div class='alert alert-danger'>Désolée, problème !</div>");
 			}
 		})
 	});
@@ -406,8 +428,43 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 	});
 
 	// Formulaire de création de catégorie
-	$(document).on("input", ".categoryName", function() {
-		var validateCategoryName = $('.validateCategoryName');
+	$(document).on("input", ".categoryName", function(event) {
+		if(! $(event.target).is(".categoryNameModal")) {
+			var validateCategoryName = $('.validateCategoryName');
+			var t = this; 
+			if (this.value != this.lastValue) {
+			  	if (this.timer) {
+			  		clearTimeout(this.timer);	
+			  	} 
+			  	validateCategoryName.removeClass("form-error");
+			  	validateCategoryName.removeClass("form-ok");
+			  	validateCategoryName.html('<img src="app/img/ajax-spinner.gif" height="16" width="16" /> Vérification...');
+			  
+			  	this.timer = setTimeout(function () {
+			    	$.ajax({
+			      		url: 'index.php?section=check_form',
+			      		data: {action: "checkCategory", categoryName: t.value},
+			      		dataType: 'json',
+			      		type: 'post',
+			      		success: function(data) {
+			        		validateCategoryName.html(data.msg);
+			        		if(data.ok == true) {
+			        			validateCategoryName.addClass("form-ok");
+			        		} else if (data.ok == false) {
+			        			validateCategoryName.addClass("form-error");
+			        		}
+			      		}
+			    	});
+			  	}, 200);
+			  
+			  	this.lastValue = this.value;
+			}
+		}
+	});
+
+	// Formulaire de création de catégorie dans le modal
+	$(document).on("input", ".categoryNameModal", function() {
+		var validateCategoryName = $('.validateCategoryNameModal');
 		var t = this; 
 		if (this.value != this.lastValue) {
 		  	if (this.timer) {
@@ -462,6 +519,7 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		})
 	});
 
+	// Validation de nouvelle image
 	$('#newImageForm').submit(function(event) {
 		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
 		var acceptedFiles = new RegExp(/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$/);
@@ -487,6 +545,24 @@ $(".picture-header-option-part").on("click", ".span-del-cat", function() {
 		}
 	});
 
+	// Validation d'édition d'image
+	$("#modal_info_pic").on("click", ".editImageSubmit", function(event) {
+		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
+		var title = $('#imageName').val();
+		if(title == "") {
+			$('.validateImageName').html("L'image doit avoir un titre");
+		} else if(!title.match(accepted)) {
+			$('.validateImageName').html("Utilisez uniquement des caractères alphanumériques");
+		} else {
+			$('.validateImageName').html("");
+		}
+
+		if($('.validateImageName').html() != "") {
+			return false;
+		}
+	});
+
+	// Validation de création et édition de galerie
 	$("#newGalleryForm, #editGalleryForm").submit(function(event) {
 		var accepted = new RegExp(/^[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ ]+$/);
 		var galleryName = $('#galleryName').val();

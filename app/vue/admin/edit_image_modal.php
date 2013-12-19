@@ -4,7 +4,8 @@
             
             <form class="upload-image-align" method="post" action="<?= "index.php?section=update_image"?>" role="form">
                 <div class="edit-btn-image">
-                    <button type="submit" class="btn btn-default btn-sm">Modifier</button>
+                    <button type="submit" class="btn btn-default btn-sm editImageSubmit">Modifier</button>
+                    <span class="validateImageName form-error"></span>
                     <button id="<?= "del-img-".$id ?>" class="btn btn-default btn-xsm pull-right btn-del-img" data-html="true" data-toggle="clickover" data-placement="left" data-content="<?= $confirmText ?>" title="Supprimer l'image ?">
                         <span class="glyphicon glyphicon-trash "></span>
                     </button>
@@ -12,7 +13,7 @@
                 <hr>
                 <div class="form-group">
                     <label name="imageName">Titre de l'image : </label>
-                    <input type="text" name="imageName" value="<?= $image->getTitle() ?>"/>
+                    <input id="imageName" type="text" name="imageName" value="<?= $image->getTitle() ?>"/>
                 </div>
                 <div class="form-group">
                     <label name="imageGallery">Galerie : </label>
@@ -58,10 +59,10 @@
             <div class="new-category">
                 <form class="new-category-align form-inline" method="post" action="#" role="form">
                     <div class="form-group">
-                        <input class="categoryName" type="text" name="categoryName" placeholder="Nouvelle catégorie"/>
+                        <input class="categoryName categoryNameModal" type="text" name="categoryName" placeholder="Nouvelle catégorie"/>
                     </div>
                     <button type="submit" class="btn-sm btn-default categorySubmit">Créer</button>
-                    <span class="validateCategoryName"></span>
+                    <span class="validateCategoryNameModal"></span>
                 </form>
             </div>
 

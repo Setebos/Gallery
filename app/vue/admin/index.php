@@ -17,37 +17,54 @@
 			 	</div>
 			 	<div class="gallery-header-option-part">
 				  	<div class="display-gal-opt">
-				  		<form role="form" id="#display-gal-option">
+				  		<form role="form" id="display-gal-option">
 					  		<h4> Options d'affichage de la galerie</h4>
 					  		<div class="well">
 					  			<span id="display-gal-opt-msg"></span>
-				  				<div class="form-group">
+				  				<div class="form-group radio-btn">
 				  					<label >Afficher toute la galerie : </label>
-				  					<?PHP
-										$displayTrue = 'unchecked';
-										$displayFalse = 'unchecked';
-										$option->getShowEntireGallery() == 0 ? $displayFalse = 'checked' : $displayTrue = 'checked';
-									?>
-							      	<label  class="radio-inline">
-										<input type="radio" name="displayGallery" id="displayTrue" value="displayTrue" <?PHP print $displayTrue; ?>>
+				  					<br>
+						      		<?php if($option->getShowEntireGallery() == 0) { ?>
+
+						      		<label class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1">
+										Oui
+									</label>
+							      	<label class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0" checked>
+										Non
+									</label>
+
+									<?php } else { ?>
+
+									<label  class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1" checked>
 										Oui
 									</label>
 							      	<label  class="radio-inline">
-										<input type="radio" name="displayGallery" id="displayFalse" value="displayFalse" <?PHP print $displayFalse; ?>>
+										<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0">
 										Non
 									</label>
+									<?php } ?>
+	
 								</div>
 								<div class="form-group">
-								    <label name="diaporamaWidth">Largeur du diaporama (en pixel) : </label>
-								    <input type="text" class="form-control" id="diaporamaWidth" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
+								    <label name="diaporamaWidth">Largeur du diaporama (<abbr title="min : 300 ; max : 1000">en pixel</abbr>) : </label>
+								    <div class="col-md-5">
+								    	<input type="text" class="form-control input-sm" id="diaporamaWidth" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
+								    </div>
 								</div>
 					  			<div class="form-group">
 				  					<label name="nbImagesPerLine">Nombre d'images affichées par ligne : </label>
-								    	<input type="text"  class="form-control" id="nbImagesPerLine" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
+				  					<div class="col-md-5">
+								    	<input type="text"  class="form-control input-sm" id="nbImagesPerLine" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
+								    </div>
 								</div>
 								<div class="form-group">
-								    <label name="displayDuration">Durée d'affichage des images dans le diaporama : 	</label>
-								    <input type="text" class="form-control" id="displayDuration" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
+								    <label name="displayDuration">Durée d'affichage des images dans le diaporama (<abbr title="min : 500 ; max : 10 000">en millisecondes</abbr>) : 	</label>
+								    <div class="col-md-5">
+								    	<input type="text" class="form-control input-sm" id="displayDuration" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
+									</div>
 								</div>
 								<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
 								<br/><span id="validateGalOptions"></span>
@@ -56,28 +73,33 @@
 				  	</div>	
 				</div>
 			 	<div class="gallery-body">
-			 		<?php foreach ($listGalleries as $gallery) {?>
-	                    <div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
-	                    		<div class="gal-vign-picture">
-	                    			 <?php if ($listFirstImages[$gallery->getId()] != null) {?>
-		                        		<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
-		                        	<?php } else { ?>
-		                        	<img src="http://placehold.it/120&text=pic">
-		                        	<?php } ?>
-		                      	</div>
-		                       	<div class="gal-vign-detail">
-		                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
-		                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
+			 		<?php if($vide == false) {
+			 		foreach ($listGalleries as $gallery) {
+			 			if($gallery->getName() == $gallerySelect) { ?>
+			 				<div class="gal-vign-container gallery-active"  id="<?= "gallery" . $gallery->getId() ?>">
+			 			<?php } else { ?>
+		 					<div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
+		 				<?php } ?>
+                 		<div class="gal-vign-picture">
+                 			 <?php if ($listFirstImages[$gallery->getId()] != null) {?>
+                        		<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
+                        	<?php } else { ?>
+                        	<img src="http://placehold.it/120&text=pic">
+                        	<?php } ?>
+                      	</div>
+                       	<div class="gal-vign-detail">
+                        	<a href="#"><p><?= $gallery->getName() ?></p></a>
+                        	<button class="btn btn-default btn-xsm gal-suppr-btn">
 										<span class="glyphicon glyphicon-trash"></span>
 									</button>
-		                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
-			                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</button>
-							</a>		
-		                       </div>
-	                    </div>
-                  	<?php } ?>
+                        	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
+	                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+									</a>		
+                        </div>
+                     </div>
+            	<?php }} ?>
 		 		</div>
 			 </div>
 			 <div class="col-md-8 picture-part">
@@ -90,7 +112,11 @@
 			  				<a href="#" id="new-cat-btn"><p>Editer les catégories</p></a>
 			  			</li>
 			  		</ul>
-			  		<h3>Images</h3>
+			  		<h3>Images 
+			  		<?php if($vide == false) { 
+                 		echo  " - ".$gallerySelect;
+                 	} ?>
+                 </h3>
 			  	</div>
 			  	<div class="picture-header-option-part">
 				  	<div class="new-cat">
@@ -122,20 +148,27 @@
 				  	</div>	
 				</div>
 			  	<div class="picture-body">
-		                	<div class="conteneur-images">
-		                    	<h3>Aucune galerie sélectionnée</h3>
-		                    	<ul class="list-inline sortable">
-			                    	<?php foreach ($listImages as $image) {?>
-				                    	<li class="picture-list">
-			                        		<div class="picture-div" data-toggle="modal" data-target="#myModal">
-			                        			<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>" title="<?= $image->getTitle() ?>">
-			                    			</div>
-			                    		</li>
-			                  		<?php } ?>
-		                    	</ul>
-		            		</div>
-					 </div>
+	             	<div class="conteneur-images">
+	             		<?php if($vide == false) { 
+	             			if(!isset($listImages)) {?>
+	             				<p class="help-block">Appuyez sur le bouton " + " ci-dessus pour ajouter des images.</p>
+             				<?php } else {?>
+								<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
+							<?php } ?>
+							<ul class="list-inline sortable">
+								<?php foreach ($listImages as $image) {?>
+									<li id="<?= "item-".$image->getId() ?>" class="picture-list">
+										<span class="roll"></span>
+										<div class="picture-div">
+											<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
+										</div>
+									</li>
+								<?php } ?>
+							</ul>
+						<?php } ?>
+         			</div>
 				</div>
+			</div>
 		<!-- 		Alert suppression galerie			  -->
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
 			<p>

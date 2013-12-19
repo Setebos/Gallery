@@ -189,11 +189,7 @@ position: relative;
 float: left;
 }
 
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-color: #333;
-background-color: #ebebeb;
-border-color: #adadad;
-}
+
 
 .btn {
 display: inline-block;
@@ -217,18 +213,24 @@ border-radius: 4px;
 user-select: none;
 }
 
-
-.icon{
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Entypo';
-    -webkit-font-smoothing: antialiased;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -moz-osx-font-smoothing: grayscale;
+.btn:focus {
+   outline-color: transparent !important;
 }
+
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  -webkit-appearance: button;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+color: #333;
+background-color: #ebebeb;
+border-color: #adadad;
+text-decoration: none;
+}
+
 
 /* navigation */
 
@@ -276,6 +278,11 @@ user-select: none;
     float: right;
 }
 
+#diapo-nav .btn-nav-group .btn{
+    width: 45px;  
+    height: 45px;
+}
+
 #diapo-nav ul{
     list-style: none;
 }
@@ -286,9 +293,11 @@ user-select: none;
 
 #diapo-nav span{
     font-size: 70px;
-    width: 30px;  
-    line-height: 0.1;
+    vertical-align: center;
+    line-height: 0;
 }
+
+
 
 
 
