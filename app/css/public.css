@@ -7,6 +7,10 @@ body{
 
 /***********        Index - liste des gallery        ***********/
 
+#gallery-full .categories .row-cat{
+    margin: 0;
+}
+
 .gallery-desc a{
 
 }

@@ -5,7 +5,7 @@ require_once("ressources/templates/header.php");
 <container  id="gallery-full">
   
   <section class="categories">
-    <div class="row">
+    <div class="row row-cat">
       <div class="col-md-8 col-md-offset-2">
           <ul class="list-inline">
             <li>
