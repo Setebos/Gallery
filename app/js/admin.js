@@ -71,20 +71,8 @@ $(document).ready(function() {
 			data: { id: idCourt },
 			dataType: "html",
 			success: function(data) {
-				$( ".conteneur-images" ).html(data);
-				// $(".conteneur-images").children("ul").sortable({ 
-				// 	opacity: '0.7',
-				// 	containment: "parent",
-				// 	cursor: "move",
-				// 	update: function() {
-				// 		newOrder = $(this).sortable("serialize");
-				// 		$.ajax({
-				// 			url: "index.php?section=reposition_image",
-				// 			type: "POST",
-				// 			data: newOrder,
-				// 		});
-				// 	}
-				// });
+				$( ".picture-part" ).html(data);
+				$(".new-cat").css({ display: "none" });
 				$(this).sorting();
 			}
 		})

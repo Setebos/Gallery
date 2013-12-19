@@ -141,7 +141,7 @@ a:hover{
 }
 
 .picture-header h3{
-    margin: 0 0 0 50px;
+    margin: 0 0 0 55px;
 }
 
 .picture-header, .gallery-header{
@@ -180,6 +180,11 @@ a:hover{
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
+}
+
+.picture-body .help-block{
+    margin-top: 20px;
+    font-style: italic;
 }
 
 /***********        Cat management in picture header        ***********/

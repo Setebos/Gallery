@@ -10,6 +10,7 @@ include_once("app/modele/CategoryManager.php");
 include_once("app/modele/OptionManager.php");
 include_once("app/modele/Option.php");
 
+// recup des options, forcement d'id = 1;
 $managerOption = new OptionManager($db);
 $option = $managerOption->getOption(1);
 

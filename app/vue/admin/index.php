@@ -105,7 +105,11 @@
 			  				<a href="#" id="new-cat-btn"><p>Editer les catégories</p></a>
 			  			</li>
 			  		</ul>
-			  		<h3>Images</h3>
+			  		<h3>Images 
+			  		<?php if($vide == false) { 
+                 		echo  " - ".$gallerySelect;
+                 	} ?>
+                 </h3>
 			  	</div>
 			  	<div class="picture-header-option-part">
 				  	<div class="new-cat">
@@ -137,23 +141,22 @@
 				  	</div>	
 				</div>
 			  	<div class="picture-body">
-             	<div class="conteneur-images">
-             		<?php if($vide == false) { ?>
-                 	<h3 class="gallery-title"><?= $gallerySelect ?></h3>
-						<p>Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images</p>
-						<ul class="list-inline sortable">
-							<?php foreach ($listImages as $image) {?>
-								<li id="<?= "item-".$image->getId() ?>" class="picture-list">
-									<span class="roll"></span>
-									<div class="picture-div">
-										<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
-									</div>
-								</li>
+	             	<div class="conteneur-images">
+	             		<?php if($vide == false) { ?>
+							<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
+							<ul class="list-inline sortable">
+								<?php foreach ($listImages as $image) {?>
+									<li id="<?= "item-".$image->getId() ?>" class="picture-list">
+										<span class="roll"></span>
+										<div class="picture-div">
+											<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
+										</div>
+									</li>
+								<?php } ?>
+							</ul>
 							<?php } ?>
-						</ul>
-						<?php } ?>
-         		</div>
-				 </div>
+         			</div>
+				</div>
 			</div>
 		<!-- 		Alert suppression galerie			  -->
 		<div id="dialog-confirm" title="Supprimer la galerie ?">
