@@ -21,6 +21,7 @@ $managerCategory = new CategoryManager($db);
 $listGalleries = $managerGallery->getListGalleries();
 $listCategories = $managerCategory->getListCategories();
 
+
 if($listGalleries != null) {
 	$vide = false;
 	$gallerySelect = $listGalleries[0]->getName();
@@ -35,7 +36,5 @@ if($listGalleries != null) {
 } else {
 	$vide = true;
 }
-
-
 
 include_once('app/vue/admin/index.php');

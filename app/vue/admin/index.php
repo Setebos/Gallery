@@ -17,47 +17,54 @@
 			 	</div>
 			 	<div class="gallery-header-option-part">
 				  	<div class="display-gal-opt">
-				  		<form role="form" id="#display-gal-option">
+				  		<form role="form" id="display-gal-option">
 					  		<h4> Options d'affichage de la galerie</h4>
 					  		<div class="well">
 					  			<span id="display-gal-opt-msg"></span>
-				  				<div class="form-group">
+				  				<div class="form-group radio-btn">
 				  					<label >Afficher toute la galerie : </label>
+				  					<br>
 						      		<?php if($option->getShowEntireGallery() == 0) { ?>
 
-						      		<label  class="radio-inline">
-											<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1">
-											Oui
-										</label>
+						      		<label class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1">
+										Oui
+									</label>
+							      	<label class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0" checked>
+										Non
+									</label>
+
+									<?php } else { ?>
+
+									<label  class="radio-inline">
+										<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1" checked>
+										Oui
+									</label>
 							      	<label  class="radio-inline">
-											<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0" checked>
-											Non
-										</label>
-
-										<?php } else { ?>
-
-										<label  class="radio-inline">
-											<input type="radio" name="displayGallery" id="displayTrue" class="displayGallery" value="1" checked>
-											Oui
-										</label>
-							      	<label  class="radio-inline">
-											<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0">
-											Non
-										</label>
-
-										<?php } ?>
+										<input type="radio" name="displayGallery" id="displayFalse" class="displayGallery" value="0">
+										Non
+									</label>
+									<?php } ?>
+	
 								</div>
 								<div class="form-group">
-								    <label name="diaporamaWidth">Largeur du diaporama (en pixel) : </label>
-								    <input type="text" class="form-control" id="diaporamaWidth" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
+								    <label name="diaporamaWidth">Largeur du diaporama (<abbr title="min : 300 ; max : 1000">en pixel</abbr>) : </label>
+								    <div class="col-md-5">
+								    	<input type="text" class="form-control input-sm" id="diaporamaWidth" name="diaporamaWidth" value="<?= $option->getDiaporamaWidth() ?>">
+								    </div>
 								</div>
 					  			<div class="form-group">
 				  					<label name="nbImagesPerLine">Nombre d'images affichées par ligne : </label>
-								    	<input type="text"  class="form-control" id="nbImagesPerLine" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
+				  					<div class="col-md-5">
+								    	<input type="text"  class="form-control input-sm" id="nbImagesPerLine" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
+								    </div>
 								</div>
 								<div class="form-group">
-								    <label name="displayDuration">Durée d'affichage des images dans le diaporama : 	</label>
-								    <input type="text" class="form-control" id="displayDuration" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
+								    <label name="displayDuration">Durée d'affichage des images dans le diaporama (<abbr title="min : 500 ; max : 10 000">en millisecondes</abbr>) : 	</label>
+								    <div class="col-md-5">
+								    	<input type="text" class="form-control input-sm" id="displayDuration" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
+									</div>
 								</div>
 								<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
 								<br/><span id="validateGalOptions"></span>
@@ -142,8 +149,12 @@
 				</div>
 			  	<div class="picture-body">
 	             	<div class="conteneur-images">
-	             		<?php if($vide == false) { ?>
-							<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
+	             		<?php if($vide == false) { 
+	             			if(!isset($listImages)) {?>
+	             				<p class="help-block">Appuyez sur le bouton " + " ci-dessus pour ajouter des images.</p>
+             				<?php } else {?>
+								<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
+							<?php } ?>
 							<ul class="list-inline sortable">
 								<?php foreach ($listImages as $image) {?>
 									<li id="<?= "item-".$image->getId() ?>" class="picture-list">
@@ -154,7 +165,7 @@
 									</li>
 								<?php } ?>
 							</ul>
-							<?php } ?>
+						<?php } ?>
          			</div>
 				</div>
 			</div>
