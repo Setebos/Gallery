@@ -217,24 +217,23 @@ if ( typeof Object.create !== 'function' ) {
                     '<div id="lb-area">' +
                     '</div>'+
                     '<div id="lightbox" class="lightbox">' +
-                    '<div class="lb-container">' +
-                    '<div class="lb-img-container">' + 
-
-                    '<div class="lb-nav">' +
-                    '<a class="lb-prev" href="" ></a>'+
-                    '<a class="lb-next" href="" ></a>'+
-                    '</div>'+
-                    '</div>' +
-                    '<div class="lb-data-container">' + 
-                    '<div class="lb-details">' +
-                    '<div class="lb-title"><h3></h3></div>' +
-                    '<div class="lb-desc"><p></p></div>'+
-                    '</div>'+
-                    '<div class="lb-close-container">' +
-                    '<a class="lb-close"></a>' +
-                    '</div>'+
-                    '</div>' +
-                    '</div>' +
+                        '<div class="lb-container">' +
+                            '<div class="lb-img-container">' + 
+                                '<div class="lb-nav">' +
+                                    '<a class="lb-prev" href="" ></a>'+
+                                    '<a class="lb-next" href="" ></a>'+
+                                '</div>'+
+                            '</div>' +
+                            '<div class="lb-data-container">' + 
+                                '<div class="lb-details">' +
+                                    '<div class="lb-title"><h3></h3></div>' +
+                                    '<div class="lb-desc"><p></p></div>'+
+                                '</div>'+
+                                '<div class="lb-close-container">' +
+                                    '<a class="lb-close"></a>' +
+                                '</div>'+
+                            '</div>' +
+                        '</div>' +
                     '</div>';
                     
                     var currentImg = self.album[self.currentImageIndex];  
@@ -256,12 +255,15 @@ if ( typeof Object.create !== 'function' ) {
                         });
                         $('.lb-container').width($(preloadImg).width() + 20);
                         $('.lb-nav').height($(preloadImg).outerHeight());
+                        if (self.autoplay == true){
+                            console.log("cacher nav");
+                            $('.lb-nav').hide();  
+                          } 
+                        $(".lb-title h3").html(currentImg.title);
+                        $(".lb-desc p").html(currentImg.desc);   
                         $(this).fadeIn();
                     }
                     preloadImg.src = currentImg.src;      
-
-                    $(".lb-title h3").html(currentImg.title);
-                    $(".lb-desc p").html(currentImg.desc);   
 
                     if (self.autoplay == true){
                       self.autoplayDiaporama();
@@ -297,7 +299,6 @@ if ( typeof Object.create !== 'function' ) {
                         });
 
                       self.gallery.bindLbClick = true;
-
                     }
 
                   },
@@ -319,8 +320,6 @@ if ( typeof Object.create !== 'function' ) {
                   },  
                   autoplayDiaporama: function(){
                     var self = this;
-
-                    $('.lb-nav').hide();
 
                   // simulation d'un click à interval régulier pour défilement auto
                   self.lbTimer= setInterval(function(){
