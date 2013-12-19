@@ -31,7 +31,6 @@
     		  data: {catActiveIds: catActiveIds, gal: gal},
             dataType: "json",
     		  success: function(data, textStatus, XHR){
-                // console.log(data);
                 filter_img_by_category(data);          
     		  },
     		  error: function (XHR, textStatus, errorThrown){
@@ -55,30 +54,22 @@
         });
       });
 
-      var filter_img_by_category = function(imgs_src) {
-          var imgLiEtalon = $("#diapo li:first");
-          var realWidth =  imgLiEtalon.width();
-          $.data(imgLiEtalon, "realWidth", imgLiEtalon.width());
-          // console.log(imgLiEtalon.width());
+      var filter_img_by_category = function(imgs_src, width) {
           $("#diapo").find('img').each(function(){
+
                 var src = $(this).attr('src');
                 var imgLi = $(this).parent();
-
                 if( $.inArray(src, imgs_src) == -1 && !imgLi.hasClass('filtered')) {
                     imgLi.addClass('filtered');
-                    // $.data(imgLi, "realWidth", imgLi.width());
-                    // console.log(imgLi.data("realWidth"));
-                    console.log($.data(imgLiEtalon, "realWidth", imgLiEtalon.width()));
                     imgLi.animate({
-                          'width': 0,
+                          'width': 'toggle',
                           'opacity': 0
                       }, 750);
                  };
                  if( $.inArray(src, imgs_src) != -1 && imgLi.hasClass('filtered')) {
                     imgLi.removeClass('filtered');
-                    console.log($.data(imgLiEtalon, "realWidth", imgLiEtalon.width()));
                     imgLi.animate({
-                          'width': realWidth,
+                          'width': 'toggle',
                           'opacity': 1
                       }, 750);
                  };
