@@ -72,6 +72,18 @@ class CategoryManager {
 		return $listCategories;
 	}
 
+	public function getCategoriesByGallery($id) {
+		$listCategories = array();
+
+		$q = $this->_db->query('SELECT * FROM category WHERE id IN (SELECT category_id FROM image_category WHERE image_id IN (SELECT id FROM image WHERE gallery_id = '.$id.'))');
+
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+			$listCategories[] = new Category($donnees);
+		}
+
+		return $listCategories;
+	}
+
 	public function getCategoryNames() {
 		$listCategories = array();
 

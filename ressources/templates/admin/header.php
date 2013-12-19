@@ -31,7 +31,7 @@
                 </div>
                
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="<?= "index.php?section=home "?>">Se déconnecter  </a></li>
+                  <li><a href="<?= "index.php?section=home "?>"> Retour à la galerie</a></li>
                 </ul>
             </nav>
         </header>
