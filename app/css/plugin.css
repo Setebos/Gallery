@@ -128,8 +128,12 @@ body:after {
 }
 
 .lb-desc{
-  margin-bottom: 10px;
+  margin: 6px 10px 14px 10px;
+  padding: 0px 10px;
+  border-left: 3px solid #eee;
 }
+
+
 
 .lb-cat span{
     margin: 5px 5px;  
