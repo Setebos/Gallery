@@ -87,8 +87,9 @@ if($listGalleries != null) {
 				<?php foreach ($listImages as $image) {?>
 				<li id="<?= "item-".$image->getId() ?>" class="picture-list">
 					<span class="roll"></span>
-					<div class="picture-div">
+					<div class="picture-div" data-placement="top" data-original-title="Cliquez pour éditer">
 						<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
+						<span class="glyphicon glyphicon-edit"></span>
 					</div>
 				</li>
 				<?php } ?>
@@ -96,3 +97,8 @@ if($listGalleries != null) {
 			<?php } ?>
 		</div>
 	</div>
+	<script type="text/javascript">
+  
+	  $(".picture-div").tooltip();
+
+	</script>
