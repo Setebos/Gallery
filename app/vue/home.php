@@ -40,7 +40,6 @@ require_once("ressources/templates/header.php");
               $cat_string="";
               foreach ($categories as $category) {
                 $cat_string.=";".$category->getName();
-                // array_push($cat_array, $category->getName());
               }
           ?>
           <img src="<?= $image->getLocationMiniature(); ?>" 

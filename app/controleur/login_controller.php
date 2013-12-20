@@ -12,8 +12,6 @@
   $ok = array();
 
   if (!$resultat_login) {
-          // echo 'Mauvais identifiant ou mot de passe !';
-          // include_once('app/controleur/home_controller.php');
     $ok = array(
         'valid' => false,
         'redirect' => null
@@ -29,6 +27,5 @@
         'redirect' => 'index.php?section=admin_index'
       ); 
       echo json_encode($ok);
-      // var_dump($_SESSION);
-      // include_once('app/controleur/admin/admin_index_controller.php');
+
   }

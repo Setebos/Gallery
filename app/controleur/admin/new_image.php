@@ -10,6 +10,4 @@
     $listCategories = $categoryManager->getListCategories();
 
 
-
-
 include_once('app/vue/admin/new_image.php');

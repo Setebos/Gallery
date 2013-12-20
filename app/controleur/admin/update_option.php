@@ -3,9 +3,6 @@
 include_once("app/modele/OptionManager.php");
 include_once("app/modele/Option.php");
 
-// $id = $_POST["id"];
-
-
 
 if(isset($_POST["show_entire_gallery"])) {
     $show_entire_gallery = htmlspecialchars($_POST["show_entire_gallery"]);
@@ -30,12 +27,8 @@ $newOption = new Option(array(
     'display_duration' =>$display_duration,
 ));
 
-var_dump($newOption);
-
     $option = $managerOption->getOption($id);
     $option = $managerOption->updateOption($newOption);
-
-    // header('Location: index.php?section=admin_index');  
 
 
 

@@ -16,7 +16,6 @@ if ($_FILES['imageUpload']['error'] > 0) {
     } else {
         echo "Une erreur est survenue";
     }
-    // echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
 } else {
 
     $title = htmlspecialchars($_POST['imageName']);
