@@ -58,11 +58,12 @@ require_once("ressources/templates/header.php");
 
 
 $(document).ready(function(){
+
   $('#dvLoading').fadeOut(500);
 
-   var options = <?=$options_json?>;
-   console.log(options.display_duration);
-   options.show_entire_gallery == 0 ? options.show_entire_gallery = false : options.show_entire_gallery =true;
+  // récupérations des options choisies dans la partie admin
+  var options = <?=$options_json?>;
+  options.show_entire_gallery == 0 ? options.show_entire_gallery = false : options.show_entire_gallery = true;
 
   $("#diapo").slideshowPlugin({
     'show_entire_gallery' : options.show_entire_gallery,

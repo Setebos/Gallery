@@ -22,7 +22,7 @@ if ( typeof Object.create !== 'function' ) {
               'show_entire_gallery' : false,
               'diaporama_width' : 750,
               'nb_images_per_line' : 3,
-              'displayDuration' : 5000
+              'displayDuration' : 4000
             }, options),
 
           self.$container = $(elem);   // $(diapo)
