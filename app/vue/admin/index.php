@@ -58,13 +58,13 @@
 								    </div>
 								</div>
 					  			<div class="form-group">
-				  					<label name="nbImagesPerLine">Nombre d'images affichées par ligne : </label>
+				  					<label name="nbImagesPerLine"><abbr title="min : 1 ; max : 8">Nombre d'images</abbr> affichées par ligne : </label>
 				  					<div class="col-md-5">
 								    	<input type="text"  class="form-control input-sm" id="nbImagesPerLine" name="nbImagesPerLine" value="<?= $option->getNbImagesPerLine() ?>">
 								    </div>
 								</div>
 								<div class="form-group">
-								    <label name="displayDuration">Durée d'affichage des images dans le diaporama (<abbr title="min : 500 ; max : 10 000">en millisecondes</abbr>) : 	</label>
+								    <label name="displayDuration">Durée d'affichage des images dans le diaporama (<abbr title="min : 1000 ; max : 10 000">en millisecondes</abbr>) : 	</label>
 								    <div class="col-md-5">
 								    	<input type="text" class="form-control input-sm" id="displayDuration" name="displayDuration" value="<?= $option->getDisplayDuration() ?>">
 									</div>
