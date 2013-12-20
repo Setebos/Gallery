@@ -62,6 +62,12 @@ body:after {
     z-index: 10;
 }
 
+.lb-nav a, .lb-nav a:active, .lb-nav a:focus{
+  outline: none;
+  -moz-outline-style: none;
+}
+
+
 .lb-prev, .lb-next {
     width: 49%;
     height: 100%;
