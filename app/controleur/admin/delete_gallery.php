@@ -23,7 +23,7 @@ $listGalleries = $managerGallery->getListGalleries();
 
 $listFirstImages = array();
 
-foreach ($listGalleries as $gallery) {
+foreach ($listGalleries as $gallery) { //Récupération des images pour les miniatures identifiant les galeries
     $id = $gallery->getId();
     $listFirstImages[$id] = $managerImage->getFirstImageByGallery($id);
 }

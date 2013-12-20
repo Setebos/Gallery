@@ -21,10 +21,10 @@ $gallery = $galleryManager->getGallery($gallery);
 $galleryName = $gallery->getName();
 $categories = $categoryManager->getCategoriesByImage($id);
 
+// Texte pour la bulle de confirmation de suppression de catégorie
 $confirmText = 'Confirmez-vous la suppression de l\'image ?<br>';
 $confirmText .= '<div class=\'pull-right\'><a class=\'del-img-dialog\' href='.'index.php?section=admin_index'.'>Annuler</a>';
 $confirmText .= '<button class=\'btn btn-danger btn-sm del-img-dialog del-img-confirm\'><span>Confirmer</span></button></div>';
 
 
 include_once('app/vue/admin/edit_image_modal.php');
-// include_once('app/vue/admin/edit_image.php');

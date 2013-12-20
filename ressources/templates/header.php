@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Test Gallery js </title>
+        <title>Galerie Trebouzul</title>
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/>       
         <link rel="stylesheet" type="text/css" href="app/css/public.css"/>
         <link rel="stylesheet" type="text/css" href="app/css/plugin.css"/>
@@ -31,7 +31,7 @@
         <header>
             <nav class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">Gallery Powa</a>
+                    <a class="navbar-brand" href="index.php">Galerie Trebouzul</a>
                 </div>
                 <?php if (!isset($_GET['section']) OR $_GET['section'] != 'login') { ?>
                 <ul class="nav navbar-nav navbar-right">

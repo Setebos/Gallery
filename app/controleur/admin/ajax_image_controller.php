@@ -22,7 +22,7 @@ $listImages = $managerImage->getImagesByGallery($id);
 if($listGalleries != null) {
 	$gallerySelect = $managerGallery->getGallery($id)->getName();
 	$vide = false;
-} else {
+} else { // Gestion du cas ou aucune galerie n'existe
 	$vide = true;
 }
 
@@ -33,8 +33,8 @@ if($listGalleries != null) {
 
 <div class="picture-header">
 	<a href="<?= "index.php?section=new_image "?>">
-			<div class="btn-admin pull-left"  title="Ajouter une image à la galerie">+ </div>
-		</a>
+		<div class="btn-admin pull-left"  title="Ajouter une image à la galerie">+ </div>
+	</a>
 	<ul>
 		<li>
 			<a href="#" id="new-cat-btn"><p>Editer les catégories</p></a>
