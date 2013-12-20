@@ -292,7 +292,6 @@ if ( typeof Object.create !== 'function' ) {
                             self.currentImageIndex = self.album.length - 1;
                           } else {
                             self.currentImageIndex --;
-                            console.log("cur img !=0")
                           }
                           self.changeLightbox();
                         });
@@ -309,10 +308,8 @@ if ( typeof Object.create !== 'function' ) {
 
                       self.gallery.bindLbClick = true;
 
-
                       // keyboard key binding
                       $(document).on('keyup', function(event) {
-                        console.log(event);
                         var KEYCODE_ESC = 27,
                         KEYCODE_LEFTARROW = 37,
                         KEYCODE_RIGHTARROW = 39;
@@ -335,7 +332,6 @@ if ( typeof Object.create !== 'function' ) {
                     self.gallery.items.each(function(index){
                       var img = $(this).children('img');
                       var source = img.attr('src').split('-miniature');
-                      // console.log(img.data('cat').substring(1).split(";"));
                       self.album.push({
                         src: ""+source[0]+""+source[1]+"",
                         title: img.attr('title'),
