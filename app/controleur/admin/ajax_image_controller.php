@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 include_once("ressources/config.php");
 include_once("app/modele/Gallery.php");
