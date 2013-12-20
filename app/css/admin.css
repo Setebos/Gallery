@@ -103,8 +103,6 @@ border-color: #db2d27;
     margin: 3px 3px 0 0;
 }
 
-
-
 #dialog-confirm,  #dial-del-cat, #dial-del-img{
     display: none;
     z-index: 1100;
@@ -298,6 +296,7 @@ margin-left: 0px;
     -webkit-box-shadow: 0px 0px 4px #000;
     -moz-box-shadow: 0px 0px 4px  #000;
     box-shadow: 0px 0px 4px  #000; 
+    cursor: pointer;
 }
 
 .picture-div span {
@@ -309,7 +308,7 @@ margin-left: 0px;
     font-size: 2em;
     color: #000;
     z-index: 999;
-    cursor:default;
+    cursor:pointer;
 }
 
 .picture-div:hover span {

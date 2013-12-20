@@ -11,7 +11,12 @@ include_once("app/modele/ImageCategory.php");
 include_once("app/modele/ResizeImage.php");
 
 if ($_FILES['imageUpload']['error'] > 0) {
-    echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
+    if($_FILES['imageUpload']['error'] == 1) {
+        echo "Erreur : la taille de cette image est trop importante";
+    } else {
+        echo "Une erreur est survenue";
+    }
+    // echo "Error: " . $_FILES['imageUpload']['error'] . "<br />";
 } else {
 
     $title = htmlspecialchars($_POST['imageName']);

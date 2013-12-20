@@ -6,6 +6,9 @@ $(document).ready(function() {
 			opacity: '0.7',
 			containment: "parent",
 			cursor: "move",
+			sort: function() {
+				$('.picture-div').tooltip('hide');
+			},
 			update: function() {
 				newOrder = $(this).sortable("serialize");
 				$.ajax({
