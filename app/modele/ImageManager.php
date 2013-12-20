@@ -146,7 +146,12 @@ class ImageManager {
 		    $q = $this->_db->query('SELECT * FROM image WHERE gallery_id = '.$idGallery.' AND id IN (SELECT id FROM image JOIN image_category ON image_category.image_id = image.id WHERE category_id = '.$id.') ORDER BY position');
 
 			while($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-				$listImages[] = new Image($donnees);
+			// cas des images ayant +ieurs catégories sélectionnées : 
+			//vérifier si elles sont déjà dans le tableau pour éviter les doublons
+				$image = new Image($donnees);
+				if(!in_array($image, $listImages)){
+					$listImages[] = new Image($donnees);
+				}
 			}
 		}
 		return $listImages;
@@ -163,6 +168,7 @@ class ImageManager {
 		}
 
 		return $listImages;
+		
 	}
 
 	// retourne les termes possibles pour l'autocompletion, parmi les titres d'image
