@@ -284,6 +284,7 @@ if ( typeof Object.create !== 'function' ) {
 
               if(self.gallery.bindLbClick == false){              // prevent multiple binding of click event and so multiple triggering
                       
+                      // navigation icon in slideshow
                       $(document).on('click', '.lb-prev', function(e){
                           e.preventDefault();
 
@@ -307,6 +308,25 @@ if ( typeof Object.create !== 'function' ) {
                         });
 
                       self.gallery.bindLbClick = true;
+
+
+                      // keyboard key binding
+                      $(document).on('keyup', function(event) {
+                        console.log(event);
+                        var KEYCODE_ESC = 27,
+                        KEYCODE_LEFTARROW = 37,
+                        KEYCODE_RIGHTARROW = 39;
+
+                        keycode = event.keyCode;
+                        if (keycode === KEYCODE_ESC) {
+                          self.hideLightbox();
+                        } else if (keycode === KEYCODE_LEFTARROW) {
+                          $('.lb-prev').click();
+                        } else if (keycode === KEYCODE_RIGHTARROW) {
+                          $('.lb-next').click();
+                        }
+                      });
+
                     }
 
                   },
@@ -371,6 +391,7 @@ if ( typeof Object.create !== 'function' ) {
                     $("#lightbox").fadeOut("slow", function(){
                       $('#lb-area').fadeOut("slow", function(){
                         clearInterval(self.lbTimer);
+                        // $(document).off('keyup');
                         $('#lb-area').remove();
                         $('#lightbox').remove();
                       });
