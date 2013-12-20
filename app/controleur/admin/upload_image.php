@@ -42,6 +42,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
     $gallery = $galleryManager->getGalleryByName($imageGallery);
     $listPositions = $imageManager->getPositions($gallery->getId());
 
+    // On récupère les positions des images déjà présentes dans la galerie pour déterminer celle qu'aura l'image créée
     foreach ($listPositions as $positions) {
         $enumPositions[] =  $positions['position'];
     }
@@ -73,7 +74,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
             $temp = 'app/img/temp-' . $title . $fileExtension;
 
-            $resize->saveImage($temp);
+            $resize->saveImage($temp); // Création d'une image temporaire aux bonnes dimensions afin de pouvoir cropper sans étirer
 
             $resize = new ResizeImage($temp);
 
@@ -83,9 +84,9 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
             $resize->saveImage($destinationThumbnail);
 
-            unlink($temp);
+            unlink($temp); // Destruction de l'image temporaire servant à effectuer le crop
            
-            //Création du thumnail public
+            //Création de la miniature
 
             $resize = new ResizeImage($destination);
             $resize->resizeTo(400, 400);
@@ -95,7 +96,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
             $resize->saveImage($destinationMiniature);
 
             //Rattachement aux catégories
-
+            // Il faut connaitre l'id de l'image pour y ajouter des catégories, on récupère l'image ajoutée en dernier à la base
             $newImage = $imageManager->getImageByPosition($position, $gallery->getId());
 
             $newImage->setLocationMiniature($destinationMiniature);

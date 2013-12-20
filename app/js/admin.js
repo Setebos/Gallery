@@ -6,9 +6,6 @@ $(document).ready(function() {
 			opacity: '0.7',
 			containment: "parent",
 			cursor: "move",
-			sort: function() {
-				$('.picture-div').tooltip('hide');
-			},
 			update: function() {
 				newOrder = $(this).sortable("serialize");
 				$.ajax({
@@ -115,7 +112,6 @@ $(document).ready(function() {
 
 	/* Edition de galerie */
 	$(document).on("click", ".gal-edit-btn", function() {
-		console.log($(this).parent());
 		var idLong = $(this).parents(".gal-vign-container").attr('id');
 		var idCourt = idLong.substring(7);
 	 	$("#dialog-confirm").css("display", "block");
@@ -301,7 +297,6 @@ $("#modal_info_pic").on("click", ".del-img-confirm", function(event) {
 
 $(document).on("click", "#gal-options-submit", function(event) {
 		event.preventDefault();
-	  // var div = $(this).parents(".display-gal-opt");
 		
 		$.ajax({
 			type: "POST",
@@ -318,11 +313,7 @@ $(document).on("click", "#gal-options-submit", function(event) {
 				setTimeout(function () {
 			    $("#display-gal-opt-msg").html("");
 			    $("#display-options").trigger("click");
-				}, 3000);
-				 // $("#display-gal-opt-msg").html("<div class='alert alert-success'>Vos options ont bien été mises à jour</div>").delay(5000).html("");
-				 // div.delay(2000).animate({ height: 0 }, 600);
-				 // $("#display-gal-opt-msg").html("").delay(5000);
-				// $("#display-options").delay(5000).trigger("click");
+				}, 2500); // délai de 2.5 secondes, puis repli du formulaire
 			},
 			error: function(){
 				$("#display-gal-opt-msg").html("<div class='alert alert-danger'>Désolée, problème !</div>");
@@ -332,7 +323,6 @@ $(document).on("click", "#gal-options-submit", function(event) {
 
 /***************  SUPRESSION CATEGORIE  *****************/
 $(document).on("click", ".span-del-cat", function() {
-	console.log("click del cat");
 	var idLong = $(this).attr('id');
 	var idCourt = idLong.substring(7);
  	$("#dial-del-cat").css("display", "block");
@@ -505,7 +495,6 @@ $(document).on("click", ".span-del-cat", function() {
 		event.preventDefault();
 		var login = $("#inputLogin").val();
 		var password = $("#inputPassword").val();
-		console.log(login);
 
 		$.ajax({
 			type: 'post',

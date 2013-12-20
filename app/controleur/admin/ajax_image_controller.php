@@ -87,7 +87,7 @@ if($listGalleries != null) {
 			<ul class="list-inline sortable">
 				<?php foreach ($listImages as $image) {?>
 				<li id="<?= "item-".$image->getId() ?>" class="picture-list">
-					<div class="picture-div" data-placement="top" data-original-title="Cliquez pour éditer">
+					<div class="picture-div">
 						<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
 					</div>
 				</li>

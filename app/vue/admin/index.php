@@ -17,12 +17,13 @@
 			  		</ul>
 			  		<h3>Galeries</h3>
 			 	</div>
+			 	<!-- Options de la galerie -->
 			 	<div class="gallery-header-option-part">
 				  	<div class="display-gal-opt">
 				  		<form role="form" id="display-gal-option">
 					  		<h4> Options d'affichage de la galerie</h4>
 					  		<div class="well">
-					  			<span id="display-gal-opt-msg"></span>
+					  			<span id="display-gal-opt-msg"></span>  <!-- span contenant le message de réussite/erreur -->
 				  				<div class="form-group radio-btn">
 				  					<label >Afficher toute la galerie : </label>
 				  					<br>
@@ -69,41 +70,43 @@
 									</div>
 								</div>
 								<button id="gal-options-submit" type="submit" class="btn btn-default btn-sm pull-right">Valider</button>
-								<br/><span id="validateGalOptions"></span>
+								<br/>
 							</div>
 						</form>
 				  	</div>	
 				</div>
+				<!-- Affichage de la liste des galeries -->
 			 	<div class="gallery-body">
 			 		<?php if($vide == false) {
 			 		foreach ($listGalleries as $gallery) {
-			 			if($gallery->getName() == $gallerySelect) { ?>
+			 			if($gallery->getName() == $gallerySelect) { ?> 
 			 				<div class="gal-vign-container gallery-active"  id="<?= "gallery" . $gallery->getId() ?>">
 			 			<?php } else { ?>
 		 					<div class="gal-vign-container"  id="<?= "gallery" . $gallery->getId() ?>">
 		 				<?php } ?>
                  		<div class="gal-vign-picture">
-                 			 <?php if ($listFirstImages[$gallery->getId()] != null) {?>
+                 			 <?php if ($listFirstImages[$gallery->getId()] != null) {?> <!-- Si la galerie contient des images, la première est affichée pour identifier la galerie -->
                         		<img src="<?= $listFirstImages[$gallery->getId()]->getLocationThumbnail() ?>">
-                        	<?php } else { ?>
+                        	<?php } else { ?> <!-- Gestion du cas des galeries sans images -->
                         	<img src="http://placehold.it/120&text=pic">
                         	<?php } ?>
                       	</div>
                        	<div class="gal-vign-detail">
                         	<a href="#"><p><?= $gallery->getName() ?></p></a>
                         	<button class="btn btn-default btn-xsm gal-suppr-btn">
-					<span class="glyphicon glyphicon-trash"></span>
-				</button>
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
                         	<a href="<?= "index.php?section=edit_gallery&id=".$gallery->getId() ?>">
 	                        	<button id="<?= "edit-gallery" . $gallery->getId() ?>" class="btn btn-default btn-xsm gallery-edit-button">
-						<span class="glyphicon glyphicon-pencil"></span>
-					</button>
-				</a>		
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+									</a>		
                         </div>
                      </div>
             	<?php }} ?>
 		 		</div>
 			 </div>
+			 <!-- Header de la partie image avec gestion des catégories -->
 			 <div class="col-md-8 picture-part">
 			  	<div class="picture-header">
 			  		<a href="<?= "index.php?section=new_image "?>">
@@ -149,12 +152,13 @@
 						</div>
 				  	</div>	
 				</div>
+				<!-- Affichage des images -->
 			  	<div class="picture-body">
 	             	<div class="conteneur-images">
 	             		<?php if($vide == false) { 
 	             			if(!isset($listImages)) {?>
 	             				<p class="help-block">Appuyez sur le bouton " + " ci-dessus pour ajouter des images.</p>
-             				<?php } else {?>
+             				<?php } else {?> <!-- Gestion du cas ou aucune galerie n'existe -->
 								<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
 								<p class="help-block">Cliquez sur une image pour la modifier.</p>
 							<?php } ?>
@@ -162,9 +166,8 @@
 								<?php foreach ($listImages as $image) {?>
 									<li id="<?= "item-".$image->getId() ?>" class="picture-list">
 										
-										<div class="picture-div" data-placement="top" data-original-title="Cliquez pour éditer">
+										<div class="picture-div">
 											<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>" title="cliquez pour modifier cette image">
-											<!-- <span class="glyphicon glyphicon-edit"></span> -->
 										</div>
 									</li>
 								<?php } ?>
@@ -203,9 +206,4 @@
 
 	</body>
 	<script type="text/javascript" src="app/js/admin.js"></script>
-	<script type="text/javascript">
-  
-	  // $(".picture-div").tooltip();
-
-	</script>
 </html>
