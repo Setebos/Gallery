@@ -376,7 +376,9 @@ if ( typeof Object.create !== 'function' ) {
                         $(".lb-desc p").html(currentImg.desc);
                         var listSpanCat="";
                         $.each(currentImg.cat, function(index, cat){
-                           listSpanCat+="<span>"+cat+"</span>";
+                           if(cat.length > 0){
+                            listSpanCat+="<span>"+cat+"</span>";
+                          }                    
                         })
                         $(".lb-cat p").html(listSpanCat);
                       }
