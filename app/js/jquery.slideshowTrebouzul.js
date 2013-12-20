@@ -127,7 +127,7 @@ if ( typeof Object.create !== 'function' ) {
           "overflow": "hidden"
         });
 
-            // Attache des fonctionnalités de navigation si besoin
+            // Attache des fonctionnalités de navigation si besoin (nbimage suffisant)
             if(self.nbItems  > self.params.nb_images_per_line){
               self.$btnDir.show().find('button').on('click', function(){
                 self.setNavigation(this);  
@@ -169,7 +169,7 @@ if ( typeof Object.create !== 'function' ) {
           var self = this;
           var slide = Object.create(slideshow);
           slide.init(self, item, autoplay);
-          self.bindLbClick = true;
+          self.bindLbClick = true;      // lightbox lancée une fois = empêcher multiples triggering
         }
 
       };
@@ -261,9 +261,11 @@ if ( typeof Object.create !== 'function' ) {
                           } 
                         $(".lb-title h3").html(currentImg.title);
                         $(".lb-desc p").html(currentImg.desc);   
-                        var listSpanCat="";
+                        var listSpanCat ="";
                         $.each(currentImg.cat, function(index, cat){
-                           listSpanCat+="<span>"+cat+"</span>";
+                          if(cat.length > 0){
+                            listSpanCat+="<span>"+cat+"</span>";
+                          }                          
                         })
                         $(".lb-cat p").html(listSpanCat);
                         self.album[0].cat
@@ -366,7 +368,6 @@ if ( typeof Object.create !== 'function' ) {
                   },
                   hideLightbox: function(){
                     var self = this;
-                    console.log("in hideLb");
                     $("#lightbox").fadeOut("slow", function(){
                       $('#lb-area').fadeOut("slow", function(){
                         clearInterval(self.lbTimer);
