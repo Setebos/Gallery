@@ -22,7 +22,7 @@ if ( typeof Object.create !== 'function' ) {
               'show_entire_gallery' : false,
               'diaporama_width' : 750,
               'nb_images_per_line' : 3,
-              'displayDuration' : 4000
+              'display_duration' : 4000
             }, options),
 
           self.$container = $(elem);   // $(diapo)
@@ -258,7 +258,7 @@ if ( typeof Object.create !== 'function' ) {
                         $('.lb-nav').height($(preloadImg).outerHeight());
                         if (self.autoplay == true){
                             $('.lb-nav').hide();  
-                          } 
+                        }
                         $(".lb-title h3").html(currentImg.title);
                         $(".lb-desc p").html(currentImg.desc);   
                         var listSpanCat ="";
@@ -275,7 +275,9 @@ if ( typeof Object.create !== 'function' ) {
 
                     if (self.autoplay == true){
                       self.autoplayDiaporama();
-                    } 
+                    } else {
+                            clearInterval(self.lbTimer);
+                        } 
 
             },
             // bind boutons nav du slideshow
@@ -348,9 +350,10 @@ if ( typeof Object.create !== 'function' ) {
                     var self = this;
 
                   // simulation d'un click à interval régulier pour défilement auto
-                  self.lbTimer= setInterval(function(){
-                    $('.lb-next').click();
-                  }, self.gallery.params.displayDuration)
+                      self.lbTimer= setInterval(function(){
+                        $('.lb-next').click();
+                      }, self.gallery.params.display_duration)
+
                 },
                 changeLightbox: function(){
                   var self = this;
@@ -384,10 +387,10 @@ if ( typeof Object.create !== 'function' ) {
                   },
                   hideLightbox: function(){
                     var self = this;
+                    clearInterval(self.lbTimer);
                     $("#lightbox").fadeOut("slow", function(){
                       $('#lb-area').fadeOut("slow", function(){
-                        clearInterval(self.lbTimer);
-                        // $(document).off('keyup');
+                        $(document).off('keyup');
                         $('#lb-area').remove();
                         $('#lightbox').remove();
                       });

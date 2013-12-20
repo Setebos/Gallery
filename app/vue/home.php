@@ -69,7 +69,7 @@ $(document).ready(function(){
     'show_entire_gallery' : options.show_entire_gallery,
     'diaporama_width' : options.diaporama_width,
     'nb_images_per_line' : options.nb_images_per_line, 
-    'displayDuration' : options.display_duration
+    'display_duration' : options.display_duration
   });
 
 })

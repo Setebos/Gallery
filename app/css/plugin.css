@@ -1,6 +1,6 @@
 /***********        Index - diaporama        ***********/
 body:after {
-  content: url(../img/ajax-loader.gif) url(../img/close.png) url(../img/prev.png) url(../img/next.png);
+  content: url(../img/ajax-loader.gif) url(../img/closeg.png) url(../img/prev.png) url(../img/next.png);
   display: none;
 }
 
