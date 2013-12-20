@@ -8,12 +8,19 @@ if(isset($_POST["name"])) {
 }
 if(isset($_POST["id"])) {
 	$id = htmlspecialchars($_POST['id']);
+} else {
+	$id = null;
 }
 
 $manager = new CategoryManager($db);
 
 $listCategories = $manager->getListCategories();
-$categories = $manager->getCategoriesByImage($id);
+
+//Si on est en train d'éditer une image, son id est récupérée
+if($id != null) {
+	$categories = $manager->getCategoriesByImage($id);
+}
+
 
 $existe = false;
 
@@ -42,17 +49,25 @@ $listCategories = $manager->getListCategories();
 	<label name="imageCategories">Choisissez des catégories : </label>
 	<ul class="list-inline">
 		<?php foreach ($listCategories as $category) {
-			if(in_array($category, $categories)) {
-			?>
-        		<li>
-        			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>" checked><?= $category->getName() ?>
-        		</li>
-    		<?php } else {
-			?>
-    			<li>
+			if($id != null) {
+				if(in_array($category, $categories)) {
+				?>
+	        		<li>
+	        			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>" checked><?= $category->getName() ?>
+	        		</li>
+	    		<?php } else {
+				?>
+	    			<li>
+	        			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
+	        		</li>
+				<?php } 
+			} else { ?>
+				<li>
         			<input type="checkbox" class="upload-image-checkbox" name="imageCategories[]" value="<?= $category->getName() ?>"><?= $category->getName() ?>
         		</li>
-			<?php }} ?>
+			<?php }
+		} ?>
+			
 		<li>
 			<div class="btn btn-default btn-xsm upload-image-new-category">
 		    	<a href="#" title="créer une nouvelle catégorie">+</a>
