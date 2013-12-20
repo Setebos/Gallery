@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Test Gallery js - Espace admin </title>
+        <title>Galerie Trebouzul - Espace admin </title>
         <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"/> 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <link rel="stylesheet" type="text/css" href="app/css/admin.css"/>
@@ -27,7 +27,7 @@
             <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php?section=admin_index">Gallery Powa - Administration</a>
+                    <a class="navbar-brand" href="index.php?section=admin_index">Galerie Trebouzul - Administration</a>
                 </div>
                
                 <ul class="nav navbar-nav navbar-right">
