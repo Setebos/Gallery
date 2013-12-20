@@ -82,14 +82,13 @@ if($listGalleries != null) {
 			<p class="help-block">Appuyez sur le bouton " + " ci-dessus pour ajouter des images.</p>
 			<?php } else {?>
 			<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
+			<p class="help-block">Cliquez sur une image pour la modifier.</p>
 			<?php } ?>
 			<ul class="list-inline sortable">
 				<?php foreach ($listImages as $image) {?>
 				<li id="<?= "item-".$image->getId() ?>" class="picture-list">
-					<span class="roll"></span>
-					<div class="picture-div" data-placement="top" data-original-title="Cliquez pour éditer">
+					<div class="picture-div">
 						<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
-						<span class="glyphicon glyphicon-edit"></span>
 					</div>
 				</li>
 				<?php } ?>
@@ -97,8 +96,4 @@ if($listGalleries != null) {
 			<?php } ?>
 		</div>
 	</div>
-	<script type="text/javascript">
-  
-	  $(".picture-div").tooltip();
 
-	</script>

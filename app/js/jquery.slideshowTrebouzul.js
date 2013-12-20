@@ -127,7 +127,7 @@ if ( typeof Object.create !== 'function' ) {
           "overflow": "hidden"
         });
 
-            // Attache des fonctionnalités de navigation si besoin
+            // Attache des fonctionnalités de navigation si besoin (nbimage suffisant)
             if(self.nbItems  > self.params.nb_images_per_line){
               self.$btnDir.show().find('button').on('click', function(){
                 self.setNavigation(this);  
@@ -169,7 +169,7 @@ if ( typeof Object.create !== 'function' ) {
           var self = this;
           var slide = Object.create(slideshow);
           slide.init(self, item, autoplay);
-          self.bindLbClick = true;
+          self.bindLbClick = true;      // lightbox lancée une fois = empêcher multiples triggering
         }
 
       };
@@ -261,9 +261,11 @@ if ( typeof Object.create !== 'function' ) {
                           } 
                         $(".lb-title h3").html(currentImg.title);
                         $(".lb-desc p").html(currentImg.desc);   
-                        var listSpanCat="";
+                        var listSpanCat ="";
                         $.each(currentImg.cat, function(index, cat){
-                           listSpanCat+="<span>"+cat+"</span>";
+                          if(cat.length > 0){
+                            listSpanCat+="<span>"+cat+"</span>";
+                          }                          
                         })
                         $(".lb-cat p").html(listSpanCat);
                         self.album[0].cat
@@ -282,6 +284,7 @@ if ( typeof Object.create !== 'function' ) {
 
               if(self.gallery.bindLbClick == false){              // prevent multiple binding of click event and so multiple triggering
                       
+                      // navigation icon in slideshow
                       $(document).on('click', '.lb-prev', function(e){
                           e.preventDefault();
 
@@ -289,7 +292,6 @@ if ( typeof Object.create !== 'function' ) {
                             self.currentImageIndex = self.album.length - 1;
                           } else {
                             self.currentImageIndex --;
-                            console.log("cur img !=0")
                           }
                           self.changeLightbox();
                         });
@@ -305,6 +307,23 @@ if ( typeof Object.create !== 'function' ) {
                         });
 
                       self.gallery.bindLbClick = true;
+
+                      // keyboard key binding
+                      $(document).on('keyup', function(event) {
+                        var KEYCODE_ESC = 27,
+                        KEYCODE_LEFTARROW = 37,
+                        KEYCODE_RIGHTARROW = 39;
+
+                        keycode = event.keyCode;
+                        if (keycode === KEYCODE_ESC) {
+                          self.hideLightbox();
+                        } else if (keycode === KEYCODE_LEFTARROW) {
+                          $('.lb-prev').click();
+                        } else if (keycode === KEYCODE_RIGHTARROW) {
+                          $('.lb-next').click();
+                        }
+                      });
+
                     }
 
                   },
@@ -313,7 +332,6 @@ if ( typeof Object.create !== 'function' ) {
                     self.gallery.items.each(function(index){
                       var img = $(this).children('img');
                       var source = img.attr('src').split('-miniature');
-                      // console.log(img.data('cat').substring(1).split(";"));
                       self.album.push({
                         src: ""+source[0]+""+source[1]+"",
                         title: img.attr('title'),
@@ -366,10 +384,10 @@ if ( typeof Object.create !== 'function' ) {
                   },
                   hideLightbox: function(){
                     var self = this;
-                    console.log("in hideLb");
                     $("#lightbox").fadeOut("slow", function(){
                       $('#lb-area').fadeOut("slow", function(){
                         clearInterval(self.lbTimer);
+                        // $(document).off('keyup');
                         $('#lb-area').remove();
                         $('#lightbox').remove();
                       });

@@ -160,14 +160,14 @@
 	             				<p class="help-block">Appuyez sur le bouton " + " ci-dessus pour ajouter des images.</p>
              				<?php } else {?> <!-- Gestion du cas ou aucune galerie n'existe -->
 								<p class="help-block">Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images.</p>
+								<p class="help-block">Cliquez sur une image pour la modifier.</p>
 							<?php } ?>
 							<ul class="list-inline sortable">
 								<?php foreach ($listImages as $image) {?>
 									<li id="<?= "item-".$image->getId() ?>" class="picture-list">
 										
-										<div class="picture-div" data-placement="top" data-original-title="Cliquez pour éditer">
-											<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>">
-											<span class="glyphicon glyphicon-edit"></span>
+										<div class="picture-div">
+											<img id="<?= "image-".$image->getId() ?>" src="<?= $image->getLocationThumbnail() ?>" title="cliquez pour modifier cette image">
 										</div>
 									</li>
 								<?php } ?>
@@ -200,13 +200,10 @@
 		      	<div class="ajax_content">
 		        ...
 		      </div>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+		    </div>
+		  </div>
+		</div>
 
 	</body>
 	<script type="text/javascript" src="app/js/admin.js"></script>
-	<script type="text/javascript">
-	  $(".picture-div").tooltip(); // Activation du tooltip au survol des images
-	</script>
 </html>

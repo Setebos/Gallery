@@ -62,13 +62,14 @@ $(document).ready(function(){
   $('#dvLoading').fadeOut(500);
 
    var options = <?=$options_json?>;
+   console.log(options.display_duration);
    options.show_entire_gallery == 0 ? options.show_entire_gallery = false : options.show_entire_gallery =true;
 
   $("#diapo").slideshowPlugin({
     'show_entire_gallery' : options.show_entire_gallery,
     'diaporama_width' : options.diaporama_width,
     'nb_images_per_line' : options.nb_images_per_line, 
-    'displayDuration' : options.displayDuration
+    'displayDuration' : options.display_duration
   });
 
 })

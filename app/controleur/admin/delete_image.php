@@ -33,6 +33,7 @@ foreach ($listImages as $img) {
 
 <h3 class="gallery-title"><?= $gallerySelect ?></h3>
 <p>Faites glisser et déposez les miniatures pour changer l'ordre d'affichage des images</p>
+<p class="help-block">Cliquez sur une image pour la modifier.</p>
 <ul class="list-inline sortable">
 	<?php foreach ($listImages as $image) {?>
 		<li id="<?= "item-".$image->getId() ?>" class="picture-list">

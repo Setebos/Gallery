@@ -217,6 +217,8 @@ border-color: #db2d27;
     margin-top: 5px;
     font-style: italic;
     margin-bottom: 5px;
+    border-left: 3px solid #737373;
+    padding-left: 8px;
 }
 
 .picture-body .help-block:first-child{
@@ -226,8 +228,8 @@ border-color: #db2d27;
 /***********        Cat management in picture header        ***********/
 
 .new-cat .row {
-margin-right: 0px;
-margin-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .new-cat .well{
