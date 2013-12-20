@@ -51,7 +51,7 @@ if ($_FILES['imageUpload']['error'] > 0) {
 
 
     if (in_array($fileExtension, $validExtensions)) {
-        $time = time();
+        $time = time(); //Un timestamp pour différencier des images ayant le même nom
         $destination = 'app/img/' . $time . '_' . $title . $fileExtension ;
         
         if (move_uploaded_file($_FILES['imageUpload']['tmp_name'], $destination)) {
