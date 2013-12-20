@@ -22,7 +22,7 @@ $listGalleries = $managerGallery->getListGalleries();
 $listCategories = $managerCategory->getListCategories();
 
 
-if($listGalleries != null) {
+if($listGalleries != null) { 
 	$vide = false;
 	$gallerySelect = $listGalleries[0]->getName();
 	$listImages = $managerImage->getImagesByGallery($listGalleries[0]->getId());
@@ -33,7 +33,7 @@ if($listGalleries != null) {
 		$id = $gallery->getId();
 		$listFirstImages[$id] = $managerImage->getFirstImageByGallery($id);
 	}
-} else {
+} else { // Gestion du cas ou aucune galerie n'existe
 	$vide = true;
 }
 
